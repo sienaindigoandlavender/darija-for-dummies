@@ -1,156 +1,393 @@
-'use client';
+"use client";
 
-import { useState, useEffect } from 'react';
-import Script from 'next/script';
+import Link from "next/link";
+import { useState, useEffect } from "react";
 
-interface ContentSite { id: number; site_label: string; site_url: string; display_order: number }
-interface LegalPage { page_slug: string; page_title: string }
-interface PoweredBy { label: string; url: string }
-interface SiteConfig { site_id: string; site_name: string; site_url: string; legal_entity: string; contact_email: string }
+// Currency options
+const currencies = [
+  { code: "EUR", symbol: "€" },
+  { code: "USD", symbol: "$" },
+  { code: "GBP", symbol: "£" },
+  { code: "MAD", symbol: "DH" },
+];
+
+
+
+interface FooterLink {
+  label: string;
+  href: string | null;
+  type?: string;
+}
+
+interface FooterColumn {
+  number: number;
+  title: string;
+  links: FooterLink[];
+}
+
+interface FooterData {
+  brandId: string;
+  newsletter: {
+    show: boolean;
+    backgroundImage: string;
+    title: string;
+    description: string;
+    brandName: string;
+  };
+  columns: FooterColumn[];
+  contentSites: { label: string; url: string }[];
+  legal: FooterLink[];
+  copyright: {
+    year: number;
+    name: string;
+  };
+}
 
 export default function Footer() {
-  const [contentSites, setContentSites] = useState<ContentSite[]>([]);
-  const [legalPages, setLegalPages] = useState<LegalPage[]>([]);
-  const [poweredBy, setPoweredBy] = useState<PoweredBy | null>(null);
-  const [siteConfig, setSiteConfig] = useState<SiteConfig | null>(null);
+  const [email, setEmail] = useState("");
+  const [subscribed, setSubscribed] = useState(false);
+  const [isSubscribing, setIsSubscribing] = useState(false);
+  const [footerData, setFooterData] = useState<FooterData | null>(null);
+  
+  // Currency state
+  const [currentCurrency, setCurrentCurrency] = useState("EUR");
 
   useEffect(() => {
-    fetch('/api/footer')
-      .then(r => r.json())
-      .then(data => {
-        setContentSites(data.contentSites || []);
-        setLegalPages(data.legalPages || []);
-        setPoweredBy(data.poweredBy || null);
-        setSiteConfig(data.siteConfig || null);
+    fetch("/api/footer")
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.success && data.data) {
+          setFooterData(data.data);
+        }
       })
-      .catch(() => {});
+      .catch((err) => console.error("Footer fetch error:", err));
   }, []);
 
-  const siteName = siteConfig?.site_name || 'Darija for Dummies';
-  const copyrightHolder = siteConfig?.legal_entity || poweredBy?.label || 'Slow Morocco';
+  // Load saved currency preference
+  useEffect(() => {
+    const savedCurrency = localStorage.getItem("slowmorocco_currency");
+    if (savedCurrency) setCurrentCurrency(savedCurrency);
+  }, []);
+
+  // Clean up any stale Google Translate cookies
+  useEffect(() => {
+    document.cookie = "googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+    document.cookie = "googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; domain=." + window.location.hostname;
+    document.cookie = "googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; domain=.slowmorocco.com";
+    localStorage.removeItem("slowmorocco_language");
+  }, []);
+
+
+
+  const handleCurrencyChange = (code: string) => {
+    setCurrentCurrency(code);
+    localStorage.setItem("slowmorocco_currency", code);
+    window.dispatchEvent(new CustomEvent("currencyChange", { detail: code }));
+  };
+
+  const handleSubscribe = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!email || isSubscribing) return;
+
+    setIsSubscribing(true);
+    try {
+      const res = await fetch("/api/newsletter/subscribe", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email }),
+      });
+
+      if (res.ok) {
+        setSubscribed(true);
+        setEmail("");
+      }
+    } catch (error) {
+      console.error("Subscription error:", error);
+    } finally {
+      setIsSubscribing(false);
+    }
+  };
+
+  // Fallback values
+  const newsletter = footerData?.newsletter || {
+    show: true,
+    backgroundImage: "",
+    title: "Stay curious",
+    description: "Stories, routes, and cultural insights from Morocco.",
+    brandName: "Slow Morocco",
+  };
+
+  const columns = footerData?.columns || [];
+  const contentSites = footerData?.contentSites || [];
+  const legal = footerData?.legal || [
+    { label: "Terms", href: "/terms" },
+    { label: "Privacy", href: "/privacy" },
+    { label: "Cancellation", href: "/cancellation-policy" },
+    { label: "Glossary", href: "/glossary" },
+  ];
+  const copyright = footerData?.copyright || {
+    year: new Date().getFullYear(),
+    name: "Slow Morocco",
+  };
 
   return (
     <footer>
-      {/* ═══ LEVEL 1: Brand + Navigation ═══ #1f1f1f */}
-      <div style={{ backgroundColor: '#1f1f1f' }}>
-        <div className="px-8 md:px-[8%] lg:px-[12%] py-16">
-          <div className="grid md:grid-cols-12 gap-12">
-            <div className="md:col-span-5">
-              <span className="font-display text-2xl text-white/90">{siteName}</span>
-              <p className="text-sm text-white/50 mt-3 max-w-sm leading-relaxed">
-                The fun, irreverent guide to Moroccan Arabic. Built with love from inside the medina.
+      {/* ═══════════════════════════════════════════════════════════════
+          LEVEL 1: Newsletter
+          ═══════════════════════════════════════════════════════════════ */}
+      {newsletter.show && (
+        <section 
+          className="py-20 md:py-24 bg-[#1f1f1f] relative"
+          style={newsletter.backgroundImage ? {
+            backgroundImage: `url(${newsletter.backgroundImage})`,
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+          } : undefined}
+        >
+          {/* Dark overlay when background image is present */}
+          {newsletter.backgroundImage && (
+            <div className="absolute inset-0 bg-black/60" />
+          )}
+          
+          <div className="container mx-auto px-8 md:px-16 lg:px-20 relative z-10">
+            <div className="max-w-2xl mx-auto text-center">
+              <h3 className="font-serif text-2xl md:text-3xl text-white mb-4">
+                {newsletter.title}
+              </h3>
+              <p className="text-white/50 text-sm mb-8">
+                {newsletter.description}
               </p>
-              {poweredBy && (
-                <p className="text-xs text-white/30 mt-6">
-                  A <a href={poweredBy.url} target="_blank" rel="noopener" className="text-white/40 hover:text-white/60 transition-colors">{poweredBy.label}</a> project
-                </p>
+
+              {subscribed ? (
+                <p className="text-white/70">Thank you for subscribing.</p>
+              ) : (
+                <form onSubmit={handleSubscribe} className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
+                  <input
+                    type="email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    placeholder="Your email"
+                    required
+                    disabled={isSubscribing}
+                    className="flex-1 px-5 py-4 bg-white/5 border border-white/10 text-white text-sm placeholder:text-white/30 focus:outline-none focus:border-white/30 transition-colors"
+                  />
+                  <button
+                    type="submit"
+                    disabled={isSubscribing}
+                    className="px-8 py-4 bg-white text-[#1f1f1f] text-xs tracking-[0.15em] uppercase font-medium hover:bg-white/90 transition-colors disabled:opacity-50"
+                  >
+                    {isSubscribing ? "..." : "Subscribe"}
+                  </button>
+                </form>
               )}
             </div>
-            <div className="md:col-span-3 md:col-start-7">
-              <span className="text-xs tracking-[0.15em] uppercase text-white/40 block mb-4">Learn</span>
-              <div className="space-y-2.5">
-                <p><a href="/" className="text-sm text-white/60 hover:text-white/90 transition-colors">Dictionary</a></p>
-                <p><a href="/" className="text-sm text-white/60 hover:text-white/90 transition-colors">Phrases</a></p>
-                <p><a href="/" className="text-sm text-white/60 hover:text-white/90 transition-colors">Proverbs</a></p>
-              </div>
+          </div>
+        </section>
+      )}
+
+      {/* ═══════════════════════════════════════════════════════════════
+          LEVEL 2: Navigation (from API columns)
+          ═══════════════════════════════════════════════════════════════ */}
+      <section className="py-16 bg-[#161616]">
+        <div className="container mx-auto px-8 md:px-16 lg:px-20">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-10 md:gap-8">
+            {/* Brand Column */}
+            <div className="col-span-2 md:col-span-1">
+              <Link href="/" className="inline-block mb-6">
+                <span className="font-serif text-sm tracking-[0.2em] text-white">
+                  {newsletter.brandName.toUpperCase()}
+                </span>
+              </Link>
+              <p className="text-sm text-white/40 leading-relaxed max-w-xs">
+                Private cultural journeys through Morocco, shaped around what matters to you.
+              </p>
             </div>
-            <div className="md:col-span-2">
-              <span className="text-xs tracking-[0.15em] uppercase text-white/40 block mb-4">Family</span>
-              <div className="space-y-2.5">
-                <p><a href="https://slowmorocco.com" target="_blank" rel="noopener" className="text-sm text-white/60 hover:text-white/90 transition-colors">Slow Morocco</a></p>
-                <p><a href="https://riad-di-siena.com" target="_blank" rel="noopener" className="text-sm text-white/60 hover:text-white/90 transition-colors">Riad di Siena</a></p>
-                <p><a href="https://amawal.app" target="_blank" rel="noopener" className="text-sm text-white/60 hover:text-white/90 transition-colors">Amawal</a></p>
+
+            {/* Dynamic Columns from API */}
+            {columns.slice(1, 4).map((column) => (
+              <div key={column.number}>
+                <h4 className="text-[10px] tracking-[0.2em] uppercase text-white/30 mb-5">
+                  {column.title}
+                </h4>
+                <ul className="space-y-3">
+                  {column.links.slice(0, 5).map((link, idx) => (
+                    <li key={idx}>
+                      {link.href ? (
+                        <Link
+                          href={link.href}
+                          className="text-sm text-white/60 hover:text-white transition-colors"
+                        >
+                          {link.label}
+                        </Link>
+                      ) : (
+                        <span className="text-sm text-white/40">{link.label}</span>
+                      )}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+
+            {/* Fallback columns if API returns empty */}
+            {columns.length === 0 && (
+              <>
+                <div>
+                  <h4 className="text-[10px] tracking-[0.2em] uppercase text-white/30 mb-5">
+                    Explore
+                  </h4>
+                  <ul className="space-y-3">
+                    <li><Link href="/journeys" className="text-sm text-white/60 hover:text-white transition-colors">Journeys</Link></li>
+                    <li><Link href="/epic" className="text-sm text-white/60 hover:text-white transition-colors">Epic</Link></li>
+                    <li><Link href="/stories" className="text-sm text-white/60 hover:text-white transition-colors">Stories</Link></li>
+                    <li><Link href="/places" className="text-sm text-white/60 hover:text-white transition-colors">Places</Link></li>
+                  </ul>
+                </div>
+                <div>
+                  <h4 className="text-[10px] tracking-[0.2em] uppercase text-white/30 mb-5">
+                    Plan
+                  </h4>
+                  <ul className="space-y-3">
+                    <li><Link href="/plan-your-trip" className="text-sm text-white/60 hover:text-white transition-colors">Plan Your Trip</Link></li>
+                    <li><Link href="/faq" className="text-sm text-white/60 hover:text-white transition-colors">FAQ</Link></li>
+                    <li><Link href="/whats-included" className="text-sm text-white/60 hover:text-white transition-colors">What's Included</Link></li>
+                    <li><Link href="/glossary" className="text-sm text-white/60 hover:text-white transition-colors">Glossary</Link></li>
+                  </ul>
+                </div>
+                <div>
+                  <h4 className="text-[10px] tracking-[0.2em] uppercase text-white/30 mb-5">
+                    About
+                  </h4>
+                  <ul className="space-y-3">
+                    <li><Link href="/about" className="text-sm text-white/60 hover:text-white transition-colors">Who We Are</Link></li>
+                    <li><Link href="/manifesto" className="text-sm text-white/60 hover:text-white transition-colors">Manifesto</Link></li>
+                    <li><Link href="/contact" className="text-sm text-white/60 hover:text-white transition-colors">Contact</Link></li>
+                  </ul>
+                </div>
+              </>
+            )}
+          </div>
+        </div>
+      </section>
+
+      {/* ═══════════════════════════════════════════════════════════════
+          LEVEL 3: Content Network (from Nexus)
+          ═══════════════════════════════════════════════════════════════ */}
+      {contentSites.length > 0 && (
+        <section className="py-8 bg-[#141414]">
+          <div className="container mx-auto px-8 md:px-16 lg:px-20">
+            <div className="flex flex-col md:flex-row md:items-center md:justify-center gap-4 md:gap-8">
+              <span className="text-[10px] tracking-[0.2em] uppercase text-white/20">
+                Explore
+              </span>
+              <div className="flex flex-wrap items-center gap-x-6 gap-y-2">
+                {contentSites.map((site, idx) => (
+                  <a
+                    key={idx}
+                    href={site.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-xs tracking-[0.1em] text-white/40 hover:text-white/70 transition-colors"
+                  >
+                    {site.label}
+                  </a>
+                ))}
               </div>
             </div>
           </div>
-        </div>
-      </div>
+        </section>
+      )}
 
-      {/* ═══ LEVEL 2: Content Network ═══ #161616 */}
-      <div style={{ backgroundColor: '#161616' }}>
-        <div className="px-8 md:px-[8%] lg:px-[12%] py-5">
-          {contentSites.length > 0 && (
-            <div className="flex flex-wrap items-center gap-x-5 gap-y-2">
-              <span className="text-xs tracking-[0.15em] uppercase text-white/25">Explore</span>
-              {contentSites.map(site => (
-                <a key={site.id} href={`https://${site.site_url}`} target="_blank" rel="noopener"
-                  className="text-xs text-white/35 hover:text-white/60 transition-colors">{site.site_label}</a>
+      {/* ═══════════════════════════════════════════════════════════════
+          LEVEL 4: Slow World Network
+          ═══════════════════════════════════════════════════════════════ */}
+      <section className="py-8 bg-[#121212]">
+        <div className="container mx-auto px-8 md:px-16 lg:px-20">
+          <div className="flex flex-col md:flex-row md:items-center md:justify-center gap-4 md:gap-8">
+            <span className="text-[10px] tracking-[0.2em] uppercase text-white/20">
+              Slow World
+            </span>
+            <div className="flex flex-wrap items-center gap-x-6 gap-y-2">
+              <a
+                href="https://slowmauritius.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-xs tracking-[0.1em] text-white/40 hover:text-white/70 transition-colors"
+              >
+                Mauritius
+              </a>
+              <a
+                href="https://slownamibia.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-xs tracking-[0.1em] text-white/40 hover:text-white/70 transition-colors"
+              >
+                Namibia
+              </a>
+              <a
+                href="https://slowtunisia.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-xs tracking-[0.1em] text-white/40 hover:text-white/70 transition-colors"
+              >
+                Tunisia
+              </a>
+              <a
+                href="https://slowturkiye.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-xs tracking-[0.1em] text-white/40 hover:text-white/70 transition-colors"
+              >
+                Türkiye
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ═══════════════════════════════════════════════════════════════
+          LEVEL 5: Legal & Copyright (from Nexus)
+          ═══════════════════════════════════════════════════════════════ */}
+      <section className="py-6 bg-[#0e0e0e]">
+        <div className="container mx-auto px-8 md:px-16 lg:px-20">
+          <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+            {/* Legal links */}
+            <div className="flex flex-wrap items-center gap-x-6 gap-y-2">
+              {legal.map((link, idx) => (
+                <Link
+                  key={idx}
+                  href={link.href || "#"}
+                  className="text-[10px] tracking-[0.1em] uppercase text-white/30 hover:text-white/50 transition-colors"
+                >
+                  {link.label}
+                </Link>
               ))}
             </div>
-          )}
-        </div>
-      </div>
-
-      {/* ═══ LEVEL 3: Legal + Language + Powered by + Copyright ═══ #0e0e0e */}
-      <div style={{ backgroundColor: '#0e0e0e' }}>
-        <div className="px-8 md:px-[8%] lg:px-[12%] py-5">
-          <div className="flex flex-col gap-4">
-            {/* Row 1: Legal + Language */}
-            <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
-              {legalPages.length > 0 ? (
-                legalPages.map(page => (
-                  <a key={page.page_slug} href={`/legal/${page.page_slug}`}
-                    className="text-xs text-white/25 hover:text-white/45 transition-colors">{page.page_title}</a>
-                ))
-              ) : (
-                <>
-                  <a href="/legal/privacy" className="text-xs text-white/25 hover:text-white/45 transition-colors">Privacy</a>
-                  <a href="/legal/terms" className="text-xs text-white/25 hover:text-white/45 transition-colors">Terms</a>
-                </>
-              )}
-              <span className="text-white/10">|</span>
+            
+            {/* Right side: Language, Currency, Copyright */}
+            <div className="flex items-center gap-4 md:gap-6">
+              {/* Currency selector */}
               <select
-                id="lang-select"
-                onChange={(e) => {
-                  const lang = e.target.value;
-                  if (!lang) return;
-                  document.cookie = `googtrans=/en/${lang};path=/;`;
-                  document.cookie = `googtrans=/en/${lang};path=/;domain=${window.location.hostname}`;
-                  window.location.reload();
-                }}
-                defaultValue=""
-                className="bg-white/5 border border-white/12 text-white/35 text-[11px] py-1 px-2 rounded cursor-pointer outline-none hover:border-white/25 hover:text-white/50 transition-colors"
-                style={{ fontFamily: 'DM Sans, sans-serif' }}
+                value={currentCurrency}
+                onChange={(e) => handleCurrencyChange(e.target.value)}
+                className="bg-transparent text-[10px] tracking-[0.1em] uppercase text-white/30 hover:text-white/50 focus:outline-none cursor-pointer appearance-none pr-3"
+                style={{ backgroundImage: 'none' }}
               >
-                <option value="" disabled>Language</option>
-                <option value="en">English</option>
-                <option value="fr">Français</option>
-                <option value="ar">العربية</option>
-                <option value="es">Español</option>
-                <option value="de">Deutsch</option>
-                <option value="it">Italiano</option>
-                <option value="pt">Português</option>
-                <option value="ja">日本語</option>
-                <option value="ko">한국어</option>
-                <option value="zh-CN">中文</option>
+                {currencies.map((currency) => (
+                  <option key={currency.code} value={currency.code} className="bg-[#0e0e0e] text-white/50">
+                    {currency.symbol} {currency.code}
+                  </option>
+                ))}
               </select>
-            </div>
-            {/* Row 2: Powered by + Copyright */}
-            <div className="flex flex-wrap items-center gap-x-3">
-              {poweredBy && (
-                <>
-                  <span className="text-xs text-white/20">Powered by</span>
-                  <a href={poweredBy.url} target="_blank" rel="noopener" className="text-xs text-white/35 hover:text-white/55 transition-colors">{poweredBy.label}</a>
-                  <span className="text-white/10">|</span>
-                </>
-              )}
-              <span className="text-xs text-white/20">&copy; {new Date().getFullYear()} {copyrightHolder}. All rights reserved.</span>
+              
+              {/* Copyright */}
+              <p className="text-[10px] tracking-[0.1em] text-white/20">
+                © {copyright.year} {copyright.name}
+              </p>
             </div>
           </div>
         </div>
-      </div>
+      </section>
 
-      {/* Hidden Google Translate engine */}
-      <div id="google_translate_element" style={{ position: 'absolute', left: '-9999px', visibility: 'hidden' }} />
-      <Script id="google-translate-init" strategy="lazyOnload" dangerouslySetInnerHTML={{ __html: `function googleTranslateElementInit(){new google.translate.TranslateElement({pageLanguage:'en',includedLanguages:'en,fr,ar,es,de,it,pt,ja,ko,zh-CN',autoDisplay:false},'google_translate_element')}` }} />
-      <Script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit" strategy="lazyOnload" />
-      <style jsx global>{`
-        .goog-te-banner-frame { display: none !important; }
-        body { top: 0 !important; }
-        .VIpgJd-ZVi9od-ORHb-OEVmcd { display: none !important; }
-        .skiptranslate > iframe { display: none !important; }
-        #lang-select option { background: #1a1a1a; color: #aaa; }
-      `}</style>
     </footer>
   );
 }
