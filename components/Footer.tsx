@@ -3,21 +3,16 @@
 import { useState, useEffect } from 'react';
 import Script from 'next/script';
 
-interface ContentSite {
-  id: number;
-  site_label: string;
-  site_url: string;
-  display_order: number;
-}
-
-interface LegalPage {
-  page_slug: string;
-  page_title: string;
-}
+interface ContentSite { id: number; site_label: string; site_url: string; display_order: number }
+interface LegalPage { page_slug: string; page_title: string }
+interface PoweredBy { label: string; url: string }
+interface SiteConfig { site_id: string; site_name: string; site_url: string; legal_entity: string; contact_email: string }
 
 export default function Footer() {
   const [contentSites, setContentSites] = useState<ContentSite[]>([]);
   const [legalPages, setLegalPages] = useState<LegalPage[]>([]);
+  const [poweredBy, setPoweredBy] = useState<PoweredBy | null>(null);
+  const [siteConfig, setSiteConfig] = useState<SiteConfig | null>(null);
 
   useEffect(() => {
     fetch('/api/footer')
@@ -25,9 +20,14 @@ export default function Footer() {
       .then(data => {
         setContentSites(data.contentSites || []);
         setLegalPages(data.legalPages || []);
+        setPoweredBy(data.poweredBy || null);
+        setSiteConfig(data.siteConfig || null);
       })
       .catch(() => {});
   }, []);
+
+  const siteName = siteConfig?.site_name || 'Darija for Dummies';
+  const copyrightHolder = siteConfig?.legal_entity || poweredBy?.label || 'Slow Morocco';
 
   return (
     <footer>
@@ -35,35 +35,25 @@ export default function Footer() {
       <div style={{ backgroundColor: '#1f1f1f' }}>
         <div className="px-8 md:px-[8%] lg:px-[12%] py-16">
           <div className="grid md:grid-cols-12 gap-12">
-            {/* Brand column */}
             <div className="md:col-span-5">
-              <span className="font-display text-2xl text-white/90">Darija for Dummies</span>
+              <span className="font-display text-2xl text-white/90">{siteName}</span>
               <p className="text-sm text-white/50 mt-3 max-w-sm leading-relaxed">
                 The fun, irreverent guide to Moroccan Arabic. Built with love from inside the medina.
               </p>
-              {/* Social icons */}
-              <div className="flex items-center gap-4 mt-6">
-                <a href="https://www.instagram.com/slowmorocco" target="_blank" rel="noopener" className="text-white/30 hover:text-white/60 transition-colors" aria-label="Instagram">
-                  <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
-                </a>
-                <a href="https://www.pinterest.com/slowmorocco" target="_blank" rel="noopener" className="text-white/30 hover:text-white/60 transition-colors" aria-label="Pinterest">
-                  <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12c0 5.084 3.163 9.426 7.627 11.174-.105-.949-.2-2.405.042-3.441.218-.937 1.407-5.965 1.407-5.965s-.359-.719-.359-1.782c0-1.668.967-2.914 2.171-2.914 1.023 0 1.518.769 1.518 1.69 0 1.029-.655 2.568-.994 3.995-.283 1.194.599 2.169 1.777 2.169 2.133 0 3.772-2.249 3.772-5.495 0-2.873-2.064-4.882-5.012-4.882-3.414 0-5.418 2.561-5.418 5.207 0 1.031.397 2.138.893 2.738a.36.36 0 01.083.345l-.333 1.36c-.053.22-.174.267-.402.161-1.499-.698-2.436-2.889-2.436-4.649 0-3.785 2.75-7.262 7.929-7.262 4.163 0 7.398 2.967 7.398 6.931 0 4.136-2.607 7.462-6.233 7.462-1.214 0-2.354-.63-2.748-1.378l-.748 2.853c-.271 1.043-1.002 2.35-1.492 3.146C9.57 23.812 10.763 24 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0z"/></svg>
-                </a>
-              </div>
+              {poweredBy && (
+                <p className="text-xs text-white/30 mt-6">
+                  A <a href={poweredBy.url} target="_blank" rel="noopener" className="text-white/40 hover:text-white/60 transition-colors">{poweredBy.label}</a> project
+                </p>
+              )}
             </div>
-
-            {/* Navigation */}
             <div className="md:col-span-3 md:col-start-7">
               <span className="text-xs tracking-[0.15em] uppercase text-white/40 block mb-4">Learn</span>
               <div className="space-y-2.5">
                 <p><a href="/" className="text-sm text-white/60 hover:text-white/90 transition-colors">Dictionary</a></p>
                 <p><a href="/" className="text-sm text-white/60 hover:text-white/90 transition-colors">Phrases</a></p>
                 <p><a href="/" className="text-sm text-white/60 hover:text-white/90 transition-colors">Proverbs</a></p>
-                <p><a href="/" className="text-sm text-white/60 hover:text-white/90 transition-colors">About</a></p>
               </div>
             </div>
-
-            {/* Family */}
             <div className="md:col-span-2">
               <span className="text-xs tracking-[0.15em] uppercase text-white/40 block mb-4">Family</span>
               <div className="space-y-2.5">
@@ -83,20 +73,15 @@ export default function Footer() {
             <div className="flex flex-wrap items-center gap-x-5 gap-y-2">
               <span className="text-xs tracking-[0.15em] uppercase text-white/25">Explore</span>
               {contentSites.map(site => (
-                <a key={site.id}
-                  href={`https://${site.site_url}`}
-                  target="_blank"
-                  rel="noopener"
-                  className="text-xs text-white/35 hover:text-white/60 transition-colors">
-                  {site.site_label}
-                </a>
+                <a key={site.id} href={`https://${site.site_url}`} target="_blank" rel="noopener"
+                  className="text-xs text-white/35 hover:text-white/60 transition-colors">{site.site_label}</a>
               ))}
             </div>
           )}
         </div>
       </div>
 
-      {/* ═══ LEVEL 3: Legal + Powered by + Copyright ═══ #0e0e0e */}
+      {/* ═══ LEVEL 3: Legal + Language + Powered by + Copyright ═══ #0e0e0e */}
       <div style={{ backgroundColor: '#0e0e0e' }}>
         <div className="px-8 md:px-[8%] lg:px-[12%] py-5">
           <div className="flex flex-col gap-4">
@@ -104,11 +89,8 @@ export default function Footer() {
             <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
               {legalPages.length > 0 ? (
                 legalPages.map(page => (
-                  <a key={page.page_slug}
-                    href={`/legal/${page.page_slug}`}
-                    className="text-xs text-white/25 hover:text-white/45 transition-colors">
-                    {page.page_title}
-                  </a>
+                  <a key={page.page_slug} href={`/legal/${page.page_slug}`}
+                    className="text-xs text-white/25 hover:text-white/45 transition-colors">{page.page_title}</a>
                 ))
               ) : (
                 <>
@@ -117,71 +99,57 @@ export default function Footer() {
                 </>
               )}
               <span className="text-white/10">|</span>
-              <div id="google_translate_element" />
+              <select
+                id="lang-select"
+                onChange={(e) => {
+                  const lang = e.target.value;
+                  if (!lang) return;
+                  document.cookie = `googtrans=/en/${lang};path=/;`;
+                  document.cookie = `googtrans=/en/${lang};path=/;domain=${window.location.hostname}`;
+                  window.location.reload();
+                }}
+                defaultValue=""
+                className="bg-white/5 border border-white/12 text-white/35 text-[11px] py-1 px-2 rounded cursor-pointer outline-none hover:border-white/25 hover:text-white/50 transition-colors"
+                style={{ fontFamily: 'DM Sans, sans-serif' }}
+              >
+                <option value="" disabled>Language</option>
+                <option value="en">English</option>
+                <option value="fr">Français</option>
+                <option value="ar">العربية</option>
+                <option value="es">Español</option>
+                <option value="de">Deutsch</option>
+                <option value="it">Italiano</option>
+                <option value="pt">Português</option>
+                <option value="ja">日本語</option>
+                <option value="ko">한국어</option>
+                <option value="zh-CN">中文</option>
+              </select>
             </div>
             {/* Row 2: Powered by + Copyright */}
             <div className="flex flex-wrap items-center gap-x-3">
-              <span className="text-xs text-white/20">Powered by</span>
-              <a href="https://slowmorocco.com" target="_blank" rel="noopener" className="text-xs text-white/35 hover:text-white/55 transition-colors">Slow Morocco</a>
-              <span className="text-white/10">|</span>
-              <span className="text-xs text-white/20">&copy; {new Date().getFullYear()} Slow Morocco. All rights reserved.</span>
+              {poweredBy && (
+                <>
+                  <span className="text-xs text-white/20">Powered by</span>
+                  <a href={poweredBy.url} target="_blank" rel="noopener" className="text-xs text-white/35 hover:text-white/55 transition-colors">{poweredBy.label}</a>
+                  <span className="text-white/10">|</span>
+                </>
+              )}
+              <span className="text-xs text-white/20">&copy; {new Date().getFullYear()} {copyrightHolder}. All rights reserved.</span>
             </div>
           </div>
         </div>
       </div>
 
-      {/* Google Translate Script */}
-      <Script
-        id="google-translate-init"
-        strategy="lazyOnload"
-        dangerouslySetInnerHTML={{
-          __html: `
-            function googleTranslateElementInit() {
-              new google.translate.TranslateElement({
-                pageLanguage: 'en',
-                includedLanguages: 'en,fr,ar,es,de,it,pt,ja,ko,zh-CN',
-                layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
-                autoDisplay: false
-              }, 'google_translate_element');
-            }
-          `,
-        }}
-      />
-      <Script
-        src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"
-        strategy="lazyOnload"
-      />
-
-      {/* Google Translate styling */}
+      {/* Hidden Google Translate engine */}
+      <div id="google_translate_element" style={{ position: 'absolute', left: '-9999px', visibility: 'hidden' }} />
+      <Script id="google-translate-init" strategy="lazyOnload" dangerouslySetInnerHTML={{ __html: `function googleTranslateElementInit(){new google.translate.TranslateElement({pageLanguage:'en',includedLanguages:'en,fr,ar,es,de,it,pt,ja,ko,zh-CN',autoDisplay:false},'google_translate_element')}` }} />
+      <Script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit" strategy="lazyOnload" />
       <style jsx global>{`
         .goog-te-banner-frame { display: none !important; }
         body { top: 0 !important; }
         .VIpgJd-ZVi9od-ORHb-OEVmcd { display: none !important; }
-        #google_translate_element .goog-te-gadget { font-size: 0 !important; line-height: 0 !important; }
-        #google_translate_element .goog-te-gadget > span { display: none !important; }
-        #google_translate_element .goog-logo-link { display: none !important; }
-        #google_translate_element img { display: none !important; }
-        #google_translate_element .goog-te-gadget .goog-te-combo {
-          background: rgba(255,255,255,0.05) !important;
-          border: 1px solid rgba(255,255,255,0.12) !important;
-          color: rgba(255,255,255,0.35) !important;
-          font-size: 11px !important;
-          font-family: 'DM Sans', sans-serif !important;
-          padding: 3px 6px !important;
-          border-radius: 3px !important;
-          outline: none !important;
-          cursor: pointer !important;
-          appearance: auto !important;
-          -webkit-appearance: auto !important;
-        }
-        #google_translate_element .goog-te-gadget .goog-te-combo:hover {
-          border-color: rgba(255,255,255,0.25) !important;
-          color: rgba(255,255,255,0.5) !important;
-        }
-        #google_translate_element .goog-te-gadget .goog-te-combo option {
-          background: #1a1a1a !important;
-          color: #aaa !important;
-        }
+        .skiptranslate > iframe { display: none !important; }
+        #lang-select option { background: #1a1a1a; color: #aaa; }
       `}</style>
     </footer>
   );
