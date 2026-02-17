@@ -52,7 +52,8 @@ export async function getAllWords(): Promise<DarijaWord[]> {
     .from('darija_words')
     .select('*')
     .eq('published', true)
-    .order('order');
+    .order('order')
+    .range(0, 2999);
   return (data || []) as DarijaWord[];
 }
 
@@ -96,7 +97,8 @@ export async function getAllPhrases(): Promise<DarijaPhrase[]> {
     .from('darija_phrases')
     .select('*')
     .eq('published', true)
-    .order('order');
+    .order('order')
+    .range(0, 2999);
   return (data || []) as DarijaPhrase[];
 }
 
@@ -165,6 +167,18 @@ const WORD_CATEGORIES: Record<string, { name: string }> = {
   slang: { name: 'Street Slang' },
   verbs: { name: 'Verbs' },
   directions: { name: 'Directions' },
+  crafts: { name: 'Crafts & Materials' },
+  animals: { name: 'Animals' },
+  nature: { name: 'Nature & Weather' },
+  clothing: { name: 'Clothing' },
+  colors: { name: 'Colors' },
+  music: { name: 'Music & Culture' },
+  technology: { name: 'Technology' },
+  education: { name: 'Education' },
+  work: { name: 'Work & Professions' },
+  pronouns: { name: 'Pronouns' },
+  culture: { name: 'Culture' },
+  architecture: { name: 'Architecture' },
 };
 
 const PHRASE_CATEGORIES: Record<string, string> = {
