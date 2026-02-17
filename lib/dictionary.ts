@@ -5,7 +5,13 @@ const SUPABASE_KEY = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || '';
 
 function getClient() {
   if (!SUPABASE_URL || !SUPABASE_KEY) throw new Error('Supabase not configured');
-  return createClient(SUPABASE_URL, SUPABASE_KEY);
+  return createClient(SUPABASE_URL, SUPABASE_KEY, {
+    global: {
+      fetch: (url, options = {}) => {
+        return fetch(url, { ...options, cache: 'no-store' });
+      },
+    },
+  });
 }
 
 // ---- Types ----
