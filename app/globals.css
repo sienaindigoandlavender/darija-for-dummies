@@ -1,0 +1,150 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300;1,9..40,400&family=Noto+Sans+Arabic:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #ffffff;
+  --foreground: #111111;
+  --muted: #6b6b6b;
+  --accent: #d4421e;
+  --accent-warm: #e8a838;
+  --surface: #f7f5f2;
+}
+
+:root.dark {
+  --background: #0a0a0a;
+  --foreground: #f0f0f0;
+  --muted: #999999;
+  --accent: #e8572e;
+  --accent-warm: #f0b840;
+  --surface: #141414;
+}
+
+body {
+  color: var(--foreground);
+  background: var(--background);
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 400;
+  font-optical-sizing: auto;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Playfair Display', serif;
+  font-weight: 500;
+}
+
+.font-display {
+  font-family: 'Playfair Display', serif;
+}
+
+.font-arabic {
+  font-family: 'Noto Sans Arabic', 'Arial', sans-serif;
+  direction: rtl;
+}
+
+/* Accent Colors */
+.text-accent { color: var(--accent); }
+.bg-accent { background-color: var(--accent); }
+.text-accent-warm { color: var(--accent-warm); }
+.bg-accent-warm { background-color: var(--accent-warm); }
+.bg-surface { background-color: var(--surface); }
+
+/* Animations */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes slideInLeft {
+  from { opacity: 0; transform: translateX(-30px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+@keyframes slideInRight {
+  from { opacity: 0; transform: translateX(30px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+@keyframes bounceIn {
+  0% { opacity: 0; transform: scale(0.8); }
+  60% { transform: scale(1.05); }
+  100% { opacity: 1; transform: scale(1); }
+}
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+
+.anim-fade-up {
+  animation: fadeUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  opacity: 0;
+}
+.anim-fade-in { animation: fadeIn 0.5s ease forwards; opacity: 0; }
+.anim-slide-left { animation: slideInLeft 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards; opacity: 0; }
+.anim-slide-right { animation: slideInRight 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards; opacity: 0; }
+.anim-bounce { animation: bounceIn 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards; opacity: 0; }
+
+.delay-1 { animation-delay: 0.1s; }
+.delay-2 { animation-delay: 0.2s; }
+.delay-3 { animation-delay: 0.3s; }
+.delay-4 { animation-delay: 0.4s; }
+.delay-5 { animation-delay: 0.5s; }
+.delay-6 { animation-delay: 0.6s; }
+.delay-7 { animation-delay: 0.7s; }
+.delay-8 { animation-delay: 0.8s; }
+.delay-9 { animation-delay: 0.9s; }
+.delay-10 { animation-delay: 1.0s; }
+
+/* Hover Effects */
+.hover-lift {
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s;
+}
+.hover-lift:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+}
+
+.hover-scale {
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.hover-scale:hover { transform: scale(1.03); }
+
+/* Register badges */
+.register-formal { background: #e8e4df; color: #5c4f3a; }
+.register-informal { background: #dde8f0; color: #2d4a5e; }
+.register-street { background: #f0ddd4; color: #8b3a1f; }
+.register-universal { background: #dff0dd; color: #2d5c2d; }
+
+/* Cultural note accent bar */
+.culture-note {
+  border-left: 3px solid var(--accent-warm);
+  padding-left: 1rem;
+  background: var(--surface);
+}
+
+/* Large decorative Arabic */
+.arabic-deco {
+  font-family: 'Noto Sans Arabic', sans-serif;
+  color: var(--foreground);
+  opacity: 0.03;
+  user-select: none;
+  pointer-events: none;
+  direction: rtl;
+}
+
+/* Noise grain overlay */
+.grain::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  opacity: 0.015;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+@layer utilities {
+  .text-balance { text-wrap: balance; }
+}

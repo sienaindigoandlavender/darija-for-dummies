@@ -1,0 +1,211 @@
+import { createClient } from '@supabase/supabase-js';
+
+const SUPABASE_URL = process.env.NEXT_PUBLIC_SUPABASE_URL || '';
+const SUPABASE_KEY = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || '';
+
+function getClient() {
+  if (!SUPABASE_URL || !SUPABASE_KEY) throw new Error('Supabase not configured');
+  return createClient(SUPABASE_URL, SUPABASE_KEY);
+}
+
+// ---- Types ----
+
+export interface DarijaWord {
+  id: string;
+  darija: string;
+  arabic: string;
+  english: string;
+  french: string;
+  pronunciation: string;
+  category: string;
+  part_of_speech: string;
+  gender?: string;
+  plural?: string;
+  conjugation?: Record<string, Record<string, string>>;
+  examples: { darija: string; arabic: string; english: string; french: string }[];
+  cultural_note?: string;
+  register: string;
+  related_words?: string[];
+  tags: string[];
+}
+
+export interface DarijaPhrase {
+  id: string;
+  darija: string;
+  arabic: string;
+  english: string;
+  french: string;
+  pronunciation: string;
+  literal_translation?: string;
+  category: string;
+  situation?: string;
+  cultural_note?: string;
+  register: string;
+  response?: { darija: string; arabic: string; english: string };
+  tags: string[];
+}
+
+// ---- Word queries ----
+
+export async function getAllWords(): Promise<DarijaWord[]> {
+  const { data } = await getClient()
+    .from('darija_words')
+    .select('*')
+    .eq('published', true)
+    .order('order');
+  return (data || []) as DarijaWord[];
+}
+
+export async function getWordsByCategory(category: string): Promise<DarijaWord[]> {
+  const { data } = await getClient()
+    .from('darija_words')
+    .select('*')
+    .eq('published', true)
+    .eq('category', category)
+    .order('order');
+  return (data || []) as DarijaWord[];
+}
+
+export async function getWordsByTag(tag: string): Promise<DarijaWord[]> {
+  const { data } = await getClient()
+    .from('darija_words')
+    .select('*')
+    .eq('published', true)
+    .contains('tags', [tag])
+    .order('order');
+  return (data || []) as DarijaWord[];
+}
+
+export async function searchWords(query: string): Promise<DarijaWord[]> {
+  const q = query.trim().toLowerCase();
+  if (!q) return [];
+  const { data } = await getClient()
+    .from('darija_words')
+    .select('*')
+    .eq('published', true)
+    .or(`darija.ilike.%${q}%,english.ilike.%${q}%,french.ilike.%${q}%,arabic.ilike.%${q}%`)
+    .order('order')
+    .limit(20);
+  return (data || []) as DarijaWord[];
+}
+
+// ---- Phrase queries ----
+
+export async function getAllPhrases(): Promise<DarijaPhrase[]> {
+  const { data } = await getClient()
+    .from('darija_phrases')
+    .select('*')
+    .eq('published', true)
+    .order('order');
+  return (data || []) as DarijaPhrase[];
+}
+
+export async function getPhrasesByCategory(category: string): Promise<DarijaPhrase[]> {
+  const { data } = await getClient()
+    .from('darija_phrases')
+    .select('*')
+    .eq('published', true)
+    .eq('category', category)
+    .order('order');
+  return (data || []) as DarijaPhrase[];
+}
+
+export async function searchPhrases(query: string): Promise<DarijaPhrase[]> {
+  const q = query.trim().toLowerCase();
+  if (!q) return [];
+  const { data } = await getClient()
+    .from('darija_phrases')
+    .select('*')
+    .eq('published', true)
+    .or(`darija.ilike.%${q}%,english.ilike.%${q}%,french.ilike.%${q}%,arabic.ilike.%${q}%`)
+    .order('order')
+    .limit(15);
+  return (data || []) as DarijaPhrase[];
+}
+
+export async function getProverbs(): Promise<DarijaPhrase[]> {
+  const { data } = await getClient()
+    .from('darija_phrases')
+    .select('*')
+    .eq('published', true)
+    .eq('category', 'proverbs')
+    .order('order');
+  return (data || []) as DarijaPhrase[];
+}
+
+// ---- Metadata ----
+
+export async function getMetadata() {
+  const [{ count: wordCount }, { count: phraseCount }] = await Promise.all([
+    getClient().from('darija_words').select('*', { count: 'exact', head: true }).eq('published', true),
+    getClient().from('darija_phrases').select('*', { count: 'exact', head: true }).eq('published', true),
+  ]);
+  return {
+    totalWords: wordCount || 0,
+    totalPhrases: phraseCount || 0,
+  };
+}
+
+// ---- Category helpers ----
+
+const WORD_CATEGORIES: Record<string, { name: string; icon: string }> = {
+  greetings: { name: 'Greetings', icon: '👋' },
+  food: { name: 'Food & Drink', icon: '🍵' },
+  shopping: { name: 'Shopping', icon: '🛍️' },
+  transport: { name: 'Transport', icon: '🚕' },
+  home: { name: 'Home & House', icon: '🏠' },
+  emotions: { name: 'Feelings', icon: '💛' },
+  time: { name: 'Time', icon: '⏰' },
+  numbers: { name: 'Numbers', icon: '🔢' },
+  family: { name: 'Family & People', icon: '👨‍👩‍👧' },
+  city: { name: 'City & Medina', icon: '🕌' },
+  money: { name: 'Money', icon: '💰' },
+  health: { name: 'Health', icon: '🏥' },
+  religion: { name: 'Faith & Blessings', icon: '🤲' },
+  slang: { name: 'Street Slang', icon: '🔥' },
+  verbs: { name: 'Verbs', icon: '🏃' },
+  directions: { name: 'Directions', icon: '🧭' },
+};
+
+const PHRASE_CATEGORIES: Record<string, string> = {
+  survival: 'Survival Kit',
+  souk: 'In the Souk',
+  taxi: 'Taxi Talk',
+  cafe: 'Café Culture',
+  riad: 'Riad Life',
+  restaurant: 'Eating Out',
+  pharmacy: 'At the Pharmacy',
+  compliments: 'Compliments',
+  arguments: 'Arguments',
+  proverbs: 'Proverbs & Wisdom',
+  blessings: 'Blessings',
+  daily: 'Daily Life',
+  emergency: 'Emergency',
+};
+
+export async function getWordCategories() {
+  const words = await getAllWords();
+  const catCounts = new Map<string, number>();
+  words.forEach(w => catCounts.set(w.category, (catCounts.get(w.category) || 0) + 1));
+  return Array.from(catCounts.entries())
+    .map(([id, count]) => ({
+      id,
+      name: WORD_CATEGORIES[id]?.name || id,
+      icon: WORD_CATEGORIES[id]?.icon || '📝',
+      count,
+    }))
+    .sort((a, b) => b.count - a.count);
+}
+
+export async function getPhraseCategories() {
+  const phrases = await getAllPhrases();
+  const catCounts = new Map<string, number>();
+  phrases.forEach(p => catCounts.set(p.category, (catCounts.get(p.category) || 0) + 1));
+  return Array.from(catCounts.entries())
+    .map(([id, count]) => ({
+      id,
+      name: PHRASE_CATEGORIES[id] || id,
+      count,
+    }))
+    .sort((a, b) => b.count - a.count);
+}
