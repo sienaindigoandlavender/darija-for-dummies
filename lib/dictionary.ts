@@ -138,13 +138,13 @@ export async function getProverbs(): Promise<DarijaPhrase[]> {
 // ---- Metadata ----
 
 export async function getMetadata() {
-  const [{ count: wordCount }, { count: phraseCount }] = await Promise.all([
-    getClient().from('darija_words').select('*', { count: 'exact', head: true }).eq('published', true),
-    getClient().from('darija_phrases').select('*', { count: 'exact', head: true }).eq('published', true),
+  const [words, phrases] = await Promise.all([
+    getClient().from('darija_words').select('id', { count: 'exact' }).eq('published', true).range(0, 2999),
+    getClient().from('darija_phrases').select('id', { count: 'exact' }).eq('published', true).range(0, 2999),
   ]);
   return {
-    totalWords: wordCount || 0,
-    totalPhrases: phraseCount || 0,
+    totalWords: words.count ?? words.data?.length ?? 0,
+    totalPhrases: phrases.count ?? phrases.data?.length ?? 0,
   };
 }
 
