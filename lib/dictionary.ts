@@ -148,23 +148,23 @@ export async function getMetadata() {
 
 // ---- Category helpers ----
 
-const WORD_CATEGORIES: Record<string, { name: string; icon: string }> = {
-  greetings: { name: 'Greetings', icon: '👋' },
-  food: { name: 'Food & Drink', icon: '🍵' },
-  shopping: { name: 'Shopping', icon: '🛍️' },
-  transport: { name: 'Transport', icon: '🚕' },
-  home: { name: 'Home & House', icon: '🏠' },
-  emotions: { name: 'Feelings', icon: '💛' },
-  time: { name: 'Time', icon: '⏰' },
-  numbers: { name: 'Numbers', icon: '🔢' },
-  family: { name: 'Family & People', icon: '👨‍👩‍👧' },
-  city: { name: 'City & Medina', icon: '🕌' },
-  money: { name: 'Money', icon: '💰' },
-  health: { name: 'Health', icon: '🏥' },
-  religion: { name: 'Faith & Blessings', icon: '🤲' },
-  slang: { name: 'Street Slang', icon: '🔥' },
-  verbs: { name: 'Verbs', icon: '🏃' },
-  directions: { name: 'Directions', icon: '🧭' },
+const WORD_CATEGORIES: Record<string, { name: string }> = {
+  greetings: { name: 'Greetings' },
+  food: { name: 'Food & Drink' },
+  shopping: { name: 'Shopping' },
+  transport: { name: 'Transport' },
+  home: { name: 'Home & House' },
+  emotions: { name: 'Feelings' },
+  time: { name: 'Time' },
+  numbers: { name: 'Numbers' },
+  family: { name: 'Family & People' },
+  city: { name: 'City & Medina' },
+  money: { name: 'Money' },
+  health: { name: 'Health' },
+  religion: { name: 'Faith & Blessings' },
+  slang: { name: 'Street Slang' },
+  verbs: { name: 'Verbs' },
+  directions: { name: 'Directions' },
 };
 
 const PHRASE_CATEGORIES: Record<string, string> = {
@@ -191,7 +191,6 @@ export async function getWordCategories() {
     .map(([id, count]) => ({
       id,
       name: WORD_CATEGORIES[id]?.name || id,
-      icon: WORD_CATEGORIES[id]?.icon || '📝',
       count,
     }))
     .sort((a, b) => b.count - a.count);

@@ -118,7 +118,7 @@ export default function Footer() {
               )}
               <span className="text-white/10">|</span>
               {/* Google Translate inline */}
-              <div id="google_translate_element" className="[&_.goog-te-gadget]:!font-sans [&_.goog-te-gadget]:!text-xs [&_.goog-te-combo]:!bg-transparent [&_.goog-te-combo]:!border-white/15 [&_.goog-te-combo]:!border [&_.goog-te-combo]:!text-white/40 [&_.goog-te-combo]:!text-xs [&_.goog-te-combo]:!py-1 [&_.goog-te-combo]:!px-2 [&_.goog-te-combo]:!rounded [&_.goog-te-combo]:!appearance-none [&_.goog-te-gadget_span]:!hidden [&_select]:!cursor-pointer" />
+              <div id="google_translate_element" />
             </div>
 
             {/* Powered by + Copyright */}
@@ -154,14 +154,28 @@ export default function Footer() {
         strategy="lazyOnload"
       />
 
-      {/* Hide Google Translate banner */}
+      {/* Hide Google Translate top banner only */}
       <style jsx global>{`
         .goog-te-banner-frame { display: none !important; }
         body { top: 0 !important; }
-        .skiptranslate { display: none !important; }
-        #google_translate_element .goog-te-gadget > span { display: none; }
+        .VIpgJd-ZVi9od-ORHb-OEVmcd { display: none !important; }
         #google_translate_element .goog-logo-link { display: none !important; }
-        #google_translate_element .goog-te-gadget { color: transparent !important; font-size: 0 !important; }
+        #google_translate_element .goog-te-gadget > span { display: none !important; }
+        #google_translate_element .goog-te-gadget { color: transparent !important; }
+        #google_translate_element select.goog-te-combo {
+          background: transparent !important;
+          border: 1px solid rgba(255,255,255,0.15) !important;
+          color: rgba(255,255,255,0.4) !important;
+          font-size: 11px !important;
+          padding: 4px 8px !important;
+          border-radius: 4px !important;
+          outline: none !important;
+          cursor: pointer !important;
+        }
+        #google_translate_element select.goog-te-combo option {
+          background: #1a1a1a !important;
+          color: #ccc !important;
+        }
       `}</style>
     </footer>
   );

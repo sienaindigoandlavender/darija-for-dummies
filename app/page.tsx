@@ -13,10 +13,8 @@ interface DarijaPhrase {
   pronunciation: string; literal_translation?: string; category: string;
   cultural_note?: string; register: string; response?: { darija: string; arabic: string; english: string }; tags: string[];
 }
-interface WordCat { id: string; name: string; icon: string; count: number }
+interface WordCat { id: string; name: string; count: number }
 interface PhraseCat { id: string; name: string; count: number }
-
-const bgLetters = ['د','ر','ج','ة','م','غ','ب','ع','ش','ك','ل','ن'];
 
 export default function Home() {
   const [query, setQuery] = useState('');
@@ -68,121 +66,247 @@ export default function Home() {
   const hasResults = query && (wordResults.length > 0 || phraseResults.length > 0);
   const noResults = query && !hasResults && query.length > 1;
 
-  const renderReg = (r: string) => <span className={`register-${r} text-[10px] uppercase tracking-wider px-2 py-0.5 rounded-full font-medium`}>{r}</span>;
-
+  // ─── WORD ROW (typographic, no boxes) ───
   const renderWord = (w: DarijaWord) => {
     const exp = expandedWord === w.id;
     return (
-      <div key={w.id} className={`group border border-foreground/8 hover:border-accent/30 transition-all hover-lift cursor-pointer ${exp?'bg-surface col-span-full':''}`} onClick={()=>setExpandedWord(exp?null:w.id)}>
-        <div className="p-5">
-          <div className="flex items-start justify-between gap-3 mb-2">
-            <div className="flex items-baseline gap-3 flex-wrap">
-              <span className="font-arabic text-2xl text-accent leading-none">{w.arabic}</span>
-              <span className="font-display text-xl">{w.darija}</span>
-            </div>
-            {renderReg(w.register)}
+      <div key={w.id} onClick={()=>setExpandedWord(exp?null:w.id)}
+        className={`group cursor-pointer py-6 ${exp ? '' : 'border-b border-neutral-100 hover:border-neutral-300'} transition-all`}>
+        <div className="flex items-baseline justify-between gap-6 flex-wrap">
+          <div className="flex items-baseline gap-5">
+            <span className="font-arabic text-3xl md:text-4xl text-[#c53a1a] leading-none">{w.arabic}</span>
+            <span className="font-display text-2xl md:text-3xl">{w.darija}</span>
+            <span className="text-xs text-neutral-400 uppercase tracking-wider hidden md:inline">{w.part_of_speech}{w.gender ? ` · ${w.gender}` : ''}</span>
           </div>
-          <div className="flex items-center gap-2 mb-1">
-            <span className="text-xs text-muted-foreground/50 uppercase tracking-wider">{w.part_of_speech}</span>
-            {w.gender && <><span className="text-xs text-muted-foreground/30">·</span><span className="text-xs text-muted-foreground/50">{w.gender}</span></>}
+          <div className="flex items-baseline gap-4">
+            <span className="text-neutral-600">{w.english}</span>
+            <svg className={`w-4 h-4 text-neutral-300 transition-transform ${exp ? 'rotate-45' : 'group-hover:translate-x-1'}`} fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M12 4v16m8-8H4"/></svg>
           </div>
-          <p className="text-foreground/80">{w.english}</p>
-          <p className="text-muted-foreground text-sm">{w.french}</p>
-          {exp && (
-            <div className="mt-5 pt-5 border-t border-foreground/8 space-y-4">
-              <div><span className="text-[10px] uppercase tracking-wider text-muted-foreground">Pronunciation</span><p className="font-display text-lg mt-1">/{w.pronunciation}/</p></div>
-              {w.examples?.length > 0 && <div><span className="text-[10px] uppercase tracking-wider text-muted-foreground">Example</span>{w.examples.map((ex,i)=>(<div key={i} className="mt-2 space-y-1"><p className="font-arabic text-lg">{ex.arabic}</p><p className="font-medium">{ex.darija}</p><p className="text-sm text-muted-foreground">{ex.english}</p></div>))}</div>}
-              {w.cultural_note && <div className="culture-note py-3 mt-3"><span className="text-[10px] uppercase tracking-wider text-accent-warm block mb-1">Cultural Note</span><p className="text-sm leading-relaxed">{w.cultural_note}</p></div>}
-              {w.conjugation?.past && <div><span className="text-[10px] uppercase tracking-wider text-muted-foreground">Conjugation (past)</span><div className="grid grid-cols-2 gap-2 mt-2 text-sm">{Object.entries(w.conjugation.past).map(([k,v])=>(<div key={k} className="flex gap-2"><span className="text-muted-foreground w-12">{k}</span><span className="font-medium">{v as string}</span></div>))}</div></div>}
-            </div>
-          )}
         </div>
+
+        {exp && (
+          <div className="mt-8 grid md:grid-cols-12 gap-8">
+            <div className="md:col-span-5">
+              <p className="text-xs uppercase tracking-[0.2em] text-neutral-400 mb-2">Pronunciation</p>
+              <p className="font-display text-xl mb-6">/{w.pronunciation}/</p>
+              <p className="text-neutral-500 text-sm">{w.french}</p>
+              {w.register !== 'universal' && <p className="text-xs uppercase tracking-wider text-neutral-400 mt-3">{w.register}</p>}
+            </div>
+            <div className="md:col-span-4">
+              {w.examples?.length > 0 && (
+                <div>
+                  <p className="text-xs uppercase tracking-[0.2em] text-neutral-400 mb-3">In use</p>
+                  {w.examples.map((ex,i)=>(
+                    <div key={i} className="space-y-1 mb-4">
+                      <p className="font-arabic text-xl text-neutral-800">{ex.arabic}</p>
+                      <p className="text-neutral-700">{ex.darija}</p>
+                      <p className="text-sm text-neutral-500">{ex.english}</p>
+                    </div>
+                  ))}
+                </div>
+              )}
+              {w.conjugation?.past && (
+                <div className="mt-4">
+                  <p className="text-xs uppercase tracking-[0.2em] text-neutral-400 mb-3">Conjugation</p>
+                  <div className="grid grid-cols-2 gap-x-6 gap-y-1 text-sm">
+                    {Object.entries(w.conjugation.past).map(([k,v])=>(
+                      <div key={k} className="flex gap-3"><span className="text-neutral-400 w-10">{k}</span><span className="text-neutral-700">{v as string}</span></div>
+                    ))}
+                  </div>
+                </div>
+              )}
+            </div>
+            {w.cultural_note && (
+              <div className="md:col-span-3">
+                <div className="border-l-2 border-[#d4931a] pl-5">
+                  <p className="text-xs uppercase tracking-[0.2em] text-[#d4931a] mb-2">Cultural note</p>
+                  <p className="text-sm text-neutral-600 leading-relaxed">{w.cultural_note}</p>
+                </div>
+              </div>
+            )}
+          </div>
+        )}
       </div>
     );
   };
 
+  // ─── PHRASE (stacked, typographic) ───
   const renderPhrase = (p: DarijaPhrase) => (
-    <div key={p.id} className="group p-5 border border-foreground/8 hover:border-accent/30 transition-all hover-lift">
-      <div className="mb-3"><p className="font-arabic text-xl text-accent mb-1">{p.arabic}</p><p className="font-display text-lg">{p.darija}</p></div>
-      <p className="text-foreground/80 text-sm">{p.english}</p>
-      <p className="text-muted-foreground text-xs mt-1">{p.french}</p>
-      {p.pronunciation && <p className="text-xs text-muted-foreground/50 mt-2">/{p.pronunciation}/</p>}
-      {p.literal_translation && <p className="text-xs italic text-muted-foreground/50 mt-1">Lit: {p.literal_translation}</p>}
-      {p.response && <div className="mt-3 pt-3 border-t border-foreground/5"><span className="text-[10px] uppercase tracking-wider text-muted-foreground/60">Response</span><p className="text-sm font-medium mt-1">{p.response.darija}</p><p className="text-xs text-muted-foreground">{p.response.english}</p></div>}
-      {p.cultural_note && <div className="culture-note py-2 mt-3"><p className="text-xs leading-relaxed">{p.cultural_note}</p></div>}
+    <div key={p.id} className="py-6 border-b border-neutral-100 last:border-0">
+      <p className="font-arabic text-2xl text-[#c53a1a] mb-1">{p.arabic}</p>
+      <p className="font-display text-xl mb-2">{p.darija}</p>
+      <p className="text-neutral-700">{p.english}</p>
+      <p className="text-sm text-neutral-500 mt-1">{p.french}</p>
+      {p.literal_translation && <p className="text-xs italic text-neutral-400 mt-2">Literally: {p.literal_translation}</p>}
+      {p.response && (
+        <div className="mt-4 ml-6 border-l border-neutral-200 pl-5">
+          <p className="text-xs uppercase tracking-[0.15em] text-neutral-400 mb-1">They&apos;ll reply</p>
+          <p className="text-neutral-700">{p.response.darija}</p>
+          <p className="text-sm text-neutral-500">{p.response.english}</p>
+        </div>
+      )}
+      {p.cultural_note && (
+        <p className="text-sm text-neutral-500 mt-4 border-l-2 border-[#d4931a]/40 pl-4">{p.cultural_note}</p>
+      )}
     </div>
   );
 
   return (
-    <div className="overflow-hidden">
-      {/* HERO */}
-      <section className="relative min-h-[90vh] flex items-center px-6 py-20 grain">
-        <div className="absolute inset-0 overflow-hidden pointer-events-none select-none" aria-hidden="true">
-          {bgLetters.map((l,i)=>(<span key={i} className="arabic-deco absolute font-arabic" style={{fontSize:`${100+Math.random()*280}px`,top:`${(i*9)%95}%`,left:`${(i*11+5)%90}%`,transform:`rotate(${-10+Math.random()*20}deg)`}}>{l}</span>))}
+    <div>
+      {/* ═══════════ HERO ═══════════ */}
+      <section className="relative min-h-[100vh] flex items-end px-8 md:px-[8%] lg:px-[12%] pb-20 md:pb-32 pt-40 overflow-hidden">
+        {/* Giant background Arabic */}
+        <div className="absolute top-0 right-0 translate-x-[10%] -translate-y-[5%] pointer-events-none select-none" aria-hidden="true">
+          <span className="font-arabic text-[40vw] leading-none text-neutral-900/[0.03]">دارجة</span>
         </div>
-        <div className="relative z-10 w-full max-w-6xl mx-auto">
-          <div className="grid md:grid-cols-12 gap-8 items-center">
-            <div className="md:col-span-7">
-              <div className="anim-slide-left"><span className="text-accent text-sm font-medium uppercase tracking-[0.25em] mb-4 block">Moroccan Arabic</span></div>
-              <h1 className="anim-slide-left delay-1">
-                <span className="font-display text-6xl md:text-7xl lg:text-8xl xl:text-9xl leading-[0.85] block">Darija</span>
-                <span className="font-display text-6xl md:text-7xl lg:text-8xl xl:text-9xl leading-[0.85] block italic text-accent">for</span>
-                <span className="font-display text-6xl md:text-7xl lg:text-8xl xl:text-9xl leading-[0.85] block">Dummies</span>
-              </h1>
-              <p className="text-muted-foreground mt-6 text-lg max-w-md leading-relaxed anim-slide-left delay-3">The language 40 million Moroccans actually speak — and nobody teaches you properly.</p>
+        {/* Scattered letters */}
+        <div className="absolute inset-0 pointer-events-none select-none overflow-hidden" aria-hidden="true">
+          {['د','ر','ج','م','ب','ش'].map((l,i)=>(
+            <span key={i} className="absolute font-arabic text-neutral-900/[0.02]" style={{
+              fontSize: `${80 + i * 50}px`,
+              top: `${10 + i * 14}%`,
+              left: `${60 + (i % 3) * 12}%`,
+              transform: `rotate(${-15 + i * 8}deg)`
+            }}>{l}</span>
+          ))}
+        </div>
+
+        <div className="relative z-10 w-full">
+          <div className="max-w-4xl">
+            <p className="text-[#c53a1a] text-xs md:text-sm font-medium uppercase tracking-[0.3em] mb-6 md:mb-8 anim-fade-up">Moroccan Arabic</p>
+            <h1 className="anim-fade-up delay-1">
+              <span className="font-display text-[clamp(3.5rem,10vw,9rem)] leading-[0.85] block tracking-tight">Darija</span>
+              <span className="font-display text-[clamp(3.5rem,10vw,9rem)] leading-[0.85] block tracking-tight italic text-[#c53a1a]">for</span>
+              <span className="font-display text-[clamp(3.5rem,10vw,9rem)] leading-[0.85] block tracking-tight">Dummies</span>
+            </h1>
+          </div>
+
+          <div className="mt-12 md:mt-20 grid md:grid-cols-12 gap-8 items-end">
+            <div className="md:col-span-5">
+              <p className="text-neutral-500 text-lg leading-relaxed anim-fade-up delay-2">The language 40 million Moroccans actually speak — and nobody teaches you properly.</p>
             </div>
-            <div className="md:col-span-5 flex flex-col items-center md:items-end gap-8">
-              <div className="anim-slide-right delay-2"><span className="font-arabic text-[8rem] md:text-[10rem] leading-none text-foreground/[0.06]">دارجة</span></div>
-              <div className="flex gap-8 anim-fade-up delay-5">
-                <div className="text-center"><span className="font-display text-5xl block">{meta.totalWords||'...'}</span><span className="text-[10px] uppercase tracking-[0.2em] text-muted-foreground">Words</span></div>
-                <div className="text-center"><span className="font-display text-5xl block">{meta.totalPhrases||'...'}</span><span className="text-[10px] uppercase tracking-[0.2em] text-muted-foreground">Phrases</span></div>
-                <div className="text-center"><span className="font-display text-5xl block">∞</span><span className="text-[10px] uppercase tracking-[0.2em] text-muted-foreground">Cultural notes</span></div>
+            <div className="md:col-span-7 md:col-start-8 anim-fade-up delay-3">
+              {/* Search — just an underline, no box */}
+              <div className="relative">
+                <input ref={inputRef} type="text" value={query} onChange={e=>setQuery(e.target.value)}
+                  placeholder="Search — English, French, or Darija"
+                  className="w-full pb-4 text-xl md:text-2xl border-b-2 border-neutral-200 focus:border-[#c53a1a] outline-none transition-colors bg-transparent font-display placeholder:text-neutral-300 placeholder:font-display" />
+                {query && <button onClick={()=>setQuery('')} className="absolute right-0 bottom-4 text-neutral-400 hover:text-neutral-800"><svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12"/></svg></button>}
               </div>
+              {!query && (
+                <div className="flex flex-wrap gap-x-6 gap-y-2 mt-4">
+                  {['salam','bread','taxi','how much','beautiful','inshallah'].map(w=>(
+                    <button key={w} onClick={()=>setQuery(w)} className="text-sm text-neutral-400 hover:text-[#c53a1a] transition-colors font-display italic">{w}</button>
+                  ))}
+                </div>
+              )}
             </div>
           </div>
-          <div className="mt-16 max-w-2xl anim-fade-up delay-4">
-            <div className="relative">
-              <input ref={inputRef} type="text" value={query} onChange={e=>setQuery(e.target.value)} placeholder="Search any word — English, French, or Darija..." className="w-full px-6 py-5 text-lg md:text-xl border-2 border-foreground/10 focus:border-accent/50 focus:outline-none transition-all bg-background font-display placeholder:font-sans placeholder:text-base placeholder:font-light" />
-              {query && <button onClick={()=>setQuery('')} className="absolute right-4 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground p-2"><svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M6 18L18 6M6 6l12 12"/></svg></button>}
-            </div>
-            {!query && <div className="flex flex-wrap gap-3 mt-4 text-sm anim-fade-up delay-6"><span className="text-muted-foreground/40">Try:</span>{['salam','bread','taxi','how much','beautiful','inshallah'].map(w=>(<button key={w} onClick={()=>setQuery(w)} className="text-foreground/50 hover:text-accent transition-colors font-display italic">{w}</button>))}</div>}
+
+          {/* Stats strip */}
+          <div className="flex gap-12 mt-16 md:mt-24 anim-fade-up delay-4">
+            <div><span className="font-display text-4xl md:text-5xl block">{meta.totalWords || '—'}</span><span className="text-[10px] uppercase tracking-[0.2em] text-neutral-400 mt-1 block">words</span></div>
+            <div><span className="font-display text-4xl md:text-5xl block">{meta.totalPhrases || '—'}</span><span className="text-[10px] uppercase tracking-[0.2em] text-neutral-400 mt-1 block">phrases</span></div>
+            <div><span className="font-display text-4xl md:text-5xl block">∞</span><span className="text-[10px] uppercase tracking-[0.2em] text-neutral-400 mt-1 block">cultural notes</span></div>
           </div>
         </div>
       </section>
 
-      {hasResults && <section className="py-16 px-6"><div className="max-w-6xl mx-auto">
-        {wordResults.length>0 && <div className="mb-12"><div className="flex items-baseline gap-3 mb-6"><span className="font-display text-4xl">{wordResults.length}</span><span className="text-xs uppercase tracking-[0.2em] text-muted-foreground">words</span></div><div className="grid gap-3 md:grid-cols-2 lg:grid-cols-3">{wordResults.map(renderWord)}</div></div>}
-        {phraseResults.length>0 && <div><div className="flex items-baseline gap-3 mb-6"><span className="font-display text-4xl">{phraseResults.length}</span><span className="text-xs uppercase tracking-[0.2em] text-muted-foreground">phrases</span></div><div className="grid gap-3 md:grid-cols-2">{phraseResults.map(renderPhrase)}</div></div>}
-      </div></section>}
+      {/* ═══════════ SEARCH RESULTS ═══════════ */}
+      {hasResults && (
+        <section className="px-8 md:px-[8%] lg:px-[12%] py-20">
+          {wordResults.length > 0 && <div className="mb-16"><p className="text-xs uppercase tracking-[0.2em] text-neutral-400 mb-8">{wordResults.length} words</p>{wordResults.map(renderWord)}</div>}
+          {phraseResults.length > 0 && <div><p className="text-xs uppercase tracking-[0.2em] text-neutral-400 mb-8">{phraseResults.length} phrases</p><div className="max-w-3xl">{phraseResults.map(renderPhrase)}</div></div>}
+        </section>
+      )}
+      {noResults && <section className="px-8 md:px-[8%] lg:px-[12%] py-32 text-center"><span className="font-arabic text-8xl text-neutral-100 block mb-6">؟</span><p className="font-display text-3xl text-neutral-800">Nothing for &ldquo;{query}&rdquo; yet</p><p className="text-neutral-400 mt-2">Try another word or browse below.</p></section>}
 
-      {noResults && <section className="py-20 px-6 text-center"><span className="font-arabic text-7xl text-foreground/10 block mb-4">؟</span><p className="font-display text-2xl mb-2">Ma lgina-sh &ldquo;{query}&rdquo;</p><p className="text-sm text-muted-foreground">We didn&apos;t find that one yet.</p></section>}
+      {/* ═══════════ FIRST DAY ═══════════ */}
+      {!query && essentialWords.length > 0 && (
+        <section className="px-8 md:px-[8%] lg:px-[12%] py-24 md:py-40">
+          <div className="grid md:grid-cols-12 gap-8 mb-16">
+            <div className="md:col-span-7">
+              <p className="text-[#c53a1a] text-xs font-medium uppercase tracking-[0.3em] mb-4">Start here</p>
+              <h2 className="font-display text-5xl md:text-6xl lg:text-7xl leading-[0.9]">Your first<br/><em>day</em> words</h2>
+            </div>
+            <div className="md:col-span-4 md:col-start-9 flex items-end">
+              <p className="text-neutral-500 leading-relaxed">The words you need before you step out the door. Say them badly — Moroccans will love you for trying.</p>
+            </div>
+          </div>
+          {essentialWords.slice(0,12).map(renderWord)}
+        </section>
+      )}
 
-      {!query && essentialWords.length>0 && <section className="py-20 md:py-28 px-6"><div className="max-w-6xl mx-auto">
-        <div className="grid md:grid-cols-12 gap-8 mb-12"><div className="md:col-span-8"><span className="text-accent text-xs font-medium uppercase tracking-[0.25em] block mb-3">Start Here</span><h2 className="font-display text-4xl md:text-5xl lg:text-6xl leading-tight">Your First<br/><em>Day</em> Words</h2></div><div className="md:col-span-4 flex items-end"><p className="text-sm text-muted-foreground leading-relaxed">The words you need before you step out the door.</p></div></div>
-        <div className="grid gap-3 md:grid-cols-2 lg:grid-cols-3">{essentialWords.slice(0,12).map(renderWord)}</div>
-      </div></section>}
+      {/* ═══════════ BROWSE WORDS ═══════════ */}
+      {!query && wordCategories.length > 0 && (
+        <section className="px-8 md:px-[8%] lg:px-[12%] py-24 md:py-40 bg-neutral-50/60">
+          <div className="grid md:grid-cols-12 gap-8 mb-16">
+            <div className="md:col-span-5">
+              <p className="text-[#c53a1a] text-xs font-medium uppercase tracking-[0.3em] mb-4">Dictionary</p>
+              <h2 className="font-display text-5xl md:text-6xl lg:text-7xl leading-[0.9]">{meta.totalWords}<br/>Words</h2>
+            </div>
+          </div>
+          {/* Categories as text links, not pills */}
+          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-y-1 mb-16">
+            {wordCategories.map(c=>(
+              <button key={c.id} onClick={()=>setActiveWordCat(activeWordCat===c.id?null:c.id)}
+                className={`text-left py-2 pr-4 transition-colors text-sm ${activeWordCat===c.id ? 'text-[#c53a1a] font-medium' : 'text-neutral-500 hover:text-neutral-800'}`}>
+                {c.name} <span className="text-neutral-300 ml-1">{c.count}</span>
+              </button>
+            ))}
+          </div>
+          {activeWordCat && catWords.length > 0 && <div>{catWords.map(renderWord)}</div>}
+          {!activeWordCat && <p className="text-neutral-300 font-display text-2xl italic">Select a category</p>}
+        </section>
+      )}
 
-      {!query && wordCategories.length>0 && <section className="py-20 md:py-28 px-6 bg-surface relative grain"><div className="max-w-6xl mx-auto">
-        <div className="mb-12"><span className="text-accent text-xs font-medium uppercase tracking-[0.25em] block mb-3">Explore</span><h2 className="font-display text-4xl md:text-5xl leading-tight">{meta.totalWords} Words</h2></div>
-        <div className="flex flex-wrap gap-2 mb-10">{wordCategories.map(c=>(<button key={c.id} onClick={()=>setActiveWordCat(activeWordCat===c.id?null:c.id)} className={`text-sm px-4 py-2.5 transition-all flex items-center gap-2 ${activeWordCat===c.id?'bg-foreground text-background':'border border-foreground/10 hover:border-foreground/30 hover:bg-background'}`}><span>{c.icon}</span><span>{c.name}</span><span className="text-[10px] opacity-50">{c.count}</span></button>))}</div>
-        {activeWordCat && catWords.length>0 && <div className="grid gap-3 md:grid-cols-2 lg:grid-cols-3">{catWords.map(renderWord)}</div>}
-        {!activeWordCat && <p className="text-muted-foreground/50 text-sm italic">Pick a category above ↑</p>}
-      </div></section>}
+      {/* ═══════════ PHRASES ═══════════ */}
+      {!query && phraseCategories.length > 0 && (
+        <section className="px-8 md:px-[8%] lg:px-[12%] py-24 md:py-40">
+          <div className="grid md:grid-cols-12 gap-8 mb-16">
+            <div className="md:col-span-7">
+              <p className="text-[#c53a1a] text-xs font-medium uppercase tracking-[0.3em] mb-4">Phrasebook</p>
+              <h2 className="font-display text-5xl md:text-6xl lg:text-7xl leading-[0.9]">{meta.totalPhrases} Phrases<br/><em>that work</em></h2>
+            </div>
+            <div className="md:col-span-4 md:col-start-9 flex items-end">
+              <p className="text-neutral-500 leading-relaxed">Not textbook Arabic. Real Darija — what people actually say in the taxi, at the souk, in the café.</p>
+            </div>
+          </div>
+          <div className="flex flex-wrap gap-x-6 gap-y-2 mb-16">
+            {phraseCategories.map(c=>(
+              <button key={c.id} onClick={()=>setActivePhraseCat(activePhraseCat===c.id?null:c.id)}
+                className={`text-sm py-1 transition-colors ${activePhraseCat===c.id ? 'text-[#c53a1a] font-medium border-b border-[#c53a1a]' : 'text-neutral-500 hover:text-neutral-800'}`}>
+                {c.name} <span className="text-neutral-300">{c.count}</span>
+              </button>
+            ))}
+          </div>
+          <div className="max-w-3xl">{(activePhraseCat ? catPhrases : featuredPhrases).map(renderPhrase)}</div>
+        </section>
+      )}
 
-      {!query && phraseCategories.length>0 && <section className="py-20 md:py-28 px-6"><div className="max-w-6xl mx-auto">
-        <div className="grid md:grid-cols-12 gap-8 mb-12"><div className="md:col-span-7"><span className="text-accent text-xs font-medium uppercase tracking-[0.25em] block mb-3">Real Situations</span><h2 className="font-display text-4xl md:text-5xl lg:text-6xl leading-tight">{meta.totalPhrases} Phrases<br/><em>That Work</em></h2></div><div className="md:col-span-5 flex items-end"><p className="text-sm text-muted-foreground leading-relaxed">Not textbook Arabic. Real Darija.</p></div></div>
-        <div className="flex flex-wrap gap-2 mb-10">{phraseCategories.map(c=>(<button key={c.id} onClick={()=>setActivePhraseCat(activePhraseCat===c.id?null:c.id)} className={`text-sm px-4 py-2 transition-all ${activePhraseCat===c.id?'bg-accent text-white':'border border-foreground/10 hover:border-accent/30'}`}>{c.name}<span className="text-[10px] ml-1 opacity-50">{c.count}</span></button>))}</div>
-        <div className="grid gap-3 md:grid-cols-2">{(activePhraseCat?catPhrases:featuredPhrases).map(renderPhrase)}</div>
-      </div></section>}
-
-      {!query && proverbs.length>0 && <section className="py-20 md:py-28 px-6 bg-foreground text-background relative">
-        <div className="absolute right-0 top-0 font-arabic text-[20rem] leading-none text-background/[0.03] translate-x-10 -translate-y-10 pointer-events-none select-none" aria-hidden="true">حكمة</div>
-        <div className="max-w-5xl mx-auto relative z-10">
-          <span className="text-accent-warm text-xs font-medium uppercase tracking-[0.25em] block mb-3">Hikma</span>
-          <h2 className="font-display text-4xl md:text-5xl leading-tight mb-12">Moroccan<br/><em>Wisdom</em></h2>
-          <div className="grid gap-6 md:grid-cols-2">{proverbs.map(p=>(<div key={p.id} className="border border-background/10 p-6 hover:border-background/25 transition-all"><p className="font-arabic text-xl text-accent-warm mb-2">{p.arabic}</p><p className="font-display text-lg italic mb-2">{p.darija}</p><p className="text-background/70 text-sm">{p.english}</p>{p.literal_translation && <p className="text-background/40 text-xs italic mt-1">Lit: {p.literal_translation}</p>}{p.cultural_note && <p className="text-background/50 text-xs mt-3 border-l-2 border-accent-warm/40 pl-3">{p.cultural_note}</p>}</div>))}</div>
-        </div>
-      </section>}
+      {/* ═══════════ PROVERBS ═══════════ */}
+      {!query && proverbs.length > 0 && (
+        <section className="px-8 md:px-[8%] lg:px-[12%] py-24 md:py-40 bg-neutral-900 text-white relative overflow-hidden">
+          <div className="absolute right-0 top-0 translate-x-[15%] -translate-y-[10%] pointer-events-none select-none" aria-hidden="true">
+            <span className="font-arabic text-[30vw] leading-none text-white/[0.02]">حكمة</span>
+          </div>
+          <div className="relative z-10">
+            <p className="text-[#d4931a] text-xs font-medium uppercase tracking-[0.3em] mb-4">Hikma</p>
+            <h2 className="font-display text-5xl md:text-6xl lg:text-7xl leading-[0.9] mb-20">Moroccan<br/><em>Wisdom</em></h2>
+            <div className="grid md:grid-cols-2 gap-x-20 gap-y-16">
+              {proverbs.map(p=>(
+                <div key={p.id}>
+                  <p className="font-arabic text-2xl text-[#d4931a] mb-2">{p.arabic}</p>
+                  <p className="font-display text-xl italic text-white/80 mb-3">{p.darija}</p>
+                  <p className="text-white/50 text-sm leading-relaxed">{p.english}</p>
+                  {p.literal_translation && <p className="text-white/30 text-xs italic mt-2">Literally: {p.literal_translation}</p>}
+                  {p.cultural_note && <p className="text-white/40 text-xs mt-4 border-l border-[#d4931a]/30 pl-4">{p.cultural_note}</p>}
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
     </div>
   );
 }
