@@ -50,7 +50,7 @@ export interface DarijaPhrase {
 export async function getAllWords(): Promise<DarijaWord[]> {
   const all: DarijaWord[] = [];
   let from = 0;
-  const step = 500;
+  const step = 200;
   while (true) {
     const { data } = await getClient()
       .from('darija_words')
@@ -104,7 +104,7 @@ export async function searchWords(query: string): Promise<DarijaWord[]> {
 export async function getAllPhrases(): Promise<DarijaPhrase[]> {
   const all: DarijaPhrase[] = [];
   let from = 0;
-  const step = 500;
+  const step = 200;
   while (true) {
     const { data } = await getClient()
       .from('darija_phrases')
