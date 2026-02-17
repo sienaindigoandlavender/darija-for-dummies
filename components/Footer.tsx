@@ -96,12 +96,12 @@ export default function Footer() {
         </div>
       </div>
 
-      {/* ═══ LEVEL 3: Legal + Language + Powered by + Copyright ═══ #0e0e0e */}
+      {/* ═══ LEVEL 3: Legal + Powered by + Copyright ═══ #0e0e0e */}
       <div style={{ backgroundColor: '#0e0e0e' }}>
         <div className="px-8 md:px-[8%] lg:px-[12%] py-5">
-          <div className="flex flex-wrap items-center justify-between gap-4">
-            {/* Legal links */}
-            <div className="flex flex-wrap items-center gap-x-4 gap-y-1">
+          <div className="flex flex-col gap-4">
+            {/* Row 1: Legal + Language */}
+            <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
               {legalPages.length > 0 ? (
                 legalPages.map(page => (
                   <a key={page.page_slug}
@@ -117,16 +117,14 @@ export default function Footer() {
                 </>
               )}
               <span className="text-white/10">|</span>
-              {/* Google Translate inline */}
               <div id="google_translate_element" />
             </div>
-
-            {/* Powered by + Copyright */}
-            <div className="flex items-center gap-3">
+            {/* Row 2: Powered by + Copyright */}
+            <div className="flex flex-wrap items-center gap-x-3">
               <span className="text-xs text-white/20">Powered by</span>
-              <a href="https://slowmorocco.com" target="_blank" rel="noopener" className="text-xs text-white/30 hover:text-white/50 transition-colors">Slow Morocco</a>
+              <a href="https://slowmorocco.com" target="_blank" rel="noopener" className="text-xs text-white/35 hover:text-white/55 transition-colors">Slow Morocco</a>
               <span className="text-white/10">|</span>
-              <span className="text-xs text-white/20">&copy; {new Date().getFullYear()} Slow Morocco</span>
+              <span className="text-xs text-white/20">&copy; {new Date().getFullYear()} Slow Morocco. All rights reserved.</span>
             </div>
           </div>
         </div>
@@ -154,27 +152,35 @@ export default function Footer() {
         strategy="lazyOnload"
       />
 
-      {/* Hide Google Translate top banner only */}
+      {/* Google Translate styling */}
       <style jsx global>{`
         .goog-te-banner-frame { display: none !important; }
         body { top: 0 !important; }
         .VIpgJd-ZVi9od-ORHb-OEVmcd { display: none !important; }
-        #google_translate_element .goog-logo-link { display: none !important; }
+        #google_translate_element .goog-te-gadget { font-size: 0 !important; line-height: 0 !important; }
         #google_translate_element .goog-te-gadget > span { display: none !important; }
-        #google_translate_element .goog-te-gadget { color: transparent !important; }
-        #google_translate_element select.goog-te-combo {
-          background: transparent !important;
-          border: 1px solid rgba(255,255,255,0.15) !important;
-          color: rgba(255,255,255,0.4) !important;
+        #google_translate_element .goog-logo-link { display: none !important; }
+        #google_translate_element img { display: none !important; }
+        #google_translate_element .goog-te-gadget .goog-te-combo {
+          background: rgba(255,255,255,0.05) !important;
+          border: 1px solid rgba(255,255,255,0.12) !important;
+          color: rgba(255,255,255,0.35) !important;
           font-size: 11px !important;
-          padding: 4px 8px !important;
-          border-radius: 4px !important;
+          font-family: 'DM Sans', sans-serif !important;
+          padding: 3px 6px !important;
+          border-radius: 3px !important;
           outline: none !important;
           cursor: pointer !important;
+          appearance: auto !important;
+          -webkit-appearance: auto !important;
         }
-        #google_translate_element select.goog-te-combo option {
+        #google_translate_element .goog-te-gadget .goog-te-combo:hover {
+          border-color: rgba(255,255,255,0.25) !important;
+          color: rgba(255,255,255,0.5) !important;
+        }
+        #google_translate_element .goog-te-gadget .goog-te-combo option {
           background: #1a1a1a !important;
-          color: #ccc !important;
+          color: #aaa !important;
         }
       `}</style>
     </footer>
