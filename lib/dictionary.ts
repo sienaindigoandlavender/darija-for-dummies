@@ -48,13 +48,22 @@ export interface DarijaPhrase {
 // ---- Word queries ----
 
 export async function getAllWords(): Promise<DarijaWord[]> {
-  const { data } = await getClient()
-    .from('darija_words')
-    .select('*')
-    .eq('published', true)
-    .order('order')
-    .range(0, 2999);
-  return (data || []) as DarijaWord[];
+  const all: DarijaWord[] = [];
+  let from = 0;
+  const step = 500;
+  while (true) {
+    const { data } = await getClient()
+      .from('darija_words')
+      .select('*')
+      .eq('published', true)
+      .order('order')
+      .range(from, from + step - 1);
+    if (!data || data.length === 0) break;
+    all.push(...(data as DarijaWord[]));
+    if (data.length < step) break;
+    from += step;
+  }
+  return all;
 }
 
 export async function getWordsByCategory(category: string): Promise<DarijaWord[]> {
@@ -93,13 +102,22 @@ export async function searchWords(query: string): Promise<DarijaWord[]> {
 // ---- Phrase queries ----
 
 export async function getAllPhrases(): Promise<DarijaPhrase[]> {
-  const { data } = await getClient()
-    .from('darija_phrases')
-    .select('*')
-    .eq('published', true)
-    .order('order')
-    .range(0, 2999);
-  return (data || []) as DarijaPhrase[];
+  const all: DarijaPhrase[] = [];
+  let from = 0;
+  const step = 500;
+  while (true) {
+    const { data } = await getClient()
+      .from('darija_phrases')
+      .select('*')
+      .eq('published', true)
+      .order('order')
+      .range(from, from + step - 1);
+    if (!data || data.length === 0) break;
+    all.push(...(data as DarijaPhrase[]));
+    if (data.length < step) break;
+    from += step;
+  }
+  return all;
 }
 
 export async function getPhrasesByCategory(category: string): Promise<DarijaPhrase[]> {
