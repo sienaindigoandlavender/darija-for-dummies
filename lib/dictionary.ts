@@ -139,12 +139,12 @@ export async function getProverbs(): Promise<DarijaPhrase[]> {
 
 export async function getMetadata() {
   const [words, phrases] = await Promise.all([
-    getClient().from('darija_words').select('id', { count: 'exact' }).eq('published', true).range(0, 2999),
-    getClient().from('darija_phrases').select('id', { count: 'exact' }).eq('published', true).range(0, 2999),
+    getAllWords(),
+    getAllPhrases(),
   ]);
   return {
-    totalWords: words.count ?? words.data?.length ?? 0,
-    totalPhrases: phrases.count ?? phrases.data?.length ?? 0,
+    totalWords: words.length,
+    totalPhrases: phrases.length,
   };
 }
 
