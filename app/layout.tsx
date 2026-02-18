@@ -16,7 +16,7 @@ export const metadata: Metadata = {
     default: "Darija for Dummies — Learn Moroccan Arabic",
     template: "%s | Darija for Dummies",
   },
-  description: "The fun, irreverent guide to Moroccan Arabic (Darija). 200+ words, 80+ phrases, cultural notes, souk survival, and the slang nobody teaches you.",
+  description: "The most comprehensive Moroccan Arabic (Darija) dictionary online. 10,000 words, 300+ phrases, cultural notes, pronunciation guides, and the grammar nobody teaches you. By J. Ng — a Dancing with Lions publication.",
   keywords: [
     "Darija", "Moroccan Arabic", "learn Darija", "Moroccan language",
     "Morocco phrases", "Darija dictionary", "Moroccan slang",
@@ -36,7 +36,7 @@ export const metadata: Metadata = {
     url: siteUrl,
     siteName: "Darija for Dummies",
     title: "Darija for Dummies — Learn Moroccan Arabic the fun way",
-    description: "200+ words, 80+ phrases, cultural gold, and the slang nobody teaches you. Moroccan Arabic made human.",
+    description: "10,000 words, 300+ phrases, cultural intelligence, and the Darija grammar nobody teaches you. Moroccan Arabic made human.",
   },
   robots: { index: true, follow: true },
   category: "education",
@@ -47,8 +47,17 @@ const jsonLd = {
   "@type": "WebSite",
   name: "Darija for Dummies",
   url: siteUrl,
-  description: "Comprehensive Moroccan Arabic (Darija) dictionary and phrasebook with cultural notes, pronunciation guides, and situational learning.",
+  description: "The most comprehensive Moroccan Arabic (Darija) dictionary online. 10,000 words with Arabic script, pronunciation, cultural notes, and grammar. A Dancing with Lions publication.",
   inLanguage: ["en", "fr", "ar"],
+  publisher: {
+    "@type": "Organization",
+    name: "Dancing with Lions",
+    url: "https://dancingwithlions.com",
+  },
+  author: {
+    "@type": "Person",
+    name: "Jacqueline Ng",
+  },
   potentialAction: {
     "@type": "SearchAction",
     target: { "@type": "EntryPoint", urlTemplate: `${siteUrl}/?q={search_term_string}` },

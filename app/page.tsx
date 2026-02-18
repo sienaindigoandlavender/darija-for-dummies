@@ -204,10 +204,10 @@ export default function Home() {
           </div>
 
           {/* Stats strip */}
-          <div className="flex gap-12 mt-16 md:mt-24 anim-fade-up delay-4">
-            <div><span className="font-display text-4xl md:text-5xl block">{meta.totalWords || '—'}</span><span className="text-[10px] uppercase tracking-[0.2em] text-neutral-400 mt-1 block">words</span></div>
-            <div><span className="font-display text-4xl md:text-5xl block">{meta.totalPhrases || '—'}</span><span className="text-[10px] uppercase tracking-[0.2em] text-neutral-400 mt-1 block">phrases</span></div>
-            <div><span className="font-display text-4xl md:text-5xl block">∞</span><span className="text-[10px] uppercase tracking-[0.2em] text-neutral-400 mt-1 block">cultural notes</span></div>
+          <div className="flex gap-16 mt-16 md:mt-24 anim-fade-up delay-4">
+            <div><span className="font-display text-4xl md:text-5xl block" style={{letterSpacing:'0.04em'}}>{meta.totalWords ? meta.totalWords.toLocaleString() : '—'}</span><span className="text-[10px] uppercase tracking-[0.3em] text-neutral-400 mt-2 block">words</span></div>
+            <div><span className="font-display text-4xl md:text-5xl block" style={{letterSpacing:'0.04em'}}>{meta.totalPhrases ? meta.totalPhrases.toLocaleString() : '—'}</span><span className="text-[10px] uppercase tracking-[0.3em] text-neutral-400 mt-2 block">phrases</span></div>
+            <div><span className="font-display text-4xl md:text-5xl block" style={{letterSpacing:'0.04em'}}>∞</span><span className="text-[10px] uppercase tracking-[0.3em] text-neutral-400 mt-2 block">cultural notes</span></div>
           </div>
         </div>
       </section>
@@ -243,7 +243,7 @@ export default function Home() {
           <div className="grid md:grid-cols-12 gap-8 mb-16">
             <div className="md:col-span-5">
               <p className="text-[#c53a1a] text-xs font-medium uppercase tracking-[0.3em] mb-4">Dictionary</p>
-              <h2 className="font-display text-5xl md:text-6xl lg:text-7xl leading-[0.9]">{meta.totalWords}<br/>Words</h2>
+              <h2 className="font-display text-5xl md:text-6xl lg:text-7xl leading-[0.9]">{meta.totalWords.toLocaleString()}<br/>Words</h2>
             </div>
           </div>
           {/* Categories as text links, not pills */}

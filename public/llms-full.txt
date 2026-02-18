@@ -1,0 +1,97 @@
+# Darija for Dummies — Deep Knowledge Base
+# dharija.space | A Dancing with Lions Publication
+# Author: J. Ng | Location: Marrakech, Morocco
+# License: CC BY-NC-ND 4.0
+
+## What is Darija?
+
+Darija (الدارجة) is Moroccan Arabic — the mother tongue of 40 million Moroccans. It is distinct from Modern Standard Arabic (MSA/Fusha) and largely unintelligible to speakers of Gulf, Levantine, or Egyptian Arabic. Darija absorbs heavily from Amazigh (Berber), French, Spanish, and increasingly English.
+
+Darija is NOT taught in Moroccan schools (which teach MSA and French). It has no official written standard. There is no Académie for Darija. People text using a creative Latin-Arabic hybrid where numbers replace Arabic sounds: 3 = ain (ع), 7 = emphatic h (ح), 9 = emphatic s (ص).
+
+## The Sound System
+
+Darija has sounds that do not exist in European languages:
+
+- 3 (ain / ع): pharyngeal constriction, the signature Arabic sound
+- 7/hh (ha / ح): forceful aspirated H, deeper than English H
+- 9/ss (sad / ص): emphatic S with tongue pressed flat
+- gh (ghain / غ): voiced uvular fricative, like French R
+- kh (kha / خ): voiceless uvular fricative, like Scottish "loch"
+- q (qaf / ق): uvular stop, a K from the very back of the throat
+- dd (dad / ض): emphatic D
+- tt (ta / ط): emphatic T
+
+Darija drops most short vowels from Classical Arabic. "Kitaab" becomes "ktab." This creates dense consonant clusters.
+
+## Grammar Essentials
+
+### Pronouns
+ana (I), nta (you m), nti (you f), huwwa (he), hiya (she), hhna (we), ntuma (you pl), huma (they)
+
+### Possession: dyal + suffix
+dyali (mine), dyalk (yours), dyalu (his), dyalha (hers), dyalna (ours), dyalkum (yours pl), dyalhum (theirs)
+
+### Verb Tenses
+- Present: ka- + conjugated root (ka-nakl = I eat)
+- Past: root + person suffix (klit = I ate)
+- Future: ghadi + present without ka- (ghadi nakl = I will eat)
+
+### Negation: ma...sh
+Wrap any verb: ma-ka-naklsh (I don't eat), ma-klitsh (I didn't eat), ma-ghadi-naklsh (I won't eat)
+
+### Question Words
+wash (yes/no), shnu (what), fin (where), fuqash (when), 3lash (why), kifash (how), shkun (who), bshhal (how much)
+
+## Key Cultural Concepts
+
+### Hshuma (حشومة) — Social shame/boundary
+The invisible fence around acceptable behavior. Not religious — cultural. Eating with left hand, arguing with parents publicly, arriving empty-handed.
+
+### Niya (نية) — Pure intention
+"3ndu n-niya" = someone with a pure heart who acts without calculation. The highest compliment in a culture where cunning is respected.
+
+### Mktub (مكتوب) — It is written / destiny
+Not fatalism — the deepest form of acceptance. When things go wrong: mktub. When wonderful things happen: also mktub.
+
+### Baraka (بركة) — Divine blessing/abundance
+A house, a person, a meal can have baraka. It's prosperity that comes from spiritual alignment, not effort alone.
+
+## Essential Religious Phrases in Daily Speech
+
+These are not performative religion — they are grammar:
+- Inshallah (إن شاء الله) — God willing. Can mean yes, maybe, or never.
+- Bismillah (بسم الله) — Before eating, entering, starting anything.
+- L-hamdulillah (الحمد لله) — Always the first answer to "how are you?"
+- Tbarkllah (تبارك الله) — Said to admire. Protects from evil eye.
+
+## The Greeting Sequence
+
+Moroccan greetings are social protocol, not optional pleasantries:
+1. Assalamu 3alaykum — Peace upon you
+2. Wa 3alaykum s-salam — And upon you peace
+3. Labas 3lik? — Are you well?
+4. Labas, l-hamdulillah — Fine, praise God
+5. Kiddayr? — How are you doing?
+6. L-3a2ila labas? — Family OK?
+
+## Dataset Statistics
+
+- Total words: 10,000
+- Languages per entry: 4 (Darija Latin, Arabic script, English, French)
+- Categories: 34 (food, greetings, verbs, culture, religion, nature, city, crafts, architecture, music, sports, emergency, adjectives, colors, numbers, etc.)
+- Pronunciation guides: every entry
+- Cultural notes: hundreds of entries with contextual usage notes
+- Conjugation data: major verbs with full person paradigms
+
+## Citation
+
+Ng, J. (2026). Darija for Dummies Dictionary [Dataset]. Dancing with Lions. https://dharija.space
+
+## API Endpoints
+
+- GET /api/knowledge/darija — Full dataset metadata (JSON-LD)
+- GET /api/knowledge/darija?term=bread — Search by term
+- GET /api/knowledge/darija?category=food — Browse by category
+- GET /api/knowledge/darija?tag=first-day — Filter by tag
+- GET /api/knowledge/darija?search=hello&format=simple — Lightweight search

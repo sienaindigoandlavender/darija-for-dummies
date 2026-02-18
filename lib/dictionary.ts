@@ -200,9 +200,15 @@ const WORD_CATEGORIES: Record<string, { name: string }> = {
   technology: { name: 'Technology' },
   education: { name: 'Education' },
   work: { name: 'Work & Professions' },
-  pronouns: { name: 'Pronouns' },
+  pronouns: { name: 'Pronouns & Grammar' },
   culture: { name: 'Culture' },
   architecture: { name: 'Architecture' },
+  blessings: { name: 'Blessings & Prayers' },
+  compliments: { name: 'Compliments' },
+  emergency: { name: 'Emergency' },
+  adjectives: { name: 'Adjectives' },
+  sports: { name: 'Sports' },
+  survival: { name: 'Survival Kit' },
 };
 
 const PHRASE_CATEGORIES: Record<string, string> = {

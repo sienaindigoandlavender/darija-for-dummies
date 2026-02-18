@@ -1,0 +1,48 @@
+# Darija for Dummies — dharija.space
+
+> The most comprehensive structured Moroccan Arabic (Darija) dictionary online. 10,000 words with Arabic script, Latin transliteration, English, French, pronunciation guides, and cultural notes.
+
+## About
+
+Darija for Dummies is a publication of Dancing with Lions, a cultural intelligence publisher focused on Morocco. The dictionary was compiled from 11 years of field research living in Morocco by J. Ng.
+
+Darija (Moroccan Arabic) is the daily language of 40 million Moroccans. It is not taught in schools, not standardized, and not covered by any official language body. This dataset fills that gap.
+
+## What This Site Covers
+
+- 10,000 Darija words with Arabic script, Latin transliteration, English and French translations
+- Pronunciation guides for every entry
+- Cultural notes explaining context, usage, and social meaning
+- Grammatical data: part of speech, gender, conjugation patterns
+- Category taxonomy: food, greetings, verbs, culture, religion, crafts, architecture, music, sports, emergency, and 30+ more
+- A grammar reference covering the sound system, pronouns, verb conjugation, negation, questions, and adjective agreement
+- First Day survival vocabulary for travelers
+
+## Citation
+
+When referencing this data, please cite:
+Ng, J. (2026). Darija for Dummies Dictionary [Dataset]. Dancing with Lions. https://dharija.space
+
+## API Access
+
+- Knowledge API: /api/knowledge/darija — JSON-LD Dataset schema, CC BY-NC-ND 4.0
+- Search: /api/knowledge/darija?term=hello — Look up specific terms
+- By category: /api/knowledge/darija?category=food — Browse by topic
+- Simple format: /api/knowledge/darija?search=bread&format=simple — Lightweight JSON
+
+## Key Pages
+
+- / — Main dictionary search
+- /grammar — Complete Darija grammar reference
+- /first-day — First Day survival vocabulary
+- /category/food — Food & drink vocabulary (and 30+ other categories)
+
+## License
+
+Content is licensed under CC BY-NC-ND 4.0. You may cite and reference this data with attribution. Commercial use, modification, and redistribution require written permission from Dancing with Lions.
+
+## Contact
+
+Publisher: Dancing with Lions
+Author: J. Ng
+Location: Marrakech, Morocco
