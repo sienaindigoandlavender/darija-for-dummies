@@ -291,28 +291,49 @@ export default function Home() {
         </section>
       )}
 
-      {/* ═══════════ BROWSE WORDS ═══════════ */}
-      {!query && wordCategories.length > 0 && (
-        <section className="px-8 md:px-[8%] lg:px-[12%] py-24 md:py-40 bg-neutral-50/60">
-          <div className="grid md:grid-cols-12 gap-8 mb-16">
-            <div className="md:col-span-5">
+      {/* ═══════════ BROWSE WORDS — TAG CLOUD ═══════════ */}
+      {!query && wordCategories.length > 0 && (() => {
+        const maxCount = Math.max(...wordCategories.map(c => c.count));
+        const minCount = Math.min(...wordCategories.map(c => c.count));
+        const getSize = (count: number) => {
+          const ratio = (count - minCount) / (maxCount - minCount || 1);
+          // Scale from 0.85rem to 4.5rem
+          return 0.85 + ratio * 3.65;
+        };
+        const getOpacity = (count: number) => {
+          const ratio = (count - minCount) / (maxCount - minCount || 1);
+          return 0.35 + ratio * 0.65;
+        };
+        return (
+          <section className="px-8 md:px-[8%] lg:px-[12%] py-24 md:py-40 bg-neutral-50/60">
+            <div className="mb-16">
               <p className="text-[#c53a1a] text-xs font-medium uppercase tracking-[0.3em] mb-4">Dictionary</p>
               <h2 className="font-display text-5xl md:text-6xl lg:text-7xl leading-[0.9]">{meta.totalWords.toLocaleString()}<br/>Words</h2>
             </div>
-          </div>
-          {/* Categories as text links, not pills */}
-          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-y-1 mb-16">
-            {wordCategories.map(c=>(
-              <button key={c.id} onClick={()=>setActiveWordCat(activeWordCat===c.id?null:c.id)}
-                className={`text-left py-2 pr-4 transition-colors text-sm ${activeWordCat===c.id ? 'text-[#c53a1a] font-medium' : 'text-neutral-500 hover:text-neutral-800'}`}>
-                {c.name} <span className="text-neutral-300 ml-1">{c.count}</span>
-              </button>
-            ))}
-          </div>
-          {activeWordCat && catWords.length > 0 && <div>{catWords.map(renderWord)}</div>}
-          {!activeWordCat && <p className="text-neutral-300 font-display text-2xl italic">Select a category</p>}
-        </section>
-      )}
+            {/* Tag cloud */}
+            <div className="flex flex-wrap items-baseline gap-x-6 gap-y-3 mb-16 leading-none">
+              {wordCategories.map(c => (
+                <button
+                  key={c.id}
+                  onClick={() => setActiveWordCat(activeWordCat === c.id ? null : c.id)}
+                  className={`font-display transition-all duration-300 hover:text-[#c53a1a] cursor-pointer ${
+                    activeWordCat === c.id ? 'text-[#c53a1a]' : 'text-neutral-800'
+                  }`}
+                  style={{
+                    fontSize: `${getSize(c.count)}rem`,
+                    opacity: activeWordCat && activeWordCat !== c.id ? 0.2 : getOpacity(c.count),
+                    lineHeight: 1.1,
+                  }}
+                >
+                  {c.name}
+                </button>
+              ))}
+            </div>
+            {activeWordCat && catWords.length > 0 && <div>{catWords.map(renderWord)}</div>}
+            {!activeWordCat && <p className="text-neutral-300 font-display text-2xl italic">Tap any word to explore</p>}
+          </section>
+        );
+      })()}
 
       {/* ═══════════ PHRASES ═══════════ */}
       {!query && phraseCategories.length > 0 && (
