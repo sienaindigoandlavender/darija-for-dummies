@@ -31,12 +31,14 @@ export default function Home() {
   const [featuredPhrases, setFeaturedPhrases] = useState<DarijaPhrase[]>([]);
   const [expandedWord, setExpandedWord] = useState<string | null>(null);
   const [meta, setMeta] = useState({ totalWords: 0, totalPhrases: 0 });
+  const [wordOfDay, setWordOfDay] = useState<DarijaWord | null>(null);
   const inputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
     fetch('/api/words?tag=essential').then(r=>r.json()).then(setEssentialWords).catch(()=>{});
     fetch('/api/phrases?category=proverbs').then(r=>r.json()).then(setProverbs).catch(()=>{});
     fetch('/api/phrases?category=survival').then(r=>r.json()).then(d=>setFeaturedPhrases(d.slice(0,6))).catch(()=>{});
+    fetch('/api/word-of-the-day').then(r=>r.json()).then(d=>setWordOfDay(d.word||null)).catch(()=>{});
     fetch('/api/categories').then(r=>r.json()).then(d=>{
       setWordCategories(d.wordCategories||[]);
       setPhraseCategories(d.phraseCategories||[]);
@@ -247,6 +249,32 @@ export default function Home() {
         </section>
       )}
       {noResults && <section className="px-8 md:px-[8%] lg:px-[12%] py-32 text-center"><span className="font-arabic text-8xl text-neutral-100 block mb-6">؟</span><p className="font-display text-3xl text-neutral-800">Nothing for &ldquo;{query}&rdquo; yet</p><p className="text-neutral-400 mt-2">Try another word or browse below.</p></section>}
+
+      {/* ═══════════ WORD OF THE DAY ═══════════ */}
+      {!query && wordOfDay && (
+        <section className="px-8 md:px-[8%] lg:px-[12%] py-20 md:py-32 border-t border-neutral-100">
+          <div className="grid md:grid-cols-12 gap-8 md:gap-16">
+            <div className="md:col-span-5">
+              <p className="text-[#d4931a] text-xs font-medium uppercase tracking-[0.3em] mb-4">Word of the day</p>
+              <div className="mb-6">
+                <span className="font-arabic text-5xl md:text-6xl text-[#c53a1a] block leading-tight mb-3">{wordOfDay.arabic}</span>
+                <span className="font-display text-3xl md:text-4xl block">{wordOfDay.darija}</span>
+              </div>
+              <p className="text-neutral-400 text-sm mb-1">/{wordOfDay.pronunciation}/</p>
+              <p className="text-neutral-600 text-xl mt-4">{wordOfDay.english}</p>
+              <p className="text-neutral-400 mt-1">{wordOfDay.french}</p>
+            </div>
+            <div className="md:col-span-6 md:col-start-7 flex items-center">
+              {wordOfDay.cultural_note && (
+                <div className="border-l-2 border-[#d4931a] pl-6">
+                  <p className="text-xs uppercase tracking-[0.2em] text-[#d4931a] mb-3">Cultural note</p>
+                  <p className="text-neutral-600 leading-relaxed text-lg">{wordOfDay.cultural_note}</p>
+                </div>
+              )}
+            </div>
+          </div>
+        </section>
+      )}
 
       {/* ═══════════ FIRST DAY ═══════════ */}
       {!query && essentialWords.length > 0 && (
