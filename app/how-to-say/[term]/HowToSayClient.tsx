@@ -157,7 +157,7 @@ export default function HowToSayClient({ term, words, phrases, title, descriptio
       <section className="px-8 md:px-[8%] lg:px-[12%] py-12 text-center">
         <div className="flex justify-center gap-4 flex-wrap">
           <Link href="/practice" className="px-8 py-4 bg-neutral-900 text-white text-sm tracking-wide hover:bg-neutral-700 transition-colors">Practice with Flashcards</Link>
-          <Link href="/" className="px-8 py-4 border border-neutral-200 text-neutral-600 text-sm tracking-wide hover:border-neutral-400 transition-colors">Search 10,000 Words</Link>
+          <Link href="/" className="px-8 py-4 border border-neutral-200 text-neutral-600 text-sm tracking-wide hover:border-neutral-400 transition-colors">Search the Dictionary</Link>
         </div>
       </section>
     </div>

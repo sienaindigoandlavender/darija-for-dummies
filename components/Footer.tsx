@@ -26,11 +26,62 @@ export default function Footer() {
       .catch(() => {});
   }, []);
 
-  const siteName = siteConfig?.site_name || 'Darija for Dummies';
-  const copyrightHolder = siteConfig?.legal_entity || poweredBy?.label || 'Slow Morocco';
+  const siteName = siteConfig?.site_name || 'Everyday Darija';
+  const copyrightHolder = siteConfig?.legal_entity || poweredBy?.label || 'Dancing with Lions';
+  const [email, setEmail] = useState('');
+  const [subStatus, setSubStatus] = useState<'idle'|'loading'|'success'|'error'>('idle');
+
+  const handleSubscribe = async () => {
+    if (!email || !email.includes('@')) return;
+    setSubStatus('loading');
+    try {
+      const res = await fetch('/api/newsletter', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, source: 'everyday-darija' }),
+      });
+      if (res.ok) setSubStatus('success');
+      else setSubStatus('error');
+    } catch { setSubStatus('error'); }
+  };
 
   return (
     <footer>
+      {/* ═══ NEWSLETTER BANNER ═══ */}
+      <div style={{ backgroundColor: '#f7f3ef' }}>
+        <div className="px-8 md:px-[8%] lg:px-[12%] py-16 md:py-20">
+          <div className="grid md:grid-cols-12 gap-8 items-center">
+            <div className="md:col-span-6">
+              <p className="text-[#d4931a] text-xs font-medium uppercase tracking-[0.3em] mb-3">Stay close</p>
+              <p className="font-display text-3xl md:text-4xl leading-tight">A Darija word a day.<br/>No spam. Just language.</p>
+            </div>
+            <div className="md:col-span-5 md:col-start-8">
+              {subStatus === 'success' ? (
+                <p className="text-neutral-600">Mzyan! You're in. Watch your inbox.</p>
+              ) : (
+                <div className="flex gap-3">
+                  <input
+                    type="email"
+                    value={email}
+                    onChange={e => setEmail(e.target.value)}
+                    onKeyDown={e => e.key === 'Enter' && handleSubscribe()}
+                    placeholder="your@email.com"
+                    className="flex-1 bg-transparent border-b-2 border-neutral-300 focus:border-[#c53a1a] outline-none py-3 text-neutral-700 placeholder:text-neutral-400 transition-colors"
+                  />
+                  <button
+                    onClick={handleSubscribe}
+                    disabled={subStatus === 'loading'}
+                    className="px-6 py-3 bg-neutral-900 text-white text-sm tracking-wide hover:bg-neutral-700 transition-colors disabled:opacity-50"
+                  >
+                    {subStatus === 'loading' ? '...' : 'Subscribe'}
+                  </button>
+                </div>
+              )}
+              {subStatus === 'error' && <p className="text-red-500 text-sm mt-2">Something went wrong. Try again.</p>}
+            </div>
+          </div>
+        </div>
+      </div>
       {/* ═══ LEVEL 1: Brand + Navigation ═══ #1f1f1f */}
       <div style={{ backgroundColor: '#1f1f1f' }}>
         <div className="px-8 md:px-[8%] lg:px-[12%] py-16">

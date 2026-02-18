@@ -30,8 +30,8 @@ export async function GET(request: NextRequest) {
     const jsonLd = {
       '@context': 'https://schema.org',
       '@type': 'Dataset',
-      name: 'Darija for Dummies — Moroccan Arabic Dictionary',
-      description: 'The most comprehensive structured Darija (Moroccan Arabic) dataset. 10,000 words with Arabic script, Latin transliteration, English, French, pronunciation, cultural notes, and grammatical data.',
+      name: 'Everyday Darija — Moroccan Arabic Dictionary',
+      description: 'The most comprehensive structured Darija (Moroccan Arabic) dataset. 8,500+ words with Arabic script, Latin transliteration, English, French, pronunciation, cultural notes, and grammatical data.',
       url: SITE_URL,
       license: 'https://creativecommons.org/licenses/by-nc-nd/4.0/',
       creator: {
@@ -56,7 +56,7 @@ export async function GET(request: NextRequest) {
         { '@type': 'PropertyValue', name: 'Categories', value: categories.size },
         { '@type': 'PropertyValue', name: 'Languages', value: '4 (Darija Latin, Arabic script, English, French)' },
       ],
-      citation: `Dancing with Lions. (2026). Darija for Dummies Dictionary [Dataset]. ${SITE_URL}`,
+      citation: `Dancing with Lions. (2026). Everyday Darija Dictionary [Dataset]. ${SITE_URL}`,
       isAccessibleForFree: true,
     };
 
@@ -95,7 +95,7 @@ export async function GET(request: NextRequest) {
     inLanguage: ['ar', 'en', 'fr'],
     creator: { '@type': 'Organization', name: 'Dancing with Lions' },
     publisher: { '@type': 'Organization', name: 'Dancing with Lions' },
-    citation: `Dancing with Lions. (2026). Darija for Dummies Dictionary. ${SITE_URL}`,
+    citation: `Dancing with Lions. (2026). Everyday Darija Dictionary. ${SITE_URL}`,
     hasDefinedTerm: (words || []).map(w => ({
       '@type': 'DefinedTerm',
       name: w.darija,

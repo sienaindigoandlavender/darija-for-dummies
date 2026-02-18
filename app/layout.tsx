@@ -2,7 +2,7 @@ import type { Metadata, Viewport } from "next";
 import "./globals.css";
 import Footer from "@/components/Footer";
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://darija.app';
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://dharija.space';
 
 export const viewport: Viewport = {
   width: 'device-width',
@@ -13,14 +13,15 @@ export const viewport: Viewport = {
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: "Darija for Dummies — Learn Moroccan Arabic",
-    template: "%s | Darija for Dummies",
+    default: "Everyday Darija — Learn Moroccan Arabic",
+    template: "%s | Everyday Darija",
   },
-  description: "The most comprehensive Moroccan Arabic (Darija) dictionary online. 10,000 words, 300+ phrases, cultural notes, pronunciation guides, and the grammar nobody teaches you. A Dancing with Lions publication.",
+  description: "The most comprehensive Moroccan Arabic (Darija) dictionary online. 8,500+ words, cultural notes, pronunciation guides, and the grammar nobody teaches you. A Dancing with Lions publication.",
   keywords: [
     "Darija", "Moroccan Arabic", "learn Darija", "Moroccan language",
     "Morocco phrases", "Darija dictionary", "Moroccan slang",
-    "Arabic Morocco", "travel Morocco language", "Darija for beginners"
+    "Arabic Morocco", "travel Morocco language", "Darija for beginners",
+    "everyday Darija", "Moroccan Arabic dictionary"
   ],
   icons: {
     icon: [
@@ -34,9 +35,9 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_US",
     url: siteUrl,
-    siteName: "Darija for Dummies",
-    title: "Darija for Dummies — Learn Moroccan Arabic the fun way",
-    description: "10,000 words, 300+ phrases, cultural intelligence, and the Darija grammar nobody teaches you. Moroccan Arabic made human.",
+    siteName: "Everyday Darija",
+    title: "Everyday Darija — Learn Moroccan Arabic",
+    description: "8,500+ words with Arabic script, pronunciation, cultural notes, and the grammar nobody teaches you. Moroccan Arabic made human.",
   },
   robots: { index: true, follow: true },
   category: "education",
@@ -45,9 +46,9 @@ export const metadata: Metadata = {
 const jsonLd = {
   "@context": "https://schema.org",
   "@type": "WebSite",
-  name: "Darija for Dummies",
+  name: "Everyday Darija",
   url: siteUrl,
-  description: "The most comprehensive Moroccan Arabic (Darija) dictionary online. 10,000 words with Arabic script, pronunciation, cultural notes, and grammar. A Dancing with Lions publication.",
+  description: "The most comprehensive Moroccan Arabic (Darija) dictionary online. 8,500+ words with Arabic script, pronunciation, cultural notes, and grammar. A Dancing with Lions publication.",
   inLanguage: ["en", "fr", "ar"],
   publisher: {
     "@type": "Organization",
@@ -66,6 +67,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en">
       <head>
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+        {/* Google Analytics */}
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-XELC3PNP0N" />
+        <script dangerouslySetInnerHTML={{ __html: `window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-XELC3PNP0N');` }} />
       </head>
       <body className="antialiased min-h-screen flex flex-col">
         <main className="flex-1">{children}</main>

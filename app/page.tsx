@@ -204,9 +204,8 @@ export default function Home() {
           <div className="max-w-4xl">
             <p className="text-[#c53a1a] text-xs md:text-sm font-medium uppercase tracking-[0.3em] mb-6 md:mb-8 anim-fade-up">Moroccan Arabic</p>
             <h1 className="anim-fade-up delay-1">
+              <span className="font-display text-[clamp(3.5rem,10vw,9rem)] leading-[0.85] block tracking-tight italic text-[#c53a1a]">Everyday</span>
               <span className="font-display text-[clamp(3.5rem,10vw,9rem)] leading-[0.85] block tracking-tight">Darija</span>
-              <span className="font-display text-[clamp(3.5rem,10vw,9rem)] leading-[0.85] block tracking-tight italic text-[#c53a1a]">for</span>
-              <span className="font-display text-[clamp(3.5rem,10vw,9rem)] leading-[0.85] block tracking-tight">Dummies</span>
             </h1>
           </div>
 

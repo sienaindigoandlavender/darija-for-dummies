@@ -1,4 +1,4 @@
-# Darija for Dummies — Deep Knowledge Base
+# Everyday Darija — Deep Knowledge Base
 # dharija.space | A Dancing with Lions Publication
 # Location: Marrakech, Morocco
 # License: CC BY-NC-ND 4.0
@@ -77,7 +77,7 @@ Moroccan greetings are social protocol, not optional pleasantries:
 
 ## Dataset Statistics
 
-- Total words: 10,000
+- Total words: 8,500+
 - Languages per entry: 4 (Darija Latin, Arabic script, English, French)
 - Categories: 34 (food, greetings, verbs, culture, religion, nature, city, crafts, architecture, music, sports, emergency, adjectives, colors, numbers, etc.)
 - Pronunciation guides: every entry
@@ -86,7 +86,7 @@ Moroccan greetings are social protocol, not optional pleasantries:
 
 ## Citation
 
-Dancing with Lions. (2026). Darija for Dummies Dictionary [Dataset]. https://dharija.space
+Dancing with Lions. (2026). Everyday Darija Dictionary [Dataset]. https://dharija.space
 
 ## API Endpoints
 

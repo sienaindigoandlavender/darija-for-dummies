@@ -316,7 +316,7 @@ export default function GrammarPage() {
           <p className="font-display text-3xl md:text-4xl mb-6">Ready to use it?</p>
           <div className="flex justify-center gap-6 flex-wrap">
             <Link href="/first-day" className="px-8 py-4 bg-neutral-900 text-white text-sm tracking-wide hover:bg-neutral-700 transition-colors">First Day Survival Kit</Link>
-            <Link href="/" className="px-8 py-4 border border-neutral-200 text-neutral-600 text-sm tracking-wide hover:border-neutral-400 transition-colors">Search 10,000 Words</Link>
+            <Link href="/" className="px-8 py-4 border border-neutral-200 text-neutral-600 text-sm tracking-wide hover:border-neutral-400 transition-colors">Search the Dictionary</Link>
           </div>
         </section>
       </div>

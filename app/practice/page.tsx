@@ -3,7 +3,7 @@ import PracticeClient from './PracticeClient';
 
 export const metadata: Metadata = {
   title: 'Practice Darija — Flashcards with Spaced Repetition',
-  description: 'Learn Moroccan Arabic with flashcards powered by 10,000 words. Spaced repetition, cultural notes, and category-based decks. Free.',
+  description: 'Learn Moroccan Arabic with flashcards powered by 8,500+ words. Spaced repetition, cultural notes, and category-based decks. Free.',
   openGraph: {
     title: 'Practice Darija — Flashcards',
     description: 'Flashcards with spaced repetition built on the largest Darija dictionary online. Pick a deck, flip cards, learn.',

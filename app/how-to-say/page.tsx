@@ -83,7 +83,7 @@ export default function HowToSayIndex() {
 
       <section className="px-8 md:px-[8%] lg:px-[12%] py-16 text-center">
         <p className="text-neutral-400 mb-6">Can&rsquo;t find what you&rsquo;re looking for?</p>
-        <Link href="/" className="px-8 py-4 bg-neutral-900 text-white text-sm tracking-wide hover:bg-neutral-700 transition-colors inline-block">Search 10,000 Words</Link>
+        <Link href="/" className="px-8 py-4 bg-neutral-900 text-white text-sm tracking-wide hover:bg-neutral-700 transition-colors inline-block">Search the Dictionary</Link>
       </section>
     </div>
   );

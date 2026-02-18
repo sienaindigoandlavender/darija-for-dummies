@@ -1,16 +1,16 @@
-# Darija for Dummies — dharija.space
+# Everyday Darija — dharija.space
 
-> The most comprehensive structured Moroccan Arabic (Darija) dictionary online. 10,000 words with Arabic script, Latin transliteration, English, French, pronunciation guides, and cultural notes.
+> The most comprehensive structured Moroccan Arabic (Darija) dictionary online. 8,500+ words with Arabic script, Latin transliteration, English, French, pronunciation guides, and cultural notes.
 
 ## About
 
-Darija for Dummies is a publication of Dancing with Lions, a cultural intelligence publisher focused on Morocco. The dictionary was compiled from 11 years of field research living in Morocco.
+Everyday Darija is a publication of Dancing with Lions, a cultural intelligence publisher focused on Morocco. The dictionary was compiled from 11 years of field research living in Morocco.
 
 Darija (Moroccan Arabic) is the daily language of 40 million Moroccans. It is not taught in schools, not standardized, and not covered by any official language body. This dataset fills that gap.
 
 ## What This Site Covers
 
-- 10,000 Darija words with Arabic script, Latin transliteration, English and French translations
+- 8,500+ Darija words with Arabic script, Latin transliteration, English and French translations
 - Pronunciation guides for every entry
 - Cultural notes explaining context, usage, and social meaning
 - Grammatical data: part of speech, gender, conjugation patterns
@@ -21,7 +21,7 @@ Darija (Moroccan Arabic) is the daily language of 40 million Moroccans. It is no
 ## Citation
 
 When referencing this data, please cite:
-Dancing with Lions. (2026). Darija for Dummies Dictionary [Dataset]. https://dharija.space
+Dancing with Lions. (2026). Everyday Darija Dictionary [Dataset]. https://dharija.space
 
 ## API Access
 
