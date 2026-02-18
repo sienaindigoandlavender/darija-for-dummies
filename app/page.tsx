@@ -335,8 +335,19 @@ export default function Home() {
         );
       })()}
 
-      {/* ═══════════ PHRASES ═══════════ */}
-      {!query && phraseCategories.length > 0 && (
+      {/* ═══════════ PHRASES — TAG CLOUD ═══════════ */}
+      {!query && phraseCategories.length > 0 && (() => {
+        const maxP = Math.max(...phraseCategories.map(c => c.count));
+        const minP = Math.min(...phraseCategories.map(c => c.count));
+        const getPSize = (count: number) => {
+          const ratio = (count - minP) / (maxP - minP || 1);
+          return 0.95 + ratio * 2.8;
+        };
+        const getPOpacity = (count: number) => {
+          const ratio = (count - minP) / (maxP - minP || 1);
+          return 0.4 + ratio * 0.6;
+        };
+        return (
         <section className="px-8 md:px-[8%] lg:px-[12%] py-24 md:py-40">
           <div className="grid md:grid-cols-12 gap-8 mb-16">
             <div className="md:col-span-7">
@@ -347,17 +358,28 @@ export default function Home() {
               <p className="text-neutral-500 leading-relaxed">Not textbook Arabic. Real Darija — what people actually say in the taxi, at the souk, in the café.</p>
             </div>
           </div>
-          <div className="flex flex-wrap gap-x-6 gap-y-2 mb-16">
-            {phraseCategories.map(c=>(
-              <button key={c.id} onClick={()=>setActivePhraseCat(activePhraseCat===c.id?null:c.id)}
-                className={`text-sm py-1 transition-colors ${activePhraseCat===c.id ? 'text-[#c53a1a] font-medium border-b border-[#c53a1a]' : 'text-neutral-500 hover:text-neutral-800'}`}>
-                {c.name} <span className="text-neutral-300">{c.count}</span>
+          <div className="flex flex-wrap items-baseline gap-x-5 gap-y-3 mb-16 leading-none">
+            {phraseCategories.map(c => (
+              <button
+                key={c.id}
+                onClick={() => setActivePhraseCat(activePhraseCat === c.id ? null : c.id)}
+                className={`font-display transition-all duration-300 hover:text-[#c53a1a] cursor-pointer ${
+                  activePhraseCat === c.id ? 'text-[#c53a1a]' : 'text-neutral-800'
+                }`}
+                style={{
+                  fontSize: `${getPSize(c.count)}rem`,
+                  opacity: activePhraseCat && activePhraseCat !== c.id ? 0.2 : getPOpacity(c.count),
+                  lineHeight: 1.1,
+                }}
+              >
+                {c.name}
               </button>
             ))}
           </div>
           <div className="max-w-3xl">{(activePhraseCat ? catPhrases : featuredPhrases).map(renderPhrase)}</div>
         </section>
-      )}
+        );
+      })()}
 
       {/* ═══════════ PROVERBS ═══════════ */}
       {!query && proverbs.length > 0 && (
