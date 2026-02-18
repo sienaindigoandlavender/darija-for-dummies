@@ -21,8 +21,21 @@ interface Props {
 export default function CategoryClient({ words, categories, currentSlug, currentName, description }: Props) {
   const [expandedWord, setExpandedWord] = useState<string | null>(null);
 
+  const CAT_NAMES: Record<string, string> = {
+    greetings: 'Greetings', food: 'Food & Drink', shopping: 'Shopping', transport: 'Transport',
+    home: 'Home & House', emotions: 'Feelings', time: 'Time', numbers: 'Numbers',
+    family: 'Family & People', city: 'City & Medina', money: 'Money', health: 'Health',
+    religion: 'Faith & Blessings', slang: 'Street Slang', verbs: 'Verbs', directions: 'Directions',
+    crafts: 'Crafts & Materials', animals: 'Animals', nature: 'Nature & Weather', clothing: 'Clothing',
+    colors: 'Colors', music: 'Music & Culture', technology: 'Technology', education: 'Education',
+    work: 'Work & Professions', pronouns: 'Pronouns & Grammar', culture: 'Culture',
+    architecture: 'Architecture', blessings: 'Blessings & Prayers', compliments: 'Compliments',
+    emergency: 'Emergency', adjectives: 'Adjectives', sports: 'Sports', survival: 'Survival Kit',
+  };
+
   const renderWord = (w: DarijaWord) => {
     const exp = expandedWord === w.id;
+    const displayTags = (w.tags || []).filter(t => !['essential','first-day','common','basic','advanced','intermediate'].includes(t));
     return (
       <div key={w.id} onClick={() => setExpandedWord(exp ? null : w.id)}
         className={`group cursor-pointer py-6 ${exp ? '' : 'border-b border-neutral-100 hover:border-neutral-300'} transition-all`}>
@@ -30,7 +43,11 @@ export default function CategoryClient({ words, categories, currentSlug, current
           <div className="flex items-baseline gap-5">
             <span className="font-arabic text-3xl md:text-4xl text-[#c53a1a] leading-none">{w.arabic}</span>
             <span className="font-display text-2xl md:text-3xl">{w.darija}</span>
-            <span className="text-xs text-neutral-400 uppercase tracking-wider hidden md:inline">{w.part_of_speech}{w.gender ? ` · ${w.gender}` : ''}</span>
+            <span className="hidden md:inline-flex items-baseline gap-2">
+              {displayTags.slice(0, 2).map(tag => (
+                <span key={tag} className="text-xs text-neutral-300 uppercase tracking-wider">{tag}</span>
+              ))}
+            </span>
           </div>
           <div className="flex items-baseline gap-4">
             <span className="text-neutral-600">{w.english}</span>

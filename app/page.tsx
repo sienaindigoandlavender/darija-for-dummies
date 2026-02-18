@@ -66,9 +66,24 @@ export default function Home() {
   const hasResults = query && (wordResults.length > 0 || phraseResults.length > 0);
   const noResults = query && !hasResults && query.length > 1;
 
+  // Category display name lookup
+  const CAT_NAMES: Record<string, string> = {
+    greetings: 'Greetings', food: 'Food & Drink', shopping: 'Shopping', transport: 'Transport',
+    home: 'Home & House', emotions: 'Feelings', time: 'Time', numbers: 'Numbers',
+    family: 'Family & People', city: 'City & Medina', money: 'Money', health: 'Health',
+    religion: 'Faith & Blessings', slang: 'Street Slang', verbs: 'Verbs', directions: 'Directions',
+    crafts: 'Crafts & Materials', animals: 'Animals', nature: 'Nature & Weather', clothing: 'Clothing',
+    colors: 'Colors', music: 'Music & Culture', technology: 'Technology', education: 'Education',
+    work: 'Work & Professions', pronouns: 'Pronouns & Grammar', culture: 'Culture',
+    architecture: 'Architecture', blessings: 'Blessings & Prayers', compliments: 'Compliments',
+    emergency: 'Emergency', adjectives: 'Adjectives', sports: 'Sports', survival: 'Survival Kit',
+  };
+
   // ─── WORD ROW (typographic, no boxes) ───
   const renderWord = (w: DarijaWord) => {
     const exp = expandedWord === w.id;
+    // Filter out generic tags, show only useful subcategory-style tags
+    const displayTags = (w.tags || []).filter(t => !['essential','first-day','common','basic','advanced','intermediate'].includes(t));
     return (
       <div key={w.id} onClick={()=>setExpandedWord(exp?null:w.id)}
         className={`group cursor-pointer py-6 ${exp ? '' : 'border-b border-neutral-100 hover:border-neutral-300'} transition-all`}>
@@ -76,7 +91,12 @@ export default function Home() {
           <div className="flex items-baseline gap-5">
             <span className="font-arabic text-3xl md:text-4xl text-[#c53a1a] leading-none">{w.arabic}</span>
             <span className="font-display text-2xl md:text-3xl">{w.darija}</span>
-            <span className="text-xs text-neutral-400 uppercase tracking-wider hidden md:inline">{w.part_of_speech}{w.gender ? ` · ${w.gender}` : ''}</span>
+            <span className="hidden md:inline-flex items-baseline gap-2">
+              <a href={`/category/${w.category}`} onClick={e => e.stopPropagation()} className="text-xs text-neutral-400 uppercase tracking-wider hover:text-[#c53a1a] transition-colors">{CAT_NAMES[w.category] || w.category}</a>
+              {displayTags.slice(0, 2).map(tag => (
+                <span key={tag} className="text-xs text-neutral-300 uppercase tracking-wider">· {tag}</span>
+              ))}
+            </span>
           </div>
           <div className="flex items-baseline gap-4">
             <span className="text-neutral-600">{w.english}</span>
@@ -90,6 +110,13 @@ export default function Home() {
               <p className="text-xs uppercase tracking-[0.2em] text-neutral-400 mb-2">Pronunciation</p>
               <p className="font-display text-xl mb-6">/{w.pronunciation}/</p>
               <p className="text-neutral-500 text-sm">{w.french}</p>
+              {/* Category + tags on mobile (shown here since hidden in header on mobile) */}
+              <div className="flex flex-wrap gap-2 mt-4 md:hidden">
+                <a href={`/category/${w.category}`} onClick={e => e.stopPropagation()} className="text-xs text-[#c53a1a] uppercase tracking-wider">{CAT_NAMES[w.category] || w.category}</a>
+                {displayTags.map(tag => (
+                  <span key={tag} className="text-xs text-neutral-400 uppercase tracking-wider">· {tag}</span>
+                ))}
+              </div>
               {w.register !== 'universal' && <p className="text-xs uppercase tracking-wider text-neutral-400 mt-3">{w.register}</p>}
             </div>
             <div className="md:col-span-4">
