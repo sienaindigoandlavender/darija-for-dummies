@@ -33,6 +33,7 @@ Dancing with Lions. (2026). Everyday Darija Dictionary [Dataset]. https://dharij
 ## Key Pages
 
 - / — Main dictionary search
+- /about — About the project, publisher, methodology, and data access
 - /grammar — Complete Darija grammar reference
 - /first-day — First Day survival vocabulary
 - /category/food — Food & drink vocabulary (and 30+ other categories)

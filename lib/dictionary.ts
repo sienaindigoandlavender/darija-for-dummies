@@ -72,6 +72,16 @@ export async function getAllWords(): Promise<DarijaWord[]> {
   return all;
 }
 
+export async function getWordById(id: string): Promise<DarijaWord | null> {
+  const { data } = await getClient()
+    .from('darija_words')
+    .select('*')
+    .eq('id', id)
+    .eq('published', true)
+    .single();
+  return (data as DarijaWord) || null;
+}
+
 export async function getWordsByCategory(category: string): Promise<DarijaWord[]> {
   const { data } = await getClient()
     .from('darija_words')
