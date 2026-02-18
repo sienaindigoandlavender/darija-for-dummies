@@ -52,6 +52,7 @@ export default function Footer() {
                 <p><a href="/" className="text-sm text-white/60 hover:text-white/90 transition-colors">Dictionary</a></p>
                 <p><a href="/grammar" className="text-sm text-white/60 hover:text-white/90 transition-colors">Grammar Guide</a></p>
                 <p><a href="/first-day" className="text-sm text-white/60 hover:text-white/90 transition-colors">First Day Kit</a></p>
+                <p><a href="/practice" className="text-sm text-white/60 hover:text-white/90 transition-colors">Flashcards</a></p>
               </div>
             </div>
           </div>

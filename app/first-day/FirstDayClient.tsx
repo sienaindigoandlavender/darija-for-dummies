@@ -92,6 +92,15 @@ export default function FirstDayClient({ words }: { words: DarijaWord[] }) {
           })}
         </section>
       ))}
+
+      {/* Practice CTA */}
+      <section className="px-8 md:px-[8%] lg:px-[12%] py-16 text-center border-t border-neutral-100">
+        <p className="font-display text-3xl mb-4">Ready to memorize them?</p>
+        <p className="text-neutral-400 mb-8">Flashcards with spaced repetition — words you miss come back.</p>
+        <Link href="/practice" className="inline-block px-8 py-4 bg-neutral-900 text-white text-sm tracking-wide hover:bg-neutral-700 transition-colors">
+          Practice First Day Words
+        </Link>
+      </section>
     </div>
   );
 }
