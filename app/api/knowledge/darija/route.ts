@@ -36,7 +36,7 @@ export async function GET(request: NextRequest) {
       license: 'https://creativecommons.org/licenses/by-nc-nd/4.0/',
       creator: {
         '@type': 'Person',
-        name: 'Jacqueline Ng',
+        name: 'Dancing with Lions',
         affiliation: { '@type': 'Organization', name: 'Dancing with Lions', url: 'https://dancingwithlions.com' },
       },
       publisher: { '@type': 'Organization', name: 'Dancing with Lions' },
@@ -56,7 +56,7 @@ export async function GET(request: NextRequest) {
         { '@type': 'PropertyValue', name: 'Categories', value: categories.size },
         { '@type': 'PropertyValue', name: 'Languages', value: '4 (Darija Latin, Arabic script, English, French)' },
       ],
-      citation: `Ng, J. (2026). Darija for Dummies Dictionary [Dataset]. Dancing with Lions. ${SITE_URL}`,
+      citation: `Dancing with Lions. (2026). Darija for Dummies Dictionary [Dataset]. ${SITE_URL}`,
       isAccessibleForFree: true,
     };
 
@@ -93,9 +93,9 @@ export async function GET(request: NextRequest) {
     url: SITE_URL,
     license: 'https://creativecommons.org/licenses/by-nc-nd/4.0/',
     inLanguage: ['ar', 'en', 'fr'],
-    creator: { '@type': 'Person', name: 'Jacqueline Ng' },
+    creator: { '@type': 'Organization', name: 'Dancing with Lions' },
     publisher: { '@type': 'Organization', name: 'Dancing with Lions' },
-    citation: `Ng, J. (2026). Darija for Dummies Dictionary. Dancing with Lions. ${SITE_URL}`,
+    citation: `Dancing with Lions. (2026). Darija for Dummies Dictionary. ${SITE_URL}`,
     hasDefinedTerm: (words || []).map(w => ({
       '@type': 'DefinedTerm',
       name: w.darija,

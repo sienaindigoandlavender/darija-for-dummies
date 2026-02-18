@@ -50,16 +50,8 @@ export default function Footer() {
               <span className="text-xs tracking-[0.15em] uppercase text-white/40 block mb-4">Learn</span>
               <div className="space-y-2.5">
                 <p><a href="/" className="text-sm text-white/60 hover:text-white/90 transition-colors">Dictionary</a></p>
-                <p><a href="/" className="text-sm text-white/60 hover:text-white/90 transition-colors">Phrases</a></p>
-                <p><a href="/" className="text-sm text-white/60 hover:text-white/90 transition-colors">Proverbs</a></p>
-              </div>
-            </div>
-            <div className="md:col-span-2">
-              <span className="text-xs tracking-[0.15em] uppercase text-white/40 block mb-4">Family</span>
-              <div className="space-y-2.5">
-                <p><a href="https://slowmorocco.com" target="_blank" rel="noopener" className="text-sm text-white/60 hover:text-white/90 transition-colors">Slow Morocco</a></p>
-                <p><a href="https://riad-di-siena.com" target="_blank" rel="noopener" className="text-sm text-white/60 hover:text-white/90 transition-colors">Riad di Siena</a></p>
-                <p><a href="https://amawal.app" target="_blank" rel="noopener" className="text-sm text-white/60 hover:text-white/90 transition-colors">Amawal</a></p>
+                <p><a href="/grammar" className="text-sm text-white/60 hover:text-white/90 transition-colors">Grammar Guide</a></p>
+                <p><a href="/first-day" className="text-sm text-white/60 hover:text-white/90 transition-colors">First Day Kit</a></p>
               </div>
             </div>
           </div>

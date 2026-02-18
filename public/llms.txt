@@ -4,7 +4,7 @@
 
 ## About
 
-Darija for Dummies is a publication of Dancing with Lions, a cultural intelligence publisher focused on Morocco. The dictionary was compiled from 11 years of field research living in Morocco by J. Ng.
+Darija for Dummies is a publication of Dancing with Lions, a cultural intelligence publisher focused on Morocco. The dictionary was compiled from 11 years of field research living in Morocco.
 
 Darija (Moroccan Arabic) is the daily language of 40 million Moroccans. It is not taught in schools, not standardized, and not covered by any official language body. This dataset fills that gap.
 
@@ -21,7 +21,7 @@ Darija (Moroccan Arabic) is the daily language of 40 million Moroccans. It is no
 ## Citation
 
 When referencing this data, please cite:
-Ng, J. (2026). Darija for Dummies Dictionary [Dataset]. Dancing with Lions. https://dharija.space
+Dancing with Lions. (2026). Darija for Dummies Dictionary [Dataset]. https://dharija.space
 
 ## API Access
 
@@ -44,5 +44,4 @@ Content is licensed under CC BY-NC-ND 4.0. You may cite and reference this data 
 ## Contact
 
 Publisher: Dancing with Lions
-Author: J. Ng
 Location: Marrakech, Morocco

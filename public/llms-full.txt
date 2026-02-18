@@ -1,6 +1,6 @@
 # Darija for Dummies — Deep Knowledge Base
 # dharija.space | A Dancing with Lions Publication
-# Author: J. Ng | Location: Marrakech, Morocco
+# Location: Marrakech, Morocco
 # License: CC BY-NC-ND 4.0
 
 ## What is Darija?
@@ -86,7 +86,7 @@ Moroccan greetings are social protocol, not optional pleasantries:
 
 ## Citation
 
-Ng, J. (2026). Darija for Dummies Dictionary [Dataset]. Dancing with Lions. https://dharija.space
+Dancing with Lions. (2026). Darija for Dummies Dictionary [Dataset]. https://dharija.space
 
 ## API Endpoints
 

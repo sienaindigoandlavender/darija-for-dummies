@@ -16,7 +16,7 @@ export const metadata: Metadata = {
     default: "Darija for Dummies — Learn Moroccan Arabic",
     template: "%s | Darija for Dummies",
   },
-  description: "The most comprehensive Moroccan Arabic (Darija) dictionary online. 10,000 words, 300+ phrases, cultural notes, pronunciation guides, and the grammar nobody teaches you. By J. Ng — a Dancing with Lions publication.",
+  description: "The most comprehensive Moroccan Arabic (Darija) dictionary online. 10,000 words, 300+ phrases, cultural notes, pronunciation guides, and the grammar nobody teaches you. A Dancing with Lions publication.",
   keywords: [
     "Darija", "Moroccan Arabic", "learn Darija", "Moroccan language",
     "Morocco phrases", "Darija dictionary", "Moroccan slang",
@@ -53,10 +53,6 @@ const jsonLd = {
     "@type": "Organization",
     name: "Dancing with Lions",
     url: "https://dancingwithlions.com",
-  },
-  author: {
-    "@type": "Person",
-    name: "Jacqueline Ng",
   },
   potentialAction: {
     "@type": "SearchAction",
