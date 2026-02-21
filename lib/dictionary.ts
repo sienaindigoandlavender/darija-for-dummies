@@ -160,6 +160,11 @@ const PHRASE_CATEGORIES: Record<string, string> = {
   survival:'Survival Kit',souk:'In the Souk',taxi:'Taxi Talk',cafe:'Café Culture',riad:'Riad Life',
   restaurant:'Eating Out',pharmacy:'At the Pharmacy',compliments:'Compliments',arguments:'Arguments',
   proverbs:'Proverbs & Wisdom',blessings:'Blessings',daily:'Daily Life',emergency:'Emergency',
+  hammam:'Hammam Guide',medina:'Medina Life',desert:'Desert Adventures',love:'Love & Romance',
+  ramadan:'Ramadan',wedding:'Weddings',football:'Football',family:'Family',family_life:'Family Life',
+  weather:'Weather',cooking:'Cooking',atlas:'Atlas Mountains',beach:'Beach & Coast',
+  phone:'Phone & Tech',work:'Work & Business',nightlife:'Nightlife',health:'Health',
+  transport:'Transport',photography:'Photography',festivals:'Festivals',garden:'Gardens & Nature',
 };
 
 export async function getWordCategories() {
