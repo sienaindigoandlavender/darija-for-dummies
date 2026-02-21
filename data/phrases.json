@@ -1,0 +1,701 @@
+[
+  {
+    "id": "phrase-0001",
+    "darija": "Salam, labas?",
+    "arabic": "سلام، لاباس؟",
+    "english": "Hello, how are you?",
+    "french": "Bonjour, ça va ?",
+    "pronunciation": "sa-LAM la-BAS",
+    "category": "survival",
+    "register": "standard",
+    "tags": [
+      "essential"
+    ],
+    "order": 1,
+    "response": {
+      "darija": "Labas, lhamdullah",
+      "arabic": "لاباس، الحمد لله",
+      "english": "Fine, thank God"
+    }
+  },
+  {
+    "id": "phrase-0002",
+    "darija": "Bsh7al hada?",
+    "arabic": "بشحال هادا؟",
+    "english": "How much is this?",
+    "french": "C'est combien ?",
+    "pronunciation": "bsh-HAL HA-da",
+    "category": "survival",
+    "register": "standard",
+    "tags": [
+      "essential"
+    ],
+    "order": 2,
+    "cultural_note": "The most important phrase in the souk."
+  },
+  {
+    "id": "phrase-0003",
+    "darija": "Ghali bzzaf!",
+    "arabic": "غالي بزاف!",
+    "english": "Too expensive!",
+    "french": "Trop cher !",
+    "pronunciation": "GHA-li b-ZAF",
+    "category": "survival",
+    "register": "standard",
+    "tags": [
+      "essential"
+    ],
+    "order": 3
+  },
+  {
+    "id": "phrase-0004",
+    "darija": "Nqss shwiya",
+    "arabic": "نقص شوية",
+    "english": "Lower the price a bit",
+    "french": "Baisse un peu",
+    "pronunciation": "NQSS SHWI-ya",
+    "category": "survival",
+    "register": "standard",
+    "tags": [
+      "essential"
+    ],
+    "order": 4
+  },
+  {
+    "id": "phrase-0005",
+    "darija": "Fin kayn l7ammam?",
+    "arabic": "فين كاين الحمام؟",
+    "english": "Where is the bathroom?",
+    "french": "Où sont les toilettes ?",
+    "pronunciation": "fin KAYN l-ham-MAM",
+    "category": "survival",
+    "register": "standard",
+    "tags": [
+      "essential"
+    ],
+    "order": 5
+  },
+  {
+    "id": "phrase-0006",
+    "darija": "Mafhemtsh, 3awd 3afak",
+    "arabic": "مافهمتش، عاود عافاك",
+    "english": "I don't understand, repeat please",
+    "french": "Je ne comprends pas, répétez",
+    "pronunciation": "ma-FHMT-sh 3AWD 3a-FAK",
+    "category": "survival",
+    "register": "standard",
+    "tags": [
+      "essential"
+    ],
+    "order": 6
+  },
+  {
+    "id": "phrase-0007",
+    "darija": "Wdini l...",
+    "arabic": "وديني ل...",
+    "english": "Take me to...",
+    "french": "Emmène-moi à...",
+    "pronunciation": "wdi-NI l",
+    "category": "survival",
+    "register": "standard",
+    "tags": [
+      "essential"
+    ],
+    "order": 7
+  },
+  {
+    "id": "phrase-0008",
+    "darija": "Kantkllm shwiya dyal darija",
+    "arabic": "كنتكلم شوية ديال دارجة",
+    "english": "I speak a little Darija",
+    "french": "Je parle un peu de Darija",
+    "pronunciation": "kan-TK-llm SHWI-ya dyal DA-ri-ja",
+    "category": "survival",
+    "register": "standard",
+    "tags": [
+      "essential"
+    ],
+    "order": 8
+  },
+  {
+    "id": "phrase-0009",
+    "darija": "Wash kayn shi 7ad kayhdr nglizia?",
+    "arabic": "واش كاين شي حد كيهضر نگليزية؟",
+    "english": "Does anyone speak English?",
+    "french": "Est-ce que quelqu'un parle anglais ?",
+    "pronunciation": "wash KAYN shi HAD kay-HDER ng-li-ZI-ya",
+    "category": "survival",
+    "register": "standard",
+    "tags": [],
+    "order": 9
+  },
+  {
+    "id": "phrase-0010",
+    "darija": "3afak, 3tini lmenu",
+    "arabic": "عافاك، عطيني المينو",
+    "english": "Please, give me the menu",
+    "french": "S'il te plaît, donne-moi le menu",
+    "pronunciation": "3a-FAK 3ti-NI l-ME-nu",
+    "category": "survival",
+    "register": "standard",
+    "tags": [],
+    "order": 10
+  },
+  {
+    "id": "phrase-0011",
+    "darija": "Hada dyal lblad?",
+    "arabic": "هادا ديال البلاد؟",
+    "english": "Is this local/authentic?",
+    "french": "C'est local ?",
+    "pronunciation": "HA-da dyal l-BLAD",
+    "category": "souk",
+    "register": "standard",
+    "tags": [
+      "essential"
+    ],
+    "order": 11,
+    "cultural_note": "Asking if something is locally made vs imported."
+  },
+  {
+    "id": "phrase-0012",
+    "darija": "3ndek shi 7aja khra?",
+    "arabic": "عندك شي حاجة خرى؟",
+    "english": "Do you have something else?",
+    "french": "Tu as autre chose ?",
+    "pronunciation": "3n-DEK shi HA-ja KHRA",
+    "category": "souk",
+    "register": "standard",
+    "tags": [],
+    "order": 12
+  },
+  {
+    "id": "phrase-0013",
+    "darija": "Hadi akher taman?",
+    "arabic": "هادي آخر تمن؟",
+    "english": "Is this the final price?",
+    "french": "C'est le dernier prix ?",
+    "pronunciation": "HA-di A-kher TA-man",
+    "category": "souk",
+    "register": "standard",
+    "tags": [
+      "essential"
+    ],
+    "order": 13
+  },
+  {
+    "id": "phrase-0014",
+    "darija": "Ddir liya wahd le prix",
+    "arabic": "دير ليا واحد لو بري",
+    "english": "Give me a good price",
+    "french": "Fais-moi un bon prix",
+    "pronunciation": "ddir LI-ya WAH-d le PRI",
+    "category": "souk",
+    "register": "standard",
+    "tags": [],
+    "order": 14
+  },
+  {
+    "id": "phrase-0015",
+    "darija": "Bghit ghir nchufu",
+    "arabic": "بغيت غير نشوفو",
+    "english": "I just want to look",
+    "french": "Je veux juste regarder",
+    "pronunciation": "bghit GHIR n-SHU-fu",
+    "category": "souk",
+    "register": "standard",
+    "tags": [],
+    "order": 15
+  },
+  {
+    "id": "phrase-0016",
+    "darija": "Ma bghitsh, shukran",
+    "arabic": "ما بغيتش، شكراً",
+    "english": "I don't want it, thanks",
+    "french": "Je ne veux pas, merci",
+    "pronunciation": "ma BGHIT-sh SHUK-ran",
+    "category": "souk",
+    "register": "standard",
+    "tags": [],
+    "order": 16
+  },
+  {
+    "id": "phrase-0017",
+    "darija": "Wqf hna, 3afak",
+    "arabic": "وقف هنا، عافاك",
+    "english": "Stop here, please",
+    "french": "Arrête ici, s'il te plaît",
+    "pronunciation": "WQF HNA 3a-FAK",
+    "category": "taxi",
+    "register": "standard",
+    "tags": [
+      "essential"
+    ],
+    "order": 17
+  },
+  {
+    "id": "phrase-0018",
+    "darija": "Bsh7al l [destination]?",
+    "arabic": "بشحال ل [destination]؟",
+    "english": "How much to [destination]?",
+    "french": "Combien pour [destination] ?",
+    "pronunciation": "bsh-HAL l",
+    "category": "taxi",
+    "register": "standard",
+    "tags": [
+      "essential"
+    ],
+    "order": 18
+  },
+  {
+    "id": "phrase-0019",
+    "darija": "Dir l compteur",
+    "arabic": "دير ل كونتور",
+    "english": "Turn on the meter",
+    "french": "Mets le compteur",
+    "pronunciation": "dir l kon-TUR",
+    "category": "taxi",
+    "register": "standard",
+    "tags": [],
+    "order": 19,
+    "cultural_note": "Good luck with this one — most petit taxis in tourist areas 'forget' the meter."
+  },
+  {
+    "id": "phrase-0020",
+    "darija": "Hada bzzaf!",
+    "arabic": "هادا بزاف!",
+    "english": "That's too much!",
+    "french": "C'est trop !",
+    "pronunciation": "HA-da b-ZAF",
+    "category": "taxi",
+    "register": "standard",
+    "tags": [],
+    "order": 20
+  },
+  {
+    "id": "phrase-0021",
+    "darija": "Wahd atay, 3afak",
+    "arabic": "واحد أتاي، عافاك",
+    "english": "One tea, please",
+    "french": "Un thé, s'il te plaît",
+    "pronunciation": "WAH-d a-TAY 3a-FAK",
+    "category": "cafe",
+    "register": "standard",
+    "tags": [
+      "essential"
+    ],
+    "order": 21
+  },
+  {
+    "id": "phrase-0022",
+    "darija": "Wahd noss noss",
+    "arabic": "واحد نص نص",
+    "english": "One half-half coffee",
+    "french": "Un café moitié-moitié",
+    "pronunciation": "WAH-d NOSS NOSS",
+    "category": "cafe",
+    "register": "standard",
+    "tags": [
+      "essential"
+    ],
+    "order": 22,
+    "cultural_note": "The most popular coffee order in Morocco — half coffee, half steamed milk."
+  },
+  {
+    "id": "phrase-0023",
+    "darija": "Bla sukkar",
+    "arabic": "بلا سكار",
+    "english": "Without sugar",
+    "french": "Sans sucre",
+    "pronunciation": "bla SUK-kar",
+    "category": "cafe",
+    "register": "standard",
+    "tags": [],
+    "order": 23
+  },
+  {
+    "id": "phrase-0024",
+    "darija": "Wahd qhwa k7la",
+    "arabic": "واحد قهوة كحلة",
+    "english": "One black coffee",
+    "french": "Un café noir",
+    "pronunciation": "WAH-d QH-wa KH-la",
+    "category": "cafe",
+    "register": "standard",
+    "tags": [],
+    "order": 24
+  },
+  {
+    "id": "phrase-0025",
+    "darija": "L7sab, 3afak",
+    "arabic": "الحساب، عافاك",
+    "english": "The bill, please",
+    "french": "L'addition, s'il te plaît",
+    "pronunciation": "l-HSAB 3a-FAK",
+    "category": "cafe",
+    "register": "standard",
+    "tags": [
+      "essential"
+    ],
+    "order": 25
+  },
+  {
+    "id": "phrase-0026",
+    "darija": "Wash 3ndkum tajin?",
+    "arabic": "واش عندكم طاجين؟",
+    "english": "Do you have tagine?",
+    "french": "Vous avez du tajine ?",
+    "pronunciation": "wash 3nd-KUM ta-JIN",
+    "category": "restaurant",
+    "register": "standard",
+    "tags": [],
+    "order": 26
+  },
+  {
+    "id": "phrase-0027",
+    "darija": "Shno 3ndkum lyum?",
+    "arabic": "شنو عندكم اليوم؟",
+    "english": "What do you have today?",
+    "french": "Qu'est-ce que vous avez aujourd'hui ?",
+    "pronunciation": "SHNO 3nd-KUM l-YUM",
+    "category": "restaurant",
+    "register": "standard",
+    "tags": [],
+    "order": 27
+  },
+  {
+    "id": "phrase-0028",
+    "darija": "Bnin bzzaf!",
+    "arabic": "بنين بزاف!",
+    "english": "Very delicious!",
+    "french": "Très délicieux !",
+    "pronunciation": "b-NIN b-ZAF",
+    "category": "restaurant",
+    "register": "standard",
+    "tags": [
+      "essential",
+      "compliments"
+    ],
+    "order": 28,
+    "cultural_note": "The best compliment for a Moroccan cook."
+  },
+  {
+    "id": "phrase-0029",
+    "darija": "Bssaha",
+    "arabic": "بالصحة",
+    "english": "Bon appétit / bless you",
+    "french": "Bon appétit",
+    "pronunciation": "b-SS7a",
+    "category": "restaurant",
+    "register": "standard",
+    "tags": [
+      "essential"
+    ],
+    "order": 29,
+    "cultural_note": "Said before, during, or after a meal. Also after someone showers or gets a haircut."
+  },
+  {
+    "id": "phrase-0030",
+    "darija": "Fin kayn lbit dyali?",
+    "arabic": "فين كاين البيت ديالي؟",
+    "english": "Where is my room?",
+    "french": "Où est ma chambre ?",
+    "pronunciation": "fin KAYN l-BIT dya-LI",
+    "category": "riad",
+    "register": "standard",
+    "tags": [],
+    "order": 30
+  },
+  {
+    "id": "phrase-0031",
+    "darija": "Wash kayn wifi?",
+    "arabic": "واش كاين ويفي؟",
+    "english": "Is there wifi?",
+    "french": "Il y a du wifi ?",
+    "pronunciation": "wash KAYN WI-fi",
+    "category": "riad",
+    "register": "standard",
+    "tags": [
+      "essential"
+    ],
+    "order": 31
+  },
+  {
+    "id": "phrase-0032",
+    "darija": "Lmftah, 3afak",
+    "arabic": "المفتاح، عافاك",
+    "english": "The key, please",
+    "french": "La clé, s'il te plaît",
+    "pronunciation": "l-MF-tah 3a-FAK",
+    "category": "riad",
+    "register": "standard",
+    "tags": [],
+    "order": 32
+  },
+  {
+    "id": "phrase-0033",
+    "darija": "Wash ymkn liya nftr hna?",
+    "arabic": "واش يمكن ليا نفطر هنا؟",
+    "english": "Can I have breakfast here?",
+    "french": "Je peux prendre le petit-déjeuner ici ?",
+    "pronunciation": "wash YM-kn LI-ya NF-tr HNA",
+    "category": "riad",
+    "register": "standard",
+    "tags": [],
+    "order": 33
+  },
+  {
+    "id": "phrase-0034",
+    "darija": "Tbarkallah 3lik",
+    "arabic": "تبارك الله عليك",
+    "english": "God bless you (wow)",
+    "french": "Dieu te bénisse (wow)",
+    "pronunciation": "t-BARK-al-LAH 3LIK",
+    "category": "compliments",
+    "register": "standard",
+    "tags": [
+      "essential"
+    ],
+    "order": 34,
+    "cultural_note": "Say this when you see something beautiful to ward off the evil eye."
+  },
+  {
+    "id": "phrase-0035",
+    "darija": "Lla y3tik ss7a",
+    "arabic": "الله يعطيك الصحة",
+    "english": "God give you health",
+    "french": "Que Dieu te donne la santé",
+    "pronunciation": "lla y-3TIK s-SHA",
+    "category": "compliments",
+    "register": "standard",
+    "tags": [
+      "essential"
+    ],
+    "order": 35,
+    "cultural_note": "Said to thank anyone who did work — the waiter, the cook, the taxi driver."
+  },
+  {
+    "id": "phrase-0036",
+    "darija": "Lla yr7mhum",
+    "arabic": "الله يرحمهم",
+    "english": "God have mercy on them",
+    "french": "Que Dieu ait pitié d'eux",
+    "pronunciation": "lla yr-HM-hum",
+    "category": "blessings",
+    "register": "standard",
+    "tags": [],
+    "order": 36,
+    "cultural_note": "Said when mentioning the deceased."
+  },
+  {
+    "id": "phrase-0037",
+    "darija": "Lla ykhllik",
+    "arabic": "الله يخلّيك",
+    "english": "May God keep you",
+    "french": "Que Dieu te préserve",
+    "pronunciation": "lla y-KHLL-ik",
+    "category": "blessings",
+    "register": "standard",
+    "tags": [],
+    "order": 37
+  },
+  {
+    "id": "phrase-0038",
+    "darija": "Lla yshhel 3lik",
+    "arabic": "الله يسهّل عليك",
+    "english": "May God make it easy for you",
+    "french": "Que Dieu te facilite",
+    "pronunciation": "lla y-SH-hel 3LIK",
+    "category": "blessings",
+    "register": "standard",
+    "tags": [],
+    "order": 38
+  },
+  {
+    "id": "phrase-0039",
+    "darija": "Lli bgha l3sel ysbr 3la qrss nnhal",
+    "arabic": "اللي بغى العسل يصبر على قرص النحل",
+    "english": "He who wants honey must endure bee stings",
+    "french": "Qui veut le miel doit supporter les piqûres",
+    "pronunciation": "lli BGHA l-3SEL ys-BER 3la QRSS n-NHAL",
+    "category": "proverbs",
+    "register": "standard",
+    "tags": [
+      "culture"
+    ],
+    "order": 39,
+    "literal_translation": "Who wanted honey must be patient with bee stings"
+  },
+  {
+    "id": "phrase-0040",
+    "darija": "Lli fat mat",
+    "arabic": "اللي فات مات",
+    "english": "What's past is dead",
+    "french": "Le passé est mort",
+    "pronunciation": "lli FAT MAT",
+    "category": "proverbs",
+    "register": "standard",
+    "tags": [
+      "culture"
+    ],
+    "order": 40,
+    "cultural_note": "Moroccan way of saying let go of the past.",
+    "literal_translation": "What passed, died"
+  },
+  {
+    "id": "phrase-0041",
+    "darija": "Lmktub ma mnnu hrub",
+    "arabic": "المكتوب ما منّو هروب",
+    "english": "You can't escape what's written",
+    "french": "On ne peut pas fuir son destin",
+    "pronunciation": "l-MK-tub ma MN-nu h-RUB",
+    "category": "proverbs",
+    "register": "standard",
+    "tags": [
+      "culture"
+    ],
+    "order": 41,
+    "cultural_note": "Core Moroccan belief in destiny (mektub).",
+    "literal_translation": "From what's written there's no escape"
+  },
+  {
+    "id": "phrase-0042",
+    "darija": "Kul tta7ja w m7llha",
+    "arabic": "كل طاحة و محلّها",
+    "english": "Every fall has its place",
+    "french": "Chaque chute a sa raison",
+    "pronunciation": "kul TTA-7ja w m-7LL-ha",
+    "category": "proverbs",
+    "register": "standard",
+    "tags": [
+      "culture"
+    ],
+    "order": 42,
+    "literal_translation": "Every fall and its place"
+  },
+  {
+    "id": "phrase-0043",
+    "darija": "Lli 3ndou flous yshri lhwa",
+    "arabic": "اللي عندو الفلوس يشري الهوا",
+    "english": "Money can buy anything",
+    "french": "L'argent peut tout acheter",
+    "pronunciation": "lli 3n-DOU FLUS y-SHRI l-HWA",
+    "category": "proverbs",
+    "register": "standard",
+    "tags": [
+      "culture"
+    ],
+    "order": 43,
+    "literal_translation": "Who has money buys the air"
+  },
+  {
+    "id": "phrase-0044",
+    "darija": "Yedd wahda ma katsffqsh",
+    "arabic": "يد وحدة ما كتصفقش",
+    "english": "One hand alone can't clap",
+    "french": "Une main seule ne peut pas applaudir",
+    "pronunciation": "YEDD WAH-da ma kat-SF-fqsh",
+    "category": "proverbs",
+    "register": "standard",
+    "tags": [
+      "culture"
+    ],
+    "order": 44,
+    "literal_translation": "One hand doesn't clap"
+  },
+  {
+    "id": "phrase-0045",
+    "darija": "Wash nta mghrbi?",
+    "arabic": "واش نتا مغربي؟",
+    "english": "Are you Moroccan?",
+    "french": "Tu es marocain ?",
+    "pronunciation": "wash N-ta mgh-RBI",
+    "category": "daily",
+    "register": "standard",
+    "tags": [],
+    "order": 45
+  },
+  {
+    "id": "phrase-0046",
+    "darija": "Mnin nta?",
+    "arabic": "منين نتا؟",
+    "english": "Where are you from?",
+    "french": "D'où viens-tu ?",
+    "pronunciation": "MNIN N-ta",
+    "category": "daily",
+    "register": "standard",
+    "tags": [
+      "essential"
+    ],
+    "order": 46
+  },
+  {
+    "id": "phrase-0047",
+    "darija": "Ana mn [country]",
+    "arabic": "أنا من [country]",
+    "english": "I'm from [country]",
+    "french": "Je viens de [country]",
+    "pronunciation": "A-na mn",
+    "category": "daily",
+    "register": "standard",
+    "tags": [
+      "essential"
+    ],
+    "order": 47
+  },
+  {
+    "id": "phrase-0048",
+    "darija": "Sh7al f ss3a?",
+    "arabic": "شحال ف الساعة؟",
+    "english": "What time is it?",
+    "french": "Quelle heure est-il ?",
+    "pronunciation": "sh-HAL f s-SA3a",
+    "category": "daily",
+    "register": "standard",
+    "tags": [
+      "essential"
+    ],
+    "order": 48
+  },
+  {
+    "id": "phrase-0049",
+    "darija": "3wnni!",
+    "arabic": "عاوني!",
+    "english": "Help me!",
+    "french": "Aidez-moi !",
+    "pronunciation": "3WN-ni",
+    "category": "emergency",
+    "register": "standard",
+    "tags": [
+      "essential"
+    ],
+    "order": 49
+  },
+  {
+    "id": "phrase-0050",
+    "darija": "3yyt l bulis!",
+    "arabic": "عيّط ل البوليس!",
+    "english": "Call the police!",
+    "french": "Appelez la police !",
+    "pronunciation": "3Y-yt l bu-LIS",
+    "category": "emergency",
+    "register": "standard",
+    "tags": [
+      "essential"
+    ],
+    "order": 50
+  },
+  {
+    "id": "phrase-0051",
+    "darija": "Khasni nmshi l sbitar",
+    "arabic": "خاصني نمشي ل السبيطار",
+    "english": "I need to go to the hospital",
+    "french": "Je dois aller à l'hôpital",
+    "pronunciation": "khas-NI NM-shi l sbi-TAR",
+    "category": "emergency",
+    "register": "standard",
+    "tags": [
+      "essential"
+    ],
+    "order": 51
+  }
+]

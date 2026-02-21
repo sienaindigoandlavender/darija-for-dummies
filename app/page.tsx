@@ -232,11 +232,29 @@ export default function Home() {
           </div>
 
           {/* Stats strip */}
-          <div className="flex gap-16 mt-16 md:mt-24 anim-fade-up delay-4">
+          <div className="flex flex-wrap gap-x-16 gap-y-8 mt-16 md:mt-24 anim-fade-up delay-4">
             <div><span className="font-display text-4xl md:text-5xl block" style={{letterSpacing:'0.04em'}}>{meta.totalWords ? meta.totalWords.toLocaleString() : '—'}</span><span className="text-[10px] uppercase tracking-[0.3em] text-neutral-400 mt-2 block">words</span></div>
             <div><span className="font-display text-4xl md:text-5xl block" style={{letterSpacing:'0.04em'}}>{meta.totalPhrases ? meta.totalPhrases.toLocaleString() : '—'}</span><span className="text-[10px] uppercase tracking-[0.3em] text-neutral-400 mt-2 block">phrases</span></div>
             <div><span className="font-display text-4xl md:text-5xl block" style={{letterSpacing:'0.04em'}}>∞</span><span className="text-[10px] uppercase tracking-[0.3em] text-neutral-400 mt-2 block">cultural notes</span></div>
           </div>
+
+          {/* 10K Goal Progress */}
+          {meta.totalWords > 0 && (() => {
+            const goal = 10000;
+            const pct = Math.min((meta.totalWords / goal) * 100, 100);
+            return (
+              <div className="mt-10 max-w-md anim-fade-up delay-4">
+                <div className="flex items-baseline justify-between mb-2">
+                  <span className="text-[10px] uppercase tracking-[0.3em] text-neutral-400">Road to 10,000</span>
+                  <span className="text-xs text-neutral-400 font-display">{meta.totalWords.toLocaleString()} / {goal.toLocaleString()}</span>
+                </div>
+                <div className="h-1.5 bg-neutral-100 rounded-full overflow-hidden">
+                  <div className="h-full bg-[#c53a1a] rounded-full transition-all duration-1000" style={{ width: `${pct}%` }} />
+                </div>
+                <p className="text-[10px] text-neutral-300 mt-2 tracking-wide">Building the most comprehensive Darija dictionary online. One word at a time.</p>
+              </div>
+            );
+          })()}
         </div>
       </section>
 

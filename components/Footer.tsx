@@ -1,200 +1,77 @@
 'use client';
 
-import { useState, useEffect } from 'react';
-import Script from 'next/script';
-
-interface ContentSite { id: number; site_label: string; site_url: string; display_order: number }
-interface LegalPage { page_slug: string; page_title: string }
-interface PoweredBy { label: string; url: string }
-interface SiteConfig { site_id: string; site_name: string; site_url: string; legal_entity: string; contact_email: string }
+import Link from 'next/link';
 
 export default function Footer() {
-  const [contentSites, setContentSites] = useState<ContentSite[]>([]);
-  const [legalPages, setLegalPages] = useState<LegalPage[]>([]);
-  const [poweredBy, setPoweredBy] = useState<PoweredBy | null>(null);
-  const [siteConfig, setSiteConfig] = useState<SiteConfig | null>(null);
-
-  useEffect(() => {
-    fetch('/api/footer')
-      .then(r => r.json())
-      .then(data => {
-        setContentSites(data.contentSites || []);
-        setLegalPages(data.legalPages || []);
-        setPoweredBy(data.poweredBy || null);
-        setSiteConfig(data.siteConfig || null);
-      })
-      .catch(() => {});
-  }, []);
-
-  const siteName = siteConfig?.site_name || 'Everyday Darija';
-  const copyrightHolder = siteConfig?.legal_entity || poweredBy?.label || 'Dancing with Lions';
-  const [email, setEmail] = useState('');
-  const [subStatus, setSubStatus] = useState<'idle'|'loading'|'success'|'error'>('idle');
-
-  const handleSubscribe = async () => {
-    if (!email || !email.includes('@')) return;
-    setSubStatus('loading');
-    try {
-      const res = await fetch('/api/newsletter', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email, source: 'everyday-darija' }),
-      });
-      if (res.ok) setSubStatus('success');
-      else setSubStatus('error');
-    } catch { setSubStatus('error'); }
-  };
-
   return (
-    <footer>
-      {/* ═══ NEWSLETTER BANNER ═══ */}
-      <div style={{ backgroundColor: '#f7f3ef' }}>
-        <div className="px-8 md:px-[8%] lg:px-[12%] py-16 md:py-20">
-          <div className="grid md:grid-cols-12 gap-8 items-center">
-            <div className="md:col-span-6">
-              <p className="text-[#d4931a] text-xs font-medium uppercase tracking-[0.3em] mb-3">Stay close</p>
-              <p className="font-display text-3xl md:text-4xl leading-tight">A Darija word a day.<br/>No spam. Just language.</p>
-            </div>
-            <div className="md:col-span-5 md:col-start-8">
-              {subStatus === 'success' ? (
-                <p className="text-neutral-600">Mzyan! You're in. Watch your inbox.</p>
-              ) : (
-                <div className="flex gap-3">
-                  <input
-                    type="email"
-                    value={email}
-                    onChange={e => setEmail(e.target.value)}
-                    onKeyDown={e => e.key === 'Enter' && handleSubscribe()}
-                    placeholder="your@email.com"
-                    className="flex-1 bg-transparent border-b-2 border-neutral-300 focus:border-[#c53a1a] outline-none py-3 text-neutral-700 placeholder:text-neutral-400 transition-colors"
-                  />
-                  <button
-                    onClick={handleSubscribe}
-                    disabled={subStatus === 'loading'}
-                    className="px-6 py-3 bg-neutral-900 text-white text-sm tracking-wide hover:bg-neutral-700 transition-colors disabled:opacity-50"
-                  >
-                    {subStatus === 'loading' ? '...' : 'Subscribe'}
-                  </button>
-                </div>
-              )}
-              {subStatus === 'error' && <p className="text-red-500 text-sm mt-2">Something went wrong. Try again.</p>}
-            </div>
-          </div>
-        </div>
-      </div>
-      {/* ═══ LEVEL 1: Brand + Navigation ═══ #1f1f1f */}
+    <footer className="mt-20">
+      {/* Level 1 — Navigation */}
       <div style={{ backgroundColor: '#1f1f1f' }}>
-        <div className="px-8 md:px-[8%] lg:px-[12%] py-16">
-          <div className="grid md:grid-cols-12 gap-12">
-            <div className="md:col-span-5">
-              <span className="font-display text-2xl text-white/90">{siteName}</span>
-              <p className="text-sm text-white/50 mt-3 max-w-sm leading-relaxed">
-                The fun, irreverent guide to Moroccan Arabic. Built with love from inside the medina.
+        <div className="max-w-7xl mx-auto px-6 py-5">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+            {/* Brand */}
+            <div>
+              <Link href="/" className="block mb-3">
+                <span className="uppercase tracking-widest text-sm text-white/90">Dharija</span>
+              </Link>
+              <p className="text-xs text-white/70 leading-relaxed max-w-xs">
+                Moroccan Arabic for everyone. A living dictionary of Darija words, phrases, and the culture behind them.
               </p>
-              {poweredBy && (
-                <p className="text-xs text-white/30 mt-6">
-                  A <a href={poweredBy.url} target="_blank" rel="noopener" className="text-white/40 hover:text-white/60 transition-colors">{poweredBy.label}</a> project
-                </p>
-              )}
             </div>
-            <div className="md:col-span-3 md:col-start-7">
-              <span className="text-xs tracking-[0.15em] uppercase text-white/40 block mb-4">Learn</span>
-              <div className="space-y-2.5">
-                <p><a href="/" className="text-sm text-white/60 hover:text-white/90 transition-colors">Dictionary</a></p>
-                <p><a href="/grammar" className="text-sm text-white/60 hover:text-white/90 transition-colors">Grammar Guide</a></p>
-                <p><a href="/first-day" className="text-sm text-white/60 hover:text-white/90 transition-colors">First Day Kit</a></p>
-                <p><a href="/practice" className="text-sm text-white/60 hover:text-white/90 transition-colors">Flashcards</a></p>
-              </div>
+
+            {/* Explore */}
+            <div>
+              <h3 className="uppercase tracking-widest text-[10px] text-white/80 mb-3">Explore</h3>
+              <ul className="space-y-2">
+                <li><Link href="/" className="text-xs text-white/90 hover:text-white transition-colors">Dictionary</Link></li>
+                <li><Link href="/category/greetings" className="text-xs text-white/90 hover:text-white transition-colors">Browse Categories</Link></li>
+                <li><Link href="/grammar" className="text-xs text-white/90 hover:text-white transition-colors">Grammar</Link></li>
+                <li><Link href="/practice" className="text-xs text-white/90 hover:text-white transition-colors">Practice</Link></li>
+              </ul>
+            </div>
+
+            {/* Learn */}
+            <div>
+              <h3 className="uppercase tracking-widest text-[10px] text-white/80 mb-3">Learn</h3>
+              <ul className="space-y-2">
+                <li><Link href="/first-day" className="text-xs text-white/90 hover:text-white transition-colors">First Day Kit</Link></li>
+                <li><Link href="/about" className="text-xs text-white/90 hover:text-white transition-colors">About Darija</Link></li>
+              </ul>
+            </div>
+
+            {/* Network */}
+            <div>
+              <h3 className="uppercase tracking-widest text-[10px] text-white/80 mb-3">Network</h3>
+              <ul className="space-y-2">
+                <li><a href="https://www.slowmorocco.com" target="_blank" rel="noopener noreferrer" className="text-xs text-white/90 hover:text-white transition-colors">Slow Morocco</a></li>
+                <li><a href="https://architectureofmorocco.com" target="_blank" rel="noopener noreferrer" className="text-xs text-white/90 hover:text-white transition-colors">Architecture of Morocco</a></li>
+                <li><a href="https://cuisinesofmorocco.com" target="_blank" rel="noopener noreferrer" className="text-xs text-white/90 hover:text-white transition-colors">Cuisines of Morocco</a></li>
+                <li><a href="https://derb.so" target="_blank" rel="noopener noreferrer" className="text-xs text-white/90 hover:text-white transition-colors">derb</a></li>
+              </ul>
             </div>
           </div>
         </div>
       </div>
 
-      {/* ═══ LEVEL 2: Content Network ═══ #161616 */}
+      {/* Level 2 — Legal */}
       <div style={{ backgroundColor: '#161616' }}>
-        <div className="px-8 md:px-[8%] lg:px-[12%] py-5">
-          {contentSites.length > 0 && (
-            <div className="flex flex-wrap items-center gap-x-5 gap-y-2">
-              <span className="text-xs tracking-[0.15em] uppercase text-white/25">Explore</span>
-              {contentSites.map(site => (
-                <a key={site.id} href={`https://${site.site_url}`} target="_blank" rel="noopener"
-                  className="text-xs text-white/35 hover:text-white/60 transition-colors">{site.site_label}</a>
-              ))}
-            </div>
-          )}
-        </div>
-      </div>
-
-      {/* ═══ LEVEL 3: Legal + Language + Powered by + Copyright ═══ #0e0e0e */}
-      <div style={{ backgroundColor: '#0e0e0e' }}>
-        <div className="px-8 md:px-[8%] lg:px-[12%] py-5">
-          <div className="flex flex-col gap-4">
-            {/* Row 1: Legal + Language */}
-            <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
-              {legalPages.length > 0 ? (
-                legalPages.map(page => (
-                  <a key={page.page_slug} href={`/legal/${page.page_slug}`}
-                    className="text-xs text-white/25 hover:text-white/45 transition-colors">{page.page_title}</a>
-                ))
-              ) : (
-                <>
-                  <a href="/legal/privacy" className="text-xs text-white/25 hover:text-white/45 transition-colors">Privacy</a>
-                  <a href="/legal/terms" className="text-xs text-white/25 hover:text-white/45 transition-colors">Terms</a>
-                </>
-              )}
-              <span className="text-white/10">|</span>
-              <select
-                id="lang-select"
-                onChange={(e) => {
-                  const lang = e.target.value;
-                  if (!lang) return;
-                  document.cookie = `googtrans=/en/${lang};path=/;`;
-                  document.cookie = `googtrans=/en/${lang};path=/;domain=${window.location.hostname}`;
-                  window.location.reload();
-                }}
-                defaultValue=""
-                className="bg-white/5 border border-white/12 text-white/35 text-[11px] py-1 px-2 rounded cursor-pointer outline-none hover:border-white/25 hover:text-white/50 transition-colors"
-                style={{ fontFamily: 'DM Sans, sans-serif' }}
-              >
-                <option value="" disabled>Language</option>
-                <option value="en">English</option>
-                <option value="fr">Français</option>
-                <option value="ar">العربية</option>
-                <option value="es">Español</option>
-                <option value="de">Deutsch</option>
-                <option value="it">Italiano</option>
-                <option value="pt">Português</option>
-                <option value="ja">日本語</option>
-                <option value="ko">한국어</option>
-                <option value="zh-CN">中文</option>
-              </select>
-            </div>
-            {/* Row 2: Powered by + Copyright */}
-            <div className="flex flex-wrap items-center gap-x-3">
-              {poweredBy && (
-                <>
-                  <span className="text-xs text-white/20">Powered by</span>
-                  <a href={poweredBy.url} target="_blank" rel="noopener" className="text-xs text-white/35 hover:text-white/55 transition-colors">{poweredBy.label}</a>
-                  <span className="text-white/10">|</span>
-                </>
-              )}
-              <span className="text-xs text-white/20">&copy; {new Date().getFullYear()} {copyrightHolder}. All rights reserved.</span>
-            </div>
+        <div className="max-w-7xl mx-auto px-6 py-3">
+          <div className="flex flex-wrap items-center gap-6 text-xs">
+            <Link href="/legal/privacy" className="text-white/85 hover:text-white transition-colors">Privacy</Link>
+            <Link href="/legal/terms" className="text-white/85 hover:text-white transition-colors">Terms</Link>
+            <Link href="/legal/disclaimer" className="text-white/85 hover:text-white transition-colors">Disclaimer</Link>
           </div>
         </div>
       </div>
 
-      {/* Hidden Google Translate engine */}
-      <div id="google_translate_element" style={{ position: 'absolute', left: '-9999px', visibility: 'hidden' }} />
-      <Script id="google-translate-init" strategy="lazyOnload" dangerouslySetInnerHTML={{ __html: `function googleTranslateElementInit(){new google.translate.TranslateElement({pageLanguage:'en',includedLanguages:'en,fr,ar,es,de,it,pt,ja,ko,zh-CN',autoDisplay:false},'google_translate_element')}` }} />
-      <Script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit" strategy="lazyOnload" />
-      <style jsx global>{`
-        .goog-te-banner-frame { display: none !important; }
-        body { top: 0 !important; }
-        .VIpgJd-ZVi9od-ORHb-OEVmcd { display: none !important; }
-        .skiptranslate > iframe { display: none !important; }
-        #lang-select option { background: #1a1a1a; color: #aaa; }
-      `}</style>
+      {/* Level 3 — Powered by */}
+      <div style={{ backgroundColor: '#0e0e0e' }}>
+        <div className="max-w-7xl mx-auto px-6 py-3">
+          <p className="text-[9px] tracking-[0.15em] uppercase text-white/70 text-center">
+            A <a href="https://www.slowmorocco.com" target="_blank" rel="noopener noreferrer" className="text-white/90 hover:text-white transition-colors">Slow Morocco</a> project / Powered by <a href="https://www.dancingwiththelions.com" target="_blank" rel="noopener noreferrer" className="text-white/90 hover:text-white transition-colors">Dancing with Lions</a>
+          </p>
+        </div>
+      </div>
     </footer>
   );
 }
