@@ -240,12 +240,12 @@ export default function Home() {
 
           {/* 10K Goal Progress */}
           {meta.totalWords > 0 && (() => {
-            const goal = 10000;
+            const goal = 25000;
             const pct = Math.min((meta.totalWords / goal) * 100, 100);
             return (
               <div className="mt-10 max-w-md anim-fade-up delay-4">
                 <div className="flex items-baseline justify-between mb-2">
-                  <span className="text-[10px] uppercase tracking-[0.3em] text-neutral-400">Road to 10,000</span>
+                  <span className="text-[10px] uppercase tracking-[0.3em] text-neutral-400">Road to 25,000</span>
                   <span className="text-xs text-neutral-400 font-display">{meta.totalWords.toLocaleString()} / {goal.toLocaleString()}</span>
                 </div>
                 <div className="h-1.5 bg-neutral-100 rounded-full overflow-hidden">

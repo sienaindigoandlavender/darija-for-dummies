@@ -10762,7 +10762,7 @@
   },
   {
     "id": "education-00604",
-    "darija": "ustadh",
+    "darija": "ustad",
     "arabic": "أستاذ",
     "english": "teacher/professor",
     "french": "professeur",
@@ -27231,7 +27231,7 @@
   },
   {
     "id": "city-01720",
-    "darija": "madinat ljadida",
+    "darija": "mdinat ljadida",
     "arabic": "المدينة الجديدة",
     "english": "new city",
     "french": "ville nouvelle",
@@ -74564,7 +74564,7 @@
   },
   {
     "id": "religion-05100",
-    "darija": "kitab llah",
+    "darija": "ktab llah",
     "arabic": "كتاب الله",
     "english": "book of God",
     "french": "livre de Dieu",
@@ -97454,7 +97454,7 @@
   },
   {
     "id": "education-06735",
-    "darija": "kitab dyal rriyadiyat",
+    "darija": "ktab dyal rriyadiyat",
     "arabic": "كتاب ديال الرياضيات",
     "english": "math textbook",
     "french": "livre de maths",
@@ -97468,7 +97468,7 @@
   },
   {
     "id": "education-06736",
-    "darija": "kitab dyal l3rbiya",
+    "darija": "ktab dyal l3rbiya",
     "arabic": "كتاب ديال العربية",
     "english": "Arabic textbook",
     "french": "livre d arabe",
@@ -97482,7 +97482,7 @@
   },
   {
     "id": "education-06737",
-    "darija": "kitab dyal lfransawiya",
+    "darija": "ktab dyal lfransawiya",
     "arabic": "كتاب ديال الفرنسوية",
     "english": "French textbook",
     "french": "livre de francais",
@@ -97496,7 +97496,7 @@
   },
   {
     "id": "education-06738",
-    "darija": "kitab dyal l3ulum",
+    "darija": "ktab dyal l3ulum",
     "arabic": "كتاب ديال العلوم",
     "english": "science textbook",
     "french": "livre de sciences",
@@ -97510,7 +97510,7 @@
   },
   {
     "id": "education-06739",
-    "darija": "kitab dyal ttarikh",
+    "darija": "ktab dyal ttarikh",
     "arabic": "كتاب ديال التاريخ",
     "english": "history textbook",
     "french": "livre d histoire",
@@ -97524,7 +97524,7 @@
   },
   {
     "id": "education-06740",
-    "darija": "kitab dyal ljughrafiya",
+    "darija": "ktab dyal ljughrafiya",
     "arabic": "كتاب ديال الجغرافيا",
     "english": "geography book",
     "french": "livre de geo",
@@ -104734,7 +104734,7 @@
   },
   {
     "id": "survival-07255",
-    "darija": "wash kayn maktaba qrib?",
+    "darija": "wash kayn mktaba qrib?",
     "arabic": "واش كاين مكتبة قريب؟",
     "english": "bookstore nearby?",
     "french": "bookstore pres d ici?",
@@ -141806,7 +141806,7 @@
   },
   {
     "id": "city-09903",
-    "darija": "l madina l qdima dyal mraksh",
+    "darija": "l mdina l qdima dyal mraksh",
     "arabic": "المدينة القديمة ديال مراكش",
     "english": "old medina Marrakech",
     "french": "ancienne medina Marrakech",
