@@ -72,6 +72,7 @@ function normalizeDarija(text: string): string {
     .replace(/ei/g, 'i').replace(/ai/g, 'a').replace(/ay/g, 'a')
     .replace(/ch/g, 'sh').replace(/tch/g, 'sh').replace(/ph/g, 'f')
     .replace(/dh/g, 'd').replace(/th/g, 't').replace(/aa/g, '3')
+    .replace(/o/g, 'u')
     .replace(/([^aeiou3789])\1+/g, '$1$1')
     .replace(/[-\s]/g, '').replace(/ah$/, 'a').replace(/eh$/, 'a').replace(/iya$/, 'ia');
 }
@@ -103,8 +104,15 @@ export async function searchWords(query: string): Promise<DarijaWord[]> {
       if (score === 0) {
         const nd = normalizeDarija(w.darija);
         if (nd === nq) score = 75;
-        else if (nd.includes(nq) || nq.includes(nd)) score = 65;
-        else {
+        else if (nd.includes(nq)) {
+          // Penalize when query matches inside a much longer word
+          const lenRatio = nq.length / nd.length;
+          score = Math.round(65 * Math.max(lenRatio, 0.5));
+        } else if (nq.includes(nd)) {
+          // Penalize when word is much shorter than query (e.g. 'ra' inside 'shokran')
+          const lenRatio = nd.length / nq.length;
+          if (lenRatio > 0.4) score = Math.round(60 * lenRatio);
+        } else {
           const dist = levenshtein(nq, nd);
           const maxLen = Math.max(nq.length, nd.length);
           if (maxLen > 0 && (1 - dist / maxLen) > 0.6) score = Math.round((1 - dist / maxLen) * 50);
