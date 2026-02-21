@@ -132,7 +132,7 @@ export default async function AboutPage() {
           </span>
           <Link
             href="/"
-            className="text-sm text-neutral-400 hover:text-neutral-600 transition-colors mb-12 inline-block"
+            className="text-sm text-neutral-500 hover:text-neutral-900 transition-colors mb-12 inline-block"
           >
             &larr; Dictionary
           </Link>
@@ -152,19 +152,19 @@ export default async function AboutPage() {
           <div className="grid grid-cols-2 md:grid-cols-4 gap-10 md:gap-16">
             <div>
               <p className="font-display text-5xl md:text-6xl text-accent">{allWords.length.toLocaleString()}+</p>
-              <p className="text-sm text-neutral-400 mt-2 uppercase tracking-wider">Words</p>
+              <p className="text-sm text-neutral-500 mt-2 uppercase tracking-wider">Words</p>
             </div>
             <div>
               <p className="font-display text-5xl md:text-6xl text-accent-warm">{categories.size}</p>
-              <p className="text-sm text-neutral-400 mt-2 uppercase tracking-wider">Categories</p>
+              <p className="text-sm text-neutral-500 mt-2 uppercase tracking-wider">Categories</p>
             </div>
             <div>
               <p className="font-display text-5xl md:text-6xl text-white">4</p>
-              <p className="text-sm text-neutral-400 mt-2 uppercase tracking-wider">Languages per entry</p>
+              <p className="text-sm text-neutral-500 mt-2 uppercase tracking-wider">Languages per entry</p>
             </div>
             <div>
               <p className="font-display text-5xl md:text-6xl text-accent">11</p>
-              <p className="text-sm text-neutral-400 mt-2 uppercase tracking-wider">Years in Morocco</p>
+              <p className="text-sm text-neutral-500 mt-2 uppercase tracking-wider">Years in Morocco</p>
             </div>
           </div>
         </section>
@@ -176,7 +176,7 @@ export default async function AboutPage() {
               <p className="text-xs uppercase tracking-[0.2em] text-accent font-medium">The language</p>
               <h2 className="font-display text-3xl md:text-4xl mt-4">What is Darija?</h2>
             </div>
-            <div className="md:col-span-7 md:col-start-6 space-y-6 text-neutral-600 text-lg leading-relaxed">
+            <div className="md:col-span-7 md:col-start-6 space-y-6 text-neutral-900 text-lg leading-relaxed">
               <p>
                 Darija (الدارجة) is Moroccan Arabic — a spoken language that evolved over centuries from Classical
                 Arabic, reshaped by Amazigh grammar, saturated with French and Spanish vocabulary, and spoken
@@ -238,7 +238,7 @@ export default async function AboutPage() {
               <p className="text-xs uppercase tracking-[0.2em] text-accent font-medium">The publisher</p>
               <h2 className="font-display text-3xl md:text-4xl mt-4">Dancing with Lions</h2>
             </div>
-            <div className="md:col-span-7 md:col-start-6 space-y-6 text-neutral-600 text-lg leading-relaxed">
+            <div className="md:col-span-7 md:col-start-6 space-y-6 text-neutral-900 text-lg leading-relaxed">
               <p>
                 Everyday Darija is a publication of{' '}
                 <a
@@ -279,7 +279,7 @@ export default async function AboutPage() {
               <h2 className="font-display text-3xl md:text-4xl mt-4">AI &amp; developer access</h2>
             </div>
             <div className="md:col-span-7 md:col-start-6 space-y-8">
-              <p className="text-neutral-400 text-lg leading-relaxed">
+              <p className="text-neutral-500 text-lg leading-relaxed">
                 This site is built for both humans and machines. Every page includes structured data. The
                 knowledge API returns JSON-LD. AI crawlers are welcomed.
               </p>
@@ -287,16 +287,16 @@ export default async function AboutPage() {
               <div className="space-y-4">
                 <div className="border border-neutral-800 p-5">
                   <p className="text-sm text-accent font-mono mb-1">Knowledge API</p>
-                  <code className="text-neutral-300 text-sm break-all">/api/knowledge/darija</code>
+                  <code className="text-neutral-500 text-sm break-all">/api/knowledge/darija</code>
                   <p className="text-xs text-neutral-500 mt-2">
                     JSON-LD Dataset schema. Search by term, category, or tag.
                   </p>
                 </div>
                 <div className="border border-neutral-800 p-5">
                   <p className="text-sm text-accent font-mono mb-1">LLM Discovery</p>
-                  <code className="text-neutral-300 text-sm break-all">/llms.txt</code>
-                  <span className="text-neutral-600 mx-2">·</span>
-                  <code className="text-neutral-300 text-sm break-all">/llms-full.txt</code>
+                  <code className="text-neutral-500 text-sm break-all">/llms.txt</code>
+                  <span className="text-neutral-900 mx-2">·</span>
+                  <code className="text-neutral-500 text-sm break-all">/llms-full.txt</code>
                   <p className="text-xs text-neutral-500 mt-2">
                     Structured overview and deep knowledge base for AI systems.
                   </p>
@@ -311,8 +311,8 @@ export default async function AboutPage() {
               </div>
 
               <div className="border-l-2 border-accent-warm pl-5 mt-8">
-                <p className="text-sm text-neutral-400 uppercase tracking-wider mb-2">Preferred citation</p>
-                <p className="text-neutral-300 text-sm font-mono">
+                <p className="text-sm text-neutral-500 uppercase tracking-wider mb-2">Preferred citation</p>
+                <p className="text-neutral-500 text-sm font-mono">
                   Dancing with Lions. (2026). Everyday Darija Dictionary [Dataset]. https://dharija.space
                 </p>
               </div>
@@ -327,7 +327,7 @@ export default async function AboutPage() {
               <p className="text-xs uppercase tracking-[0.2em] text-accent font-medium">License</p>
               <h2 className="font-display text-3xl md:text-4xl mt-4">CC BY-NC-ND 4.0</h2>
             </div>
-            <div className="md:col-span-7 md:col-start-6 space-y-6 text-neutral-600 text-lg leading-relaxed">
+            <div className="md:col-span-7 md:col-start-6 space-y-6 text-neutral-900 text-lg leading-relaxed">
               <p>
                 You may cite and reference this data with attribution. Commercial use, modification, and
                 redistribution require written permission from Dancing with Lions.

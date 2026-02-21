@@ -72,9 +72,9 @@ export default async function WordPage({ params }: { params: { id: string } }) {
 
       <div className="min-h-screen">
         <section className="px-8 md:px-[8%] lg:px-[12%] pt-20 pb-8">
-          <Link href="/" className="text-sm text-neutral-400 hover:text-neutral-600 transition-colors mb-8 inline-block">&larr; Dictionary</Link>
+          <Link href="/" className="text-sm text-neutral-500 hover:text-neutral-900 transition-colors mb-8 inline-block">&larr; Dictionary</Link>
           {word.category && (
-            <Link href={`/category/${word.category}`} className="text-sm text-neutral-400 hover:text-neutral-600 transition-colors mb-8 inline-block ml-4">
+            <Link href={`/category/${word.category}`} className="text-sm text-neutral-500 hover:text-neutral-900 transition-colors mb-8 inline-block ml-4">
               {word.category}
             </Link>
           )}
@@ -86,25 +86,25 @@ export default async function WordPage({ params }: { params: { id: string } }) {
             <div className="md:col-span-6">
               <span className="font-arabic text-6xl md:text-7xl lg:text-8xl text-[#c53a1a] block leading-tight mb-4">{word.arabic}</span>
               <h1 className="font-display text-4xl md:text-5xl lg:text-6xl mb-6">{word.darija}</h1>
-              <p className="text-neutral-400 text-lg mb-2">/{word.pronunciation}/</p>
+              <p className="text-neutral-500 text-lg mb-2">/{word.pronunciation}/</p>
               <div className="flex items-baseline gap-3 mt-6">
-                <p className="text-neutral-700 text-2xl">{word.english}</p>
+                <p className="text-neutral-900 text-2xl">{word.english}</p>
               </div>
               <p className="text-neutral-500 mt-2">{word.french}</p>
 
               <div className="flex flex-wrap gap-3 mt-8">
                 {word.part_of_speech && (
-                  <span className="text-xs uppercase tracking-wider text-neutral-400 border border-neutral-200 px-3 py-1">
+                  <span className="text-xs uppercase tracking-wider text-neutral-500 border border-neutral-200 px-3 py-1">
                     {word.part_of_speech}
                   </span>
                 )}
                 {word.gender && (
-                  <span className="text-xs uppercase tracking-wider text-neutral-400 border border-neutral-200 px-3 py-1">
+                  <span className="text-xs uppercase tracking-wider text-neutral-500 border border-neutral-200 px-3 py-1">
                     {word.gender}
                   </span>
                 )}
                 {word.register !== 'universal' && word.register && (
-                  <span className="text-xs uppercase tracking-wider text-neutral-400 border border-neutral-200 px-3 py-1">
+                  <span className="text-xs uppercase tracking-wider text-neutral-500 border border-neutral-200 px-3 py-1">
                     {word.register}
                   </span>
                 )}
@@ -116,17 +116,17 @@ export default async function WordPage({ params }: { params: { id: string } }) {
               {word.cultural_note && (
                 <div className="border-l-2 border-[#d4931a] pl-6">
                   <p className="text-xs uppercase tracking-[0.2em] text-[#d4931a] mb-3">Cultural note</p>
-                  <p className="text-neutral-600 leading-relaxed text-lg">{word.cultural_note}</p>
+                  <p className="text-neutral-900 leading-relaxed text-lg">{word.cultural_note}</p>
                 </div>
               )}
 
               {word.examples?.length > 0 && (
                 <div>
-                  <p className="text-xs uppercase tracking-[0.2em] text-neutral-400 mb-4">In use</p>
+                  <p className="text-xs uppercase tracking-[0.2em] text-neutral-500 mb-4">In use</p>
                   {word.examples.map((ex: { arabic: string; darija: string; english: string }, i: number) => (
                     <div key={i} className="space-y-1 mb-5">
-                      <p className="font-arabic text-xl text-neutral-800">{ex.arabic}</p>
-                      <p className="text-neutral-700">{ex.darija}</p>
+                      <p className="font-arabic text-xl text-black">{ex.arabic}</p>
+                      <p className="text-neutral-900">{ex.darija}</p>
                       <p className="text-sm text-neutral-500">{ex.english}</p>
                     </div>
                   ))}
@@ -135,12 +135,12 @@ export default async function WordPage({ params }: { params: { id: string } }) {
 
               {word.conjugation?.past && (
                 <div>
-                  <p className="text-xs uppercase tracking-[0.2em] text-neutral-400 mb-4">Conjugation</p>
+                  <p className="text-xs uppercase tracking-[0.2em] text-neutral-500 mb-4">Conjugation</p>
                   <div className="grid grid-cols-2 gap-x-6 gap-y-2 text-sm">
                     {Object.entries(word.conjugation.past).map(([k, v]) => (
                       <div key={k} className="flex gap-3">
-                        <span className="text-neutral-400 w-12">{k}</span>
-                        <span className="text-neutral-700">{v as string}</span>
+                        <span className="text-neutral-500 w-12">{k}</span>
+                        <span className="text-neutral-900">{v as string}</span>
                       </div>
                     ))}
                   </div>
@@ -154,7 +154,7 @@ export default async function WordPage({ params }: { params: { id: string } }) {
         <section className="px-8 md:px-[8%] lg:px-[12%] py-16 border-t border-neutral-100">
           <div className="max-w-2xl">
             <h2 className="font-display text-2xl mb-4">How to say &ldquo;{word.english}&rdquo; in Moroccan Arabic</h2>
-            <p className="text-neutral-600 leading-relaxed">
+            <p className="text-neutral-900 leading-relaxed">
               In Darija (Moroccan Arabic), &ldquo;{word.english}&rdquo; is <strong>{word.darija}</strong> ({word.arabic}),
               pronounced /{word.pronunciation}/. {word.french ? `The French equivalent is "${word.french}."` : ''}
               {word.cultural_note ? ` ${word.cultural_note}` : ''}

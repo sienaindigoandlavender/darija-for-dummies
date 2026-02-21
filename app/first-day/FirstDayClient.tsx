@@ -40,7 +40,7 @@ export default function FirstDayClient({ words }: { words: DarijaWord[] }) {
     <div className="min-h-screen">
       {/* Hero */}
       <section className="px-8 md:px-[8%] lg:px-[12%] pt-20 pb-16">
-        <Link href="/" className="text-sm text-neutral-400 hover:text-neutral-600 transition-colors mb-8 inline-block">&larr; Back to Dictionary</Link>
+        <Link href="/" className="text-sm text-neutral-500 hover:text-neutral-900 transition-colors mb-8 inline-block">&larr; Back to Dictionary</Link>
         <div className="grid md:grid-cols-12 gap-8">
           <div className="md:col-span-7">
             <p className="text-[#c53a1a] text-xs font-medium uppercase tracking-[0.3em] mb-4">Survival Kit</p>
@@ -48,8 +48,8 @@ export default function FirstDayClient({ words }: { words: DarijaWord[] }) {
           </div>
           <div className="md:col-span-4 md:col-start-9 flex items-end">
             <div>
-              <p className="text-neutral-500 leading-relaxed mb-4">These {words.length} words get you through Day 1 in Morocco. Say them badly — Moroccans will love you for trying.</p>
-              <p className="text-neutral-400 text-sm">Print this page. Screenshot it. Save it to your phone.</p>
+              <p className="text-neutral-900 leading-relaxed mb-4">These {words.length} words get you through Day 1 in Morocco. Say them badly — Moroccans will love you for trying.</p>
+              <p className="text-neutral-500 text-sm">Print this page. Screenshot it. Save it to your phone.</p>
             </div>
           </div>
         </div>
@@ -68,21 +68,21 @@ export default function FirstDayClient({ words }: { words: DarijaWord[] }) {
                   <div className="flex items-baseline gap-4">
                     <span className="font-arabic text-2xl md:text-3xl text-[#c53a1a] leading-none">{w.arabic}</span>
                     <span className="font-display text-xl md:text-2xl">{w.darija}</span>
-                    <span className="text-sm text-neutral-400 hidden md:inline">/{w.pronunciation}/</span>
+                    <span className="text-sm text-neutral-500 hidden md:inline">/{w.pronunciation}/</span>
                   </div>
-                  <span className="text-neutral-600">{w.english}</span>
+                  <span className="text-neutral-900">{w.english}</span>
                 </div>
                 {exp && (
                   <div className="mt-6 grid md:grid-cols-3 gap-6">
                     <div>
-                      <p className="text-xs uppercase tracking-[0.2em] text-neutral-400 mb-1">Pronunciation</p>
+                      <p className="text-xs uppercase tracking-[0.2em] text-neutral-500 mb-1">Pronunciation</p>
                       <p className="font-display text-lg">/{w.pronunciation}/</p>
                       <p className="text-neutral-500 text-sm mt-2">{w.french}</p>
                     </div>
                     {w.cultural_note && (
                       <div className="md:col-span-2 border-l-2 border-[#d4931a] pl-5">
                         <p className="text-xs uppercase tracking-[0.2em] text-[#d4931a] mb-1">Cultural note</p>
-                        <p className="text-sm text-neutral-600 leading-relaxed">{w.cultural_note}</p>
+                        <p className="text-sm text-neutral-900 leading-relaxed">{w.cultural_note}</p>
                       </div>
                     )}
                   </div>
@@ -96,7 +96,7 @@ export default function FirstDayClient({ words }: { words: DarijaWord[] }) {
       {/* Practice CTA */}
       <section className="px-8 md:px-[8%] lg:px-[12%] py-16 text-center border-t border-neutral-100">
         <p className="font-display text-3xl mb-4">Ready to memorize them?</p>
-        <p className="text-neutral-400 mb-8">Flashcards with spaced repetition — words you miss come back.</p>
+        <p className="text-neutral-500 mb-8">Flashcards with spaced repetition — words you miss come back.</p>
         <Link href="/practice" className="inline-block px-8 py-4 bg-neutral-900 text-white text-sm tracking-wide hover:bg-neutral-700 transition-colors">
           Practice First Day Words
         </Link>

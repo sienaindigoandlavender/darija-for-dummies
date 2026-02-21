@@ -28,7 +28,7 @@ export default function GrammarPage() {
       <div className="min-h-screen">
         {/* Hero */}
         <section className="px-8 md:px-[8%] lg:px-[12%] pt-20 pb-16">
-          <Link href="/" className="text-sm text-neutral-400 hover:text-neutral-600 transition-colors mb-8 inline-block">&larr; Back to Dictionary</Link>
+          <Link href="/" className="text-sm text-neutral-500 hover:text-neutral-900 transition-colors mb-8 inline-block">&larr; Back to Dictionary</Link>
           <p className="text-[#c53a1a] text-xs font-medium uppercase tracking-[0.3em] mb-4">Reference</p>
           <h1 className="font-display text-5xl md:text-6xl lg:text-7xl leading-[0.9] mb-8">The Grammar<br />of <em>Darija</em></h1>
           <p className="text-neutral-500 text-lg max-w-2xl leading-relaxed">Darija is not written down in any official way. There is no Académie Française for Moroccan Arabic. This guide teaches the system that 40 million people use every day.</p>
@@ -45,7 +45,7 @@ export default function GrammarPage() {
               ['#questions', 'Questions'],
               ['#adjectives', 'Adjectives'],
             ].map(([href, label]) => (
-              <a key={href} href={href} className="text-neutral-400 hover:text-[#c53a1a] transition-colors">{label}</a>
+              <a key={href} href={href} className="text-neutral-500 hover:text-[#c53a1a] transition-colors">{label}</a>
             ))}
           </div>
         </nav>
@@ -53,16 +53,16 @@ export default function GrammarPage() {
         {/* ═══ THE SOUND SYSTEM ═══ */}
         <section id="sounds" className="px-8 md:px-[8%] lg:px-[12%] py-20">
           <h2 className="font-display text-4xl md:text-5xl mb-8">The Sound System</h2>
-          <p className="text-neutral-600 text-lg max-w-3xl leading-relaxed mb-12">When Moroccans text, they swap numbers for sounds that don&rsquo;t exist in European languages. The 3 IS the ain. Once you see it, you can&rsquo;t unsee it.</p>
+          <p className="text-neutral-900 text-lg max-w-3xl leading-relaxed mb-12">When Moroccans text, they swap numbers for sounds that don&rsquo;t exist in European languages. The 3 IS the ain. Once you see it, you can&rsquo;t unsee it.</p>
           
           <div className="overflow-x-auto">
             <table className="w-full max-w-4xl">
               <thead>
                 <tr className="border-b-2 border-neutral-900">
-                  <th className="text-left py-4 pr-6 text-xs uppercase tracking-[0.2em] text-neutral-400">Symbol</th>
-                  <th className="text-left py-4 pr-6 text-xs uppercase tracking-[0.2em] text-neutral-400">Arabic</th>
-                  <th className="text-left py-4 pr-6 text-xs uppercase tracking-[0.2em] text-neutral-400">Sound</th>
-                  <th className="text-left py-4 text-xs uppercase tracking-[0.2em] text-neutral-400">How to Produce It</th>
+                  <th className="text-left py-4 pr-6 text-xs uppercase tracking-[0.2em] text-neutral-500">Symbol</th>
+                  <th className="text-left py-4 pr-6 text-xs uppercase tracking-[0.2em] text-neutral-500">Arabic</th>
+                  <th className="text-left py-4 pr-6 text-xs uppercase tracking-[0.2em] text-neutral-500">Sound</th>
+                  <th className="text-left py-4 text-xs uppercase tracking-[0.2em] text-neutral-500">How to Produce It</th>
                 </tr>
               </thead>
               <tbody>
@@ -89,23 +89,23 @@ export default function GrammarPage() {
           
           <div className="mt-12 border-l-2 border-[#d4931a] pl-6 max-w-2xl">
             <p className="text-xs uppercase tracking-[0.2em] text-[#d4931a] mb-2">Cultural note</p>
-            <p className="text-neutral-600 leading-relaxed">Darija drops most short vowels from Classical Arabic. Where Arabic says &ldquo;kitaab&rdquo; (book), Darija says &ldquo;ktab.&rdquo; The rhythm is fast, percussive, and drops everything unnecessary.</p>
+            <p className="text-neutral-900 leading-relaxed">Darija drops most short vowels from Classical Arabic. Where Arabic says &ldquo;kitaab&rdquo; (book), Darija says &ldquo;ktab.&rdquo; The rhythm is fast, percussive, and drops everything unnecessary.</p>
           </div>
         </section>
 
         {/* ═══ PRONOUNS ═══ */}
         <section id="pronouns" className="px-8 md:px-[8%] lg:px-[12%] py-20 bg-neutral-50/60">
           <h2 className="font-display text-4xl md:text-5xl mb-4">Pronouns &amp; Possession</h2>
-          <p className="text-neutral-600 text-lg max-w-3xl leading-relaxed mb-12">Seven pronouns. No formal &ldquo;vous&rdquo; — everyone is &ldquo;tu.&rdquo; Possession uses &ldquo;dyal&rdquo; + pronoun suffix.</p>
+          <p className="text-neutral-900 text-lg max-w-3xl leading-relaxed mb-12">Seven pronouns. No formal &ldquo;vous&rdquo; — everyone is &ldquo;tu.&rdquo; Possession uses &ldquo;dyal&rdquo; + pronoun suffix.</p>
           
           <div className="overflow-x-auto">
             <table className="w-full max-w-3xl">
               <thead>
                 <tr className="border-b-2 border-neutral-900">
-                  <th className="text-left py-4 pr-6 text-xs uppercase tracking-[0.2em] text-neutral-400">English</th>
-                  <th className="text-left py-4 pr-6 text-xs uppercase tracking-[0.2em] text-neutral-400">Darija</th>
-                  <th className="text-left py-4 pr-6 font-arabic text-xs uppercase tracking-[0.2em] text-neutral-400">Arabic</th>
-                  <th className="text-left py-4 text-xs uppercase tracking-[0.2em] text-neutral-400">Possessive</th>
+                  <th className="text-left py-4 pr-6 text-xs uppercase tracking-[0.2em] text-neutral-500">English</th>
+                  <th className="text-left py-4 pr-6 text-xs uppercase tracking-[0.2em] text-neutral-500">Darija</th>
+                  <th className="text-left py-4 pr-6 font-arabic text-xs uppercase tracking-[0.2em] text-neutral-500">Arabic</th>
+                  <th className="text-left py-4 text-xs uppercase tracking-[0.2em] text-neutral-500">Possessive</th>
                 </tr>
               </thead>
               <tbody>
@@ -122,8 +122,8 @@ export default function GrammarPage() {
                   <tr key={en} className={`border-b border-neutral-100 ${i % 2 === 0 ? 'bg-white/50' : ''}`}>
                     <td className="py-3 pr-6 text-neutral-500">{en}</td>
                     <td className="py-3 pr-6 font-display text-xl">{dj}</td>
-                    <td className="py-3 pr-6 font-arabic text-xl text-neutral-600">{ar}</td>
-                    <td className="py-3 text-neutral-600">{poss}</td>
+                    <td className="py-3 pr-6 font-arabic text-xl text-neutral-900">{ar}</td>
+                    <td className="py-3 text-neutral-900">{poss}</td>
                   </tr>
                 ))}
               </tbody>
@@ -132,26 +132,26 @@ export default function GrammarPage() {
 
           <div className="mt-12 border-l-2 border-[#d4931a] pl-6 max-w-2xl">
             <p className="text-xs uppercase tracking-[0.2em] text-[#d4931a] mb-2">Cultural note</p>
-            <p className="text-neutral-600 leading-relaxed">&ldquo;L-ktab dyali&rdquo; = my book. &ldquo;D-dar dyalna&rdquo; = our house. This one pattern covers everything.</p>
+            <p className="text-neutral-900 leading-relaxed">&ldquo;L-ktab dyali&rdquo; = my book. &ldquo;D-dar dyalna&rdquo; = our house. This one pattern covers everything.</p>
           </div>
         </section>
 
         {/* ═══ VERB SYSTEM ═══ */}
         <section id="verbs" className="px-8 md:px-[8%] lg:px-[12%] py-20">
           <h2 className="font-display text-4xl md:text-5xl mb-4">The Verb System</h2>
-          <p className="text-neutral-600 text-lg max-w-3xl leading-relaxed mb-16">Three tenses. Built with prefixes and suffixes on a root. This is the engine.</p>
+          <p className="text-neutral-900 text-lg max-w-3xl leading-relaxed mb-16">Three tenses. Built with prefixes and suffixes on a root. This is the engine.</p>
 
           {/* Present */}
           <div className="mb-16">
             <h3 className="font-display text-2xl text-[#c53a1a] mb-4">Present: <span className="font-display">ka-</span> + verb</h3>
-            <p className="text-neutral-600 max-w-2xl mb-8">Add <strong>ka-</strong> before the conjugated verb. The prefix tells you the tense; the suffix tells you the person.</p>
+            <p className="text-neutral-900 max-w-2xl mb-8">Add <strong>ka-</strong> before the conjugated verb. The prefix tells you the tense; the suffix tells you the person.</p>
             <div className="overflow-x-auto">
               <table className="w-full max-w-3xl">
                 <thead><tr className="border-b-2 border-neutral-900">
-                  <th className="text-left py-3 pr-6 text-xs uppercase tracking-[0.2em] text-neutral-400">Person</th>
-                  <th className="text-left py-3 pr-6 text-xs uppercase tracking-[0.2em] text-neutral-400">kla (eat)</th>
-                  <th className="text-left py-3 pr-6 text-xs uppercase tracking-[0.2em] text-neutral-400">msha (go)</th>
-                  <th className="text-left py-3 text-xs uppercase tracking-[0.2em] text-neutral-400">dar (do)</th>
+                  <th className="text-left py-3 pr-6 text-xs uppercase tracking-[0.2em] text-neutral-500">Person</th>
+                  <th className="text-left py-3 pr-6 text-xs uppercase tracking-[0.2em] text-neutral-500">kla (eat)</th>
+                  <th className="text-left py-3 pr-6 text-xs uppercase tracking-[0.2em] text-neutral-500">msha (go)</th>
+                  <th className="text-left py-3 text-xs uppercase tracking-[0.2em] text-neutral-500">dar (do)</th>
                 </tr></thead>
                 <tbody>
                   {[
@@ -173,20 +173,20 @@ export default function GrammarPage() {
                 </tbody>
               </table>
             </div>
-            <p className="text-neutral-400 text-sm mt-6 max-w-2xl">Pattern: <strong>n-</strong> for I, <strong>t-</strong> for you/she, <strong>y-</strong> for he, <strong>n-...-u</strong> for we, <strong>y-...-u</strong> for they. Learn this once, conjugate anything.</p>
+            <p className="text-neutral-500 text-sm mt-6 max-w-2xl">Pattern: <strong>n-</strong> for I, <strong>t-</strong> for you/she, <strong>y-</strong> for he, <strong>n-...-u</strong> for we, <strong>y-...-u</strong> for they. Learn this once, conjugate anything.</p>
           </div>
 
           {/* Past */}
           <div className="mb-16">
             <h3 className="font-display text-2xl text-[#c53a1a] mb-4">Past: root changes + suffix</h3>
-            <p className="text-neutral-600 max-w-2xl mb-8">No prefix. The root shifts and takes a person suffix.</p>
+            <p className="text-neutral-900 max-w-2xl mb-8">No prefix. The root shifts and takes a person suffix.</p>
             <div className="overflow-x-auto">
               <table className="w-full max-w-3xl">
                 <thead><tr className="border-b-2 border-neutral-900">
-                  <th className="text-left py-3 pr-6 text-xs uppercase tracking-[0.2em] text-neutral-400">Person</th>
-                  <th className="text-left py-3 pr-6 text-xs uppercase tracking-[0.2em] text-neutral-400">kla (ate)</th>
-                  <th className="text-left py-3 pr-6 text-xs uppercase tracking-[0.2em] text-neutral-400">msha (went)</th>
-                  <th className="text-left py-3 text-xs uppercase tracking-[0.2em] text-neutral-400">dar (did)</th>
+                  <th className="text-left py-3 pr-6 text-xs uppercase tracking-[0.2em] text-neutral-500">Person</th>
+                  <th className="text-left py-3 pr-6 text-xs uppercase tracking-[0.2em] text-neutral-500">kla (ate)</th>
+                  <th className="text-left py-3 pr-6 text-xs uppercase tracking-[0.2em] text-neutral-500">msha (went)</th>
+                  <th className="text-left py-3 text-xs uppercase tracking-[0.2em] text-neutral-500">dar (did)</th>
                 </tr></thead>
                 <tbody>
                   {[
@@ -212,8 +212,8 @@ export default function GrammarPage() {
           {/* Future */}
           <div className="mb-12">
             <h3 className="font-display text-2xl text-[#c53a1a] mb-4">Future: <span className="font-display">ghadi</span> + present (without ka-)</h3>
-            <p className="text-neutral-600 max-w-2xl mb-4">&ldquo;ghadi nakl&rdquo; = I will eat. &ldquo;ghadi nmshi&rdquo; = I will go. &ldquo;ghadi ndir&rdquo; = I will do.</p>
-            <p className="text-neutral-400 text-sm">That&rsquo;s it. Three tenses. Three patterns. The rest is vocabulary.</p>
+            <p className="text-neutral-900 max-w-2xl mb-4">&ldquo;ghadi nakl&rdquo; = I will eat. &ldquo;ghadi nmshi&rdquo; = I will go. &ldquo;ghadi ndir&rdquo; = I will do.</p>
+            <p className="text-neutral-500 text-sm">That&rsquo;s it. Three tenses. Three patterns. The rest is vocabulary.</p>
           </div>
         </section>
 
@@ -263,10 +263,10 @@ export default function GrammarPage() {
               <div key={dj} className="py-4 border-b border-neutral-100">
                 <div className="flex items-baseline gap-4">
                   <span className="font-display text-xl">{dj}</span>
-                  <span className="font-arabic text-lg text-neutral-400">{ar}</span>
+                  <span className="font-arabic text-lg text-neutral-500">{ar}</span>
                 </div>
-                <p className="text-neutral-600 text-sm mt-1">{en}</p>
-                <p className="text-neutral-400 text-xs italic mt-1">{ex}</p>
+                <p className="text-neutral-900 text-sm mt-1">{en}</p>
+                <p className="text-neutral-500 text-xs italic mt-1">{ex}</p>
               </div>
             ))}
           </div>
@@ -275,14 +275,14 @@ export default function GrammarPage() {
         {/* ═══ ADJECTIVES ═══ */}
         <section id="adjectives" className="px-8 md:px-[8%] lg:px-[12%] py-20 bg-neutral-50/60">
           <h2 className="font-display text-4xl md:text-5xl mb-4">Adjectives &amp; Agreement</h2>
-          <p className="text-neutral-600 text-lg max-w-3xl leading-relaxed mb-12">Darija adjectives come after the noun and agree in gender. Masculine is the base form; feminine adds <strong>-a</strong>.</p>
+          <p className="text-neutral-900 text-lg max-w-3xl leading-relaxed mb-12">Darija adjectives come after the noun and agree in gender. Masculine is the base form; feminine adds <strong>-a</strong>.</p>
           
           <div className="overflow-x-auto">
             <table className="w-full max-w-3xl">
               <thead><tr className="border-b-2 border-neutral-900">
-                <th className="text-left py-3 pr-6 text-xs uppercase tracking-[0.2em] text-neutral-400">English</th>
-                <th className="text-left py-3 pr-6 text-xs uppercase tracking-[0.2em] text-neutral-400">Masculine</th>
-                <th className="text-left py-3 text-xs uppercase tracking-[0.2em] text-neutral-400">Feminine</th>
+                <th className="text-left py-3 pr-6 text-xs uppercase tracking-[0.2em] text-neutral-500">English</th>
+                <th className="text-left py-3 pr-6 text-xs uppercase tracking-[0.2em] text-neutral-500">Masculine</th>
+                <th className="text-left py-3 text-xs uppercase tracking-[0.2em] text-neutral-500">Feminine</th>
               </tr></thead>
               <tbody>
                 {[
@@ -308,7 +308,7 @@ export default function GrammarPage() {
               </tbody>
             </table>
           </div>
-          <p className="text-neutral-400 text-sm mt-8 max-w-2xl">Example: &ldquo;rajl kbir&rdquo; (big man) → &ldquo;mra kbira&rdquo; (big woman). &ldquo;atay skhun&rdquo; (hot tea) → &ldquo;l-ma barda&rdquo; (cold water).</p>
+          <p className="text-neutral-500 text-sm mt-8 max-w-2xl">Example: &ldquo;rajl kbir&rdquo; (big man) → &ldquo;mra kbira&rdquo; (big woman). &ldquo;atay skhun&rdquo; (hot tea) → &ldquo;l-ma barda&rdquo; (cold water).</p>
         </section>
 
         {/* ═══ CTA ═══ */}
@@ -316,7 +316,7 @@ export default function GrammarPage() {
           <p className="font-display text-3xl md:text-4xl mb-6">Ready to use it?</p>
           <div className="flex justify-center gap-6 flex-wrap">
             <Link href="/first-day" className="px-8 py-4 bg-neutral-900 text-white text-sm tracking-wide hover:bg-neutral-700 transition-colors">First Day Survival Kit</Link>
-            <Link href="/" className="px-8 py-4 border border-neutral-200 text-neutral-600 text-sm tracking-wide hover:border-neutral-400 transition-colors">Search the Dictionary</Link>
+            <Link href="/" className="px-8 py-4 border border-neutral-200 text-neutral-900 text-sm tracking-wide hover:border-neutral-400 transition-colors">Search the Dictionary</Link>
           </div>
         </section>
       </div>

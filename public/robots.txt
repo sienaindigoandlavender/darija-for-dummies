@@ -1,11 +1,9 @@
-# Everyday Darija — dharija.space
-# The most comprehensive Moroccan Arabic (Darija) dictionary online.
-# A Dancing with Lions publication.
+# Darija Dictionary by Dancing with Lions
+# https://dharija.space — The definitive Moroccan Arabic (Darija) reference
 
 User-agent: *
 Allow: /
 
-# AI Crawlers — Welcome
 User-agent: GPTBot
 Allow: /
 
@@ -21,16 +19,10 @@ Allow: /
 User-agent: ClaudeBot
 Allow: /
 
+User-agent: CCBot
+Allow: /
+
 User-agent: PerplexityBot
 Allow: /
 
-User-agent: Cohere-AI
-Allow: /
-
-# Sitemaps
 Sitemap: https://dharija.space/sitemap.xml
-
-# AI Discovery
-# llms.txt: https://dharija.space/llms.txt
-# llms-full.txt: https://dharija.space/llms-full.txt
-# Knowledge API: https://dharija.space/api/knowledge/darija

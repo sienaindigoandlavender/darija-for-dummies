@@ -196,7 +196,7 @@ export default function PracticeClient() {
     return (
       <div className="min-h-screen">
         <section className="px-8 md:px-[8%] lg:px-[12%] pt-20 pb-8">
-          <Link href="/" className="text-sm text-neutral-400 hover:text-neutral-600 transition-colors mb-8 inline-block">&larr; Back to Dictionary</Link>
+          <Link href="/" className="text-sm text-neutral-500 hover:text-neutral-900 transition-colors mb-8 inline-block">&larr; Back to Dictionary</Link>
           <p className="text-[#c53a1a] text-xs font-medium uppercase tracking-[0.3em] mb-4">Practice</p>
           <h1 className="font-display text-5xl md:text-6xl lg:text-7xl leading-[0.9] mb-6">Flash<em>cards</em></h1>
           <p className="text-neutral-500 text-lg max-w-xl leading-relaxed">Pick a deck. Flip the card. Mark what you know. Words you miss come back until you get them.</p>
@@ -204,7 +204,7 @@ export default function PracticeClient() {
 
         {/* Mode selector */}
         <section className="px-8 md:px-[8%] lg:px-[12%] py-6 border-b border-neutral-100">
-          <p className="text-xs uppercase tracking-[0.2em] text-neutral-400 mb-3">Card direction</p>
+          <p className="text-xs uppercase tracking-[0.2em] text-neutral-500 mb-3">Card direction</p>
           <div className="flex gap-4 flex-wrap">
             {([
               ['arabic-to-english', 'Arabic → English'],
@@ -212,7 +212,7 @@ export default function PracticeClient() {
               ['darija-to-english', 'Darija → English'],
             ] as [DeckMode, string][]).map(([m, label]) => (
               <button key={m} onClick={() => setMode(m)}
-                className={`text-sm py-2 px-4 border transition-colors ${mode === m ? 'border-[#c53a1a] text-[#c53a1a]' : 'border-neutral-200 text-neutral-400 hover:border-neutral-400'}`}>
+                className={`text-sm py-2 px-4 border transition-colors ${mode === m ? 'border-[#c53a1a] text-[#c53a1a]' : 'border-neutral-200 text-neutral-500 hover:border-neutral-400'}`}>
                 {label}
               </button>
             ))}
@@ -231,7 +231,7 @@ export default function PracticeClient() {
                   className="group text-left p-6 border border-neutral-100 hover:border-neutral-300 transition-all hover:shadow-sm">
                   <span className="text-2xl block mb-3">{deck.icon}</span>
                   <span className="font-display text-lg block mb-1 group-hover:text-[#c53a1a] transition-colors">{deck.label}</span>
-                  <span className="text-xs text-neutral-400">
+                  <span className="text-xs text-neutral-500">
                     {loading && selectedDeck === deck.id ? 'Loading...' : 'Tap to start'}
                   </span>
                 </button>
@@ -242,7 +242,7 @@ export default function PracticeClient() {
 
         {/* Keyboard hint */}
         <section className="px-8 md:px-[8%] lg:px-[12%] py-8 text-center">
-          <p className="text-xs text-neutral-300">Keyboard: <span className="text-neutral-400">Space</span> to flip · <span className="text-neutral-400">→</span> got it · <span className="text-neutral-400">←</span> again</p>
+          <p className="text-xs text-neutral-500">Keyboard: <span className="text-neutral-500">Space</span> to flip · <span className="text-neutral-500">→</span> got it · <span className="text-neutral-500">←</span> again</p>
         </section>
       </div>
     );
@@ -266,18 +266,18 @@ export default function PracticeClient() {
           <div className="flex gap-8 justify-center mb-12">
             <div>
               <span className="font-display text-3xl text-green-600 block">{sessionStats.correct}</span>
-              <span className="text-xs uppercase tracking-[0.2em] text-neutral-400">Got it</span>
+              <span className="text-xs uppercase tracking-[0.2em] text-neutral-500">Got it</span>
             </div>
             <div>
               <span className="font-display text-3xl text-[#c53a1a] block">{sessionStats.incorrect}</span>
-              <span className="text-xs uppercase tracking-[0.2em] text-neutral-400">Again</span>
+              <span className="text-xs uppercase tracking-[0.2em] text-neutral-500">Again</span>
             </div>
           </div>
           <div className="flex gap-4 justify-center flex-wrap">
             <button onClick={() => { setPhase('select'); }} className="px-8 py-4 bg-neutral-900 text-white text-sm tracking-wide hover:bg-neutral-700 transition-colors">New Deck</button>
             <button onClick={() => { setCurrentIndex(0); setFlipped(false); setSessionStats({ correct: 0, incorrect: 0, total: 0 }); shuffle(queue); setQueue([...queue]); setPhase('practice'); }}
-              className="px-8 py-4 border border-neutral-200 text-neutral-600 text-sm tracking-wide hover:border-neutral-400 transition-colors">Practice Again</button>
-            <Link href="/" className="px-8 py-4 border border-neutral-200 text-neutral-600 text-sm tracking-wide hover:border-neutral-400 transition-colors">Back to Dictionary</Link>
+              className="px-8 py-4 border border-neutral-200 text-neutral-900 text-sm tracking-wide hover:border-neutral-400 transition-colors">Practice Again</button>
+            <Link href="/" className="px-8 py-4 border border-neutral-200 text-neutral-900 text-sm tracking-wide hover:border-neutral-400 transition-colors">Back to Dictionary</Link>
           </div>
         </div>
       </div>
@@ -301,38 +301,38 @@ export default function PracticeClient() {
       <div className="text-center">
         <span className="font-arabic text-5xl text-[#c53a1a]/30 block mb-6">{currentWord.arabic}</span>
         <span className="font-display text-4xl md:text-5xl block mb-2">{currentWord.darija}</span>
-        <span className="text-2xl text-neutral-700 block mb-1">{currentWord.english}</span>
-        <span className="text-lg text-neutral-400 block mb-4">{currentWord.french}</span>
-        <span className="text-neutral-400 text-sm block">/{currentWord.pronunciation}/</span>
+        <span className="text-2xl text-neutral-900 block mb-1">{currentWord.english}</span>
+        <span className="text-lg text-neutral-500 block mb-4">{currentWord.french}</span>
+        <span className="text-neutral-500 text-sm block">/{currentWord.pronunciation}/</span>
       </div>
     );
   } else if (mode === 'english-to-arabic') {
     frontContent = (
       <div className="text-center">
         <span className="font-display text-5xl md:text-6xl block">{currentWord.english}</span>
-        <span className="text-lg text-neutral-400 mt-2 block">{currentWord.french}</span>
+        <span className="text-lg text-neutral-500 mt-2 block">{currentWord.french}</span>
       </div>
     );
     backContent = (
       <div className="text-center">
         <span className="font-arabic text-7xl md:text-8xl text-[#c53a1a] block mb-4">{currentWord.arabic}</span>
         <span className="font-display text-3xl block mb-2">{currentWord.darija}</span>
-        <span className="text-neutral-400 text-sm block">/{currentWord.pronunciation}/</span>
+        <span className="text-neutral-500 text-sm block">/{currentWord.pronunciation}/</span>
       </div>
     );
   } else {
     frontContent = (
       <div className="text-center">
         <span className="font-display text-5xl md:text-6xl block">{currentWord.darija}</span>
-        <span className="text-neutral-400 text-sm mt-2 block">/{currentWord.pronunciation}/</span>
+        <span className="text-neutral-500 text-sm mt-2 block">/{currentWord.pronunciation}/</span>
       </div>
     );
     backContent = (
       <div className="text-center">
         <span className="font-arabic text-5xl text-[#c53a1a] block mb-4">{currentWord.arabic}</span>
-        <span className="font-display text-3xl text-neutral-400 block mb-2">{currentWord.darija}</span>
-        <span className="text-2xl text-neutral-700 block mb-1">{currentWord.english}</span>
-        <span className="text-lg text-neutral-400 block">{currentWord.french}</span>
+        <span className="font-display text-3xl text-neutral-500 block mb-2">{currentWord.darija}</span>
+        <span className="text-2xl text-neutral-900 block mb-1">{currentWord.english}</span>
+        <span className="text-lg text-neutral-500 block">{currentWord.french}</span>
       </div>
     );
   }
@@ -344,9 +344,9 @@ export default function PracticeClient() {
     <div className="min-h-screen flex flex-col">
       {/* Top bar */}
       <div className="px-8 md:px-[8%] lg:px-[12%] py-4 flex items-center justify-between border-b border-neutral-100">
-        <button onClick={() => setPhase('select')} className="text-sm text-neutral-400 hover:text-neutral-600 transition-colors">&larr; Decks</button>
+        <button onClick={() => setPhase('select')} className="text-sm text-neutral-500 hover:text-neutral-900 transition-colors">&larr; Decks</button>
         <div className="flex items-center gap-6">
-          <span className="text-xs text-neutral-400">{currentIndex + 1} / {queue.length}</span>
+          <span className="text-xs text-neutral-500">{currentIndex + 1} / {queue.length}</span>
           {/* Progress bar */}
           <div className="w-32 h-1 bg-neutral-100 overflow-hidden hidden md:block">
             <div className="h-full bg-[#c53a1a] transition-all duration-300" style={{ width: `${((currentIndex + 1) / queue.length) * 100}%` }} />
@@ -372,14 +372,14 @@ export default function PracticeClient() {
               <span className={`text-[10px] uppercase tracking-[0.2em] ${
                 levelLabel === 'Mastered' ? 'text-green-500' :
                 levelLabel === 'Known' ? 'text-green-400' :
-                levelLabel === 'New' ? 'text-neutral-300' : 'text-neutral-400'
+                levelLabel === 'New' ? 'text-neutral-500' : 'text-neutral-500'
               }`}>{levelLabel}</span>
             </div>
 
             {/* Tap hint */}
             {!flipped && (
               <div className="absolute bottom-4 left-0 right-0 text-center">
-                <span className="text-xs text-neutral-300">tap to reveal</span>
+                <span className="text-xs text-neutral-500">tap to reveal</span>
               </div>
             )}
 
@@ -391,7 +391,7 @@ export default function PracticeClient() {
           {flipped && currentWord.cultural_note && (
             <div className="mt-6 border-l-2 border-[#d4931a] pl-5">
               <p className="text-xs uppercase tracking-[0.2em] text-[#d4931a] mb-1">Cultural note</p>
-              <p className="text-sm text-neutral-600 leading-relaxed">{currentWord.cultural_note}</p>
+              <p className="text-sm text-neutral-900 leading-relaxed">{currentWord.cultural_note}</p>
             </div>
           )}
 
@@ -400,7 +400,7 @@ export default function PracticeClient() {
             <div className="flex gap-4 mt-8">
               <button onClick={() => handleAnswer(false)}
                 className="flex-1 py-5 border-2 border-[#c53a1a]/20 text-[#c53a1a] text-sm uppercase tracking-wider hover:bg-[#c53a1a]/5 transition-colors">
-                Again <span className="text-neutral-400 ml-2 hidden md:inline">←</span>
+                Again <span className="text-neutral-500 ml-2 hidden md:inline">←</span>
               </button>
               <button onClick={() => handleAnswer(true)}
                 className="flex-1 py-5 bg-neutral-900 text-white text-sm uppercase tracking-wider hover:bg-neutral-700 transition-colors">
@@ -412,8 +412,8 @@ export default function PracticeClient() {
           {/* Skip to flip hint when not flipped */}
           {!flipped && (
             <div className="text-center mt-8">
-              <button onClick={() => setFlipped(true)} className="text-sm text-neutral-300 hover:text-neutral-500 transition-colors">
-                Show answer <span className="text-neutral-300 ml-1">↵</span>
+              <button onClick={() => setFlipped(true)} className="text-sm text-neutral-500 hover:text-neutral-500 transition-colors">
+                Show answer <span className="text-neutral-500 ml-1">↵</span>
               </button>
             </div>
           )}

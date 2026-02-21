@@ -94,41 +94,41 @@ export default function Home() {
             <span className="font-arabic text-3xl md:text-4xl text-[#c53a1a] leading-none">{w.arabic}</span>
             <span className="font-display text-2xl md:text-3xl">{w.darija}</span>
             <span className="hidden md:inline-flex items-baseline gap-2">
-              <a href={`/category/${w.category}`} onClick={e => e.stopPropagation()} className="text-xs text-neutral-400 uppercase tracking-wider hover:text-[#c53a1a] transition-colors">{CAT_NAMES[w.category] || w.category}</a>
+              <a href={`/category/${w.category}`} onClick={e => e.stopPropagation()} className="text-xs text-neutral-500 uppercase tracking-wider hover:text-[#c53a1a] transition-colors">{CAT_NAMES[w.category] || w.category}</a>
               {displayTags.slice(0, 2).map(tag => (
-                <span key={tag} className="text-xs text-neutral-300 uppercase tracking-wider">· {tag}</span>
+                <span key={tag} className="text-xs text-neutral-500 uppercase tracking-wider">· {tag}</span>
               ))}
             </span>
           </div>
           <div className="flex items-baseline gap-4">
-            <span className="text-neutral-600">{w.english}</span>
-            <svg className={`w-4 h-4 text-neutral-300 transition-transform ${exp ? 'rotate-45' : 'group-hover:translate-x-1'}`} fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M12 4v16m8-8H4"/></svg>
+            <span className="text-neutral-900">{w.english}</span>
+            <svg className={`w-4 h-4 text-neutral-500 transition-transform ${exp ? 'rotate-45' : 'group-hover:translate-x-1'}`} fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M12 4v16m8-8H4"/></svg>
           </div>
         </div>
 
         {exp && (
           <div className="mt-8 grid md:grid-cols-12 gap-8">
             <div className="md:col-span-5">
-              <p className="text-xs uppercase tracking-[0.2em] text-neutral-400 mb-2">Pronunciation</p>
-              <p className="font-display text-xl mb-6">/{w.pronunciation}/</p>
+              <p className="text-xs uppercase tracking-[0.2em] text-neutral-500 mb-2">Pronunciation</p>
+              <p className="font-mono text-lg mb-6 tracking-wide">/{w.pronunciation}/</p>
               <p className="text-neutral-500 text-sm">{w.french}</p>
               {/* Category + tags on mobile (shown here since hidden in header on mobile) */}
               <div className="flex flex-wrap gap-2 mt-4 md:hidden">
                 <a href={`/category/${w.category}`} onClick={e => e.stopPropagation()} className="text-xs text-[#c53a1a] uppercase tracking-wider">{CAT_NAMES[w.category] || w.category}</a>
                 {displayTags.map(tag => (
-                  <span key={tag} className="text-xs text-neutral-400 uppercase tracking-wider">· {tag}</span>
+                  <span key={tag} className="text-xs text-neutral-500 uppercase tracking-wider">· {tag}</span>
                 ))}
               </div>
-              {w.register !== 'universal' && <p className="text-xs uppercase tracking-wider text-neutral-400 mt-3">{w.register}</p>}
+              {w.register !== 'universal' && <p className="text-xs uppercase tracking-wider text-neutral-500 mt-3">{w.register}</p>}
             </div>
             <div className="md:col-span-4">
               {w.examples?.length > 0 && (
                 <div>
-                  <p className="text-xs uppercase tracking-[0.2em] text-neutral-400 mb-3">In use</p>
+                  <p className="text-xs uppercase tracking-[0.2em] text-neutral-500 mb-3">In use</p>
                   {w.examples.map((ex,i)=>(
                     <div key={i} className="space-y-1 mb-4">
-                      <p className="font-arabic text-xl text-neutral-800">{ex.arabic}</p>
-                      <p className="text-neutral-700">{ex.darija}</p>
+                      <p className="font-arabic text-xl text-black">{ex.arabic}</p>
+                      <p className="text-neutral-900">{ex.darija}</p>
                       <p className="text-sm text-neutral-500">{ex.english}</p>
                     </div>
                   ))}
@@ -136,10 +136,10 @@ export default function Home() {
               )}
               {w.conjugation?.past && (
                 <div className="mt-4">
-                  <p className="text-xs uppercase tracking-[0.2em] text-neutral-400 mb-3">Conjugation</p>
+                  <p className="text-xs uppercase tracking-[0.2em] text-neutral-500 mb-3">Conjugation</p>
                   <div className="grid grid-cols-2 gap-x-6 gap-y-1 text-sm">
                     {Object.entries(w.conjugation.past).map(([k,v])=>(
-                      <div key={k} className="flex gap-3"><span className="text-neutral-400 w-10">{k}</span><span className="text-neutral-700">{v as string}</span></div>
+                      <div key={k} className="flex gap-3"><span className="text-neutral-500 w-10">{k}</span><span className="text-neutral-900">{v as string}</span></div>
                     ))}
                   </div>
                 </div>
@@ -149,7 +149,7 @@ export default function Home() {
               <div className="md:col-span-3">
                 <div className="border-l-2 border-[#d4931a] pl-5">
                   <p className="text-xs uppercase tracking-[0.2em] text-[#d4931a] mb-2">Cultural note</p>
-                  <p className="text-sm text-neutral-600 leading-relaxed">{w.cultural_note}</p>
+                  <p className="text-sm text-neutral-900 leading-relaxed">{w.cultural_note}</p>
                 </div>
               </div>
             )}
@@ -164,13 +164,13 @@ export default function Home() {
     <div key={p.id} className="py-6 border-b border-neutral-100 last:border-0">
       <p className="font-arabic text-2xl text-[#c53a1a] mb-1">{p.arabic}</p>
       <p className="font-display text-xl mb-2">{p.darija}</p>
-      <p className="text-neutral-700">{p.english}</p>
+      <p className="text-neutral-900">{p.english}</p>
       <p className="text-sm text-neutral-500 mt-1">{p.french}</p>
-      {p.literal_translation && <p className="text-xs italic text-neutral-400 mt-2">Literally: {p.literal_translation}</p>}
+      {p.literal_translation && <p className="text-xs italic text-neutral-500 mt-2">Literally: {p.literal_translation}</p>}
       {p.response && (
         <div className="mt-4 ml-6 border-l border-neutral-200 pl-5">
-          <p className="text-xs uppercase tracking-[0.15em] text-neutral-400 mb-1">They&apos;ll reply</p>
-          <p className="text-neutral-700">{p.response.darija}</p>
+          <p className="text-xs uppercase tracking-[0.15em] text-neutral-500 mb-1">They&apos;ll reply</p>
+          <p className="text-neutral-900">{p.response.darija}</p>
           <p className="text-sm text-neutral-500">{p.response.english}</p>
         </div>
       )}
@@ -218,13 +218,13 @@ export default function Home() {
               <div className="relative">
                 <input ref={inputRef} type="text" value={query} onChange={e=>setQuery(e.target.value)}
                   placeholder="Search — English, French, or Darija"
-                  className="w-full pb-4 text-xl md:text-2xl border-b-2 border-neutral-200 focus:border-[#c53a1a] outline-none transition-colors bg-transparent font-display placeholder:text-neutral-300 placeholder:font-display" />
-                {query && <button onClick={()=>setQuery('')} className="absolute right-0 bottom-4 text-neutral-400 hover:text-neutral-800"><svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12"/></svg></button>}
+                  className="w-full pb-4 text-xl md:text-2xl border-b-2 border-neutral-200 focus:border-[#c53a1a] outline-none transition-colors bg-transparent font-display placeholder:text-neutral-500 placeholder:font-display" />
+                {query && <button onClick={()=>setQuery('')} className="absolute right-0 bottom-4 text-neutral-500 hover:text-black"><svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12"/></svg></button>}
               </div>
               {!query && (
                 <div className="flex flex-wrap gap-x-6 gap-y-2 mt-4">
                   {['salam','bread','taxi','how much','beautiful','inshallah'].map(w=>(
-                    <button key={w} onClick={()=>setQuery(w)} className="text-sm text-neutral-400 hover:text-[#c53a1a] transition-colors font-display italic">{w}</button>
+                    <button key={w} onClick={()=>setQuery(w)} className="text-sm text-neutral-500 hover:text-[#c53a1a] transition-colors font-display italic">{w}</button>
                   ))}
                 </div>
               )}
@@ -233,9 +233,9 @@ export default function Home() {
 
           {/* Stats strip */}
           <div className="flex flex-wrap gap-x-16 gap-y-8 mt-16 md:mt-24 anim-fade-up delay-4">
-            <div><span className="font-display text-4xl md:text-5xl block" style={{letterSpacing:'0.04em'}}>{meta.totalWords ? meta.totalWords.toLocaleString() : '—'}</span><span className="text-[10px] uppercase tracking-[0.3em] text-neutral-400 mt-2 block">words</span></div>
-            <div><span className="font-display text-4xl md:text-5xl block" style={{letterSpacing:'0.04em'}}>{meta.totalPhrases ? meta.totalPhrases.toLocaleString() : '—'}</span><span className="text-[10px] uppercase tracking-[0.3em] text-neutral-400 mt-2 block">phrases</span></div>
-            <div><span className="font-display text-4xl md:text-5xl block" style={{letterSpacing:'0.04em'}}>∞</span><span className="text-[10px] uppercase tracking-[0.3em] text-neutral-400 mt-2 block">cultural notes</span></div>
+            <div><span className="font-display text-4xl md:text-5xl block" style={{letterSpacing:'0.04em'}}>{meta.totalWords ? meta.totalWords.toLocaleString() : '—'}</span><span className="text-[10px] uppercase tracking-[0.3em] text-neutral-500 mt-2 block">words</span></div>
+            <div><span className="font-display text-4xl md:text-5xl block" style={{letterSpacing:'0.04em'}}>{meta.totalPhrases ? meta.totalPhrases.toLocaleString() : '—'}</span><span className="text-[10px] uppercase tracking-[0.3em] text-neutral-500 mt-2 block">phrases</span></div>
+            <div><span className="font-display text-4xl md:text-5xl block" style={{letterSpacing:'0.04em'}}>∞</span><span className="text-[10px] uppercase tracking-[0.3em] text-neutral-500 mt-2 block">cultural notes</span></div>
           </div>
 
           {/* 10K Goal Progress */}
@@ -245,13 +245,13 @@ export default function Home() {
             return (
               <div className="mt-10 max-w-md anim-fade-up delay-4">
                 <div className="flex items-baseline justify-between mb-2">
-                  <span className="text-[10px] uppercase tracking-[0.3em] text-neutral-400">Road to 25,000</span>
-                  <span className="text-xs text-neutral-400 font-display">{meta.totalWords.toLocaleString()} / {goal.toLocaleString()}</span>
+                  <span className="text-[10px] uppercase tracking-[0.3em] text-neutral-500">Road to 25,000</span>
+                  <span className="text-xs text-neutral-500 font-display">{meta.totalWords.toLocaleString()} / {goal.toLocaleString()}</span>
                 </div>
                 <div className="h-1.5 bg-neutral-100 rounded-full overflow-hidden">
                   <div className="h-full bg-[#c53a1a] rounded-full transition-all duration-1000" style={{ width: `${pct}%` }} />
                 </div>
-                <p className="text-[10px] text-neutral-300 mt-2 tracking-wide">Building the most comprehensive Darija dictionary online. One word at a time.</p>
+                <p className="text-[10px] text-neutral-500 mt-2 tracking-wide">Building the most comprehensive Darija dictionary online. One word at a time.</p>
               </div>
             );
           })()}
@@ -261,11 +261,11 @@ export default function Home() {
       {/* ═══════════ SEARCH RESULTS ═══════════ */}
       {hasResults && (
         <section className="px-8 md:px-[8%] lg:px-[12%] py-20">
-          {wordResults.length > 0 && <div className="mb-16"><p className="text-xs uppercase tracking-[0.2em] text-neutral-400 mb-8">{wordResults.length} words</p>{wordResults.map(renderWord)}</div>}
-          {phraseResults.length > 0 && <div><p className="text-xs uppercase tracking-[0.2em] text-neutral-400 mb-8">{phraseResults.length} phrases</p><div className="max-w-3xl">{phraseResults.map(renderPhrase)}</div></div>}
+          {wordResults.length > 0 && <div className="mb-16"><p className="text-xs uppercase tracking-[0.2em] text-neutral-500 mb-8">{wordResults.length} words</p>{wordResults.map(renderWord)}</div>}
+          {phraseResults.length > 0 && <div><p className="text-xs uppercase tracking-[0.2em] text-neutral-500 mb-8">{phraseResults.length} phrases</p><div className="max-w-3xl">{phraseResults.map(renderPhrase)}</div></div>}
         </section>
       )}
-      {noResults && <section className="px-8 md:px-[8%] lg:px-[12%] py-32 text-center"><span className="font-arabic text-8xl text-neutral-100 block mb-6">؟</span><p className="font-display text-3xl text-neutral-800">Nothing for &ldquo;{query}&rdquo; yet</p><p className="text-neutral-400 mt-2">Try another word or browse below.</p></section>}
+      {noResults && <section className="px-8 md:px-[8%] lg:px-[12%] py-32 text-center"><span className="font-arabic text-8xl text-neutral-100 block mb-6">؟</span><p className="font-display text-3xl text-black">Nothing for &ldquo;{query}&rdquo; yet</p><p className="text-neutral-500 mt-2">Try another word or browse below.</p></section>}
 
       {/* ═══════════ WORD OF THE DAY ═══════════ */}
       {!query && wordOfDay && (
@@ -277,15 +277,15 @@ export default function Home() {
                 <span className="font-arabic text-5xl md:text-6xl text-[#c53a1a] block leading-tight mb-3">{wordOfDay.arabic}</span>
                 <span className="font-display text-3xl md:text-4xl block">{wordOfDay.darija}</span>
               </div>
-              <p className="text-neutral-400 text-sm mb-1">/{wordOfDay.pronunciation}/</p>
-              <p className="text-neutral-600 text-xl mt-4">{wordOfDay.english}</p>
-              <p className="text-neutral-400 mt-1">{wordOfDay.french}</p>
+              <p className="font-mono text-neutral-500 text-sm mb-1 tracking-wide">/{wordOfDay.pronunciation}/</p>
+              <p className="text-neutral-900 text-xl mt-4">{wordOfDay.english}</p>
+              <p className="text-neutral-500 mt-1">{wordOfDay.french}</p>
             </div>
             <div className="md:col-span-6 md:col-start-7 flex items-center">
               {wordOfDay.cultural_note && (
                 <div className="border-l-2 border-[#d4931a] pl-6">
                   <p className="text-xs uppercase tracking-[0.2em] text-[#d4931a] mb-3">Cultural note</p>
-                  <p className="text-neutral-600 leading-relaxed text-lg">{wordOfDay.cultural_note}</p>
+                  <p className="text-neutral-900 leading-relaxed text-lg">{wordOfDay.cultural_note}</p>
                 </div>
               )}
             </div>
@@ -302,7 +302,7 @@ export default function Home() {
               <h2 className="font-display text-5xl md:text-6xl lg:text-7xl leading-[0.9]">Your first<br/><em>day</em> words</h2>
             </div>
             <div className="md:col-span-4 md:col-start-9 flex items-end">
-              <p className="text-neutral-500 leading-relaxed">The words you need before you step out the door. Say them badly — Moroccans will love you for trying.</p>
+              <p className="text-neutral-900 leading-relaxed">The words you need before you step out the door. Say them badly — Moroccans will love you for trying.</p>
             </div>
           </div>
           {essentialWords.slice(0,12).map(renderWord)}
@@ -335,7 +335,7 @@ export default function Home() {
                   key={c.id}
                   onClick={() => setActiveWordCat(activeWordCat === c.id ? null : c.id)}
                   className={`font-display transition-all duration-300 hover:text-[#c53a1a] cursor-pointer ${
-                    activeWordCat === c.id ? 'text-[#c53a1a]' : 'text-neutral-800'
+                    activeWordCat === c.id ? 'text-[#c53a1a]' : 'text-black'
                   }`}
                   style={{
                     fontSize: `${getSize(c.count)}rem`,
@@ -348,7 +348,7 @@ export default function Home() {
               ))}
             </div>
             {activeWordCat && catWords.length > 0 && <div>{catWords.map(renderWord)}</div>}
-            {!activeWordCat && <p className="text-neutral-300 font-display text-2xl italic">Tap any word to explore</p>}
+            {!activeWordCat && <p className="text-neutral-500 font-display text-2xl italic">Tap any word to explore</p>}
           </section>
         );
       })()}
@@ -373,7 +373,7 @@ export default function Home() {
               <h2 className="font-display text-5xl md:text-6xl lg:text-7xl leading-[0.9]">{meta.totalPhrases} Phrases<br/><em>that work</em></h2>
             </div>
             <div className="md:col-span-4 md:col-start-9 flex items-end">
-              <p className="text-neutral-500 leading-relaxed">Not textbook Arabic. Real Darija — what people actually say in the taxi, at the souk, in the café.</p>
+              <p className="text-neutral-900 leading-relaxed">Not textbook Arabic. Real Darija — what people actually say in the taxi, at the souk, in the café.</p>
             </div>
           </div>
           <div className="flex flex-wrap items-baseline gap-x-5 gap-y-3 mb-16 leading-none">
@@ -382,7 +382,7 @@ export default function Home() {
                 key={c.id}
                 onClick={() => setActivePhraseCat(activePhraseCat === c.id ? null : c.id)}
                 className={`font-display transition-all duration-300 hover:text-[#c53a1a] cursor-pointer ${
-                  activePhraseCat === c.id ? 'text-[#c53a1a]' : 'text-neutral-800'
+                  activePhraseCat === c.id ? 'text-[#c53a1a]' : 'text-black'
                 }`}
                 style={{
                   fontSize: `${getPSize(c.count)}rem`,
