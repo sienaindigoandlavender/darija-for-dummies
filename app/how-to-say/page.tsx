@@ -4,6 +4,12 @@ import Link from 'next/link';
 export const metadata: Metadata = {
   title: 'How to Say — Common Phrases in Moroccan Arabic (Darija)',
   description: 'How to say thank you, hello, goodbye, how much, please, and 50+ more phrases in Moroccan Arabic. Darija translations with pronunciation and cultural notes.',
+  alternates: { canonical: 'https://dharija.space/how-to-say' },
+  openGraph: {
+    title: 'How to Say — Common Phrases in Moroccan Arabic (Darija)',
+    description: 'How to say thank you, hello, goodbye, how much, please, and 50+ more phrases in Moroccan Arabic.',
+    images: [{ url: 'https://dharija.space/og-image.jpg', width: 1200, height: 630 }],
+  },
 };
 
 const TERMS = [

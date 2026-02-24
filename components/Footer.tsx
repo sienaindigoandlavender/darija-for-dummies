@@ -64,11 +64,20 @@ export default function Footer() {
         </div>
       </div>
 
-      {/* Level 3 — Powered by */}
+      {/* Level 3 — Attribution */}
       <div style={{ backgroundColor: '#0e0e0e' }}>
         <div className="max-w-7xl mx-auto px-6 py-3">
           <p className="text-[9px] tracking-[0.15em] uppercase text-white/70 text-center">
-            A <a href="https://www.slowmorocco.com" target="_blank" rel="noopener noreferrer" className="text-white/90 hover:text-white transition-colors">Slow Morocco</a> project / Powered by <a href="https://www.dancingwiththelions.com" target="_blank" rel="noopener noreferrer" className="text-white/90 hover:text-white transition-colors">Dancing with Lions</a>
+            A <a href="https://www.slowmorocco.com" target="_blank" rel="noopener noreferrer" className="text-white/90 hover:text-white transition-colors">Slow Morocco</a> project
+          </p>
+        </div>
+      </div>
+
+      {/* Level 4 — Powered by */}
+      <div style={{ backgroundColor: '#080808' }}>
+        <div className="max-w-7xl mx-auto px-6 py-2.5">
+          <p className="text-[9px] tracking-[0.15em] uppercase text-white/50 text-center">
+            Powered by <a href="https://www.dancingwiththelions.com" target="_blank" rel="noopener noreferrer" className="text-white/70 hover:text-white transition-colors">Dancing with Lions</a>
           </p>
         </div>
       </div>

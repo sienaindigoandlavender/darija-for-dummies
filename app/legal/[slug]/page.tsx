@@ -1,5 +1,19 @@
 import { getLegalPage, getSiteConfig, resolveVariables } from '@/lib/nexus';
 import { notFound } from 'next/navigation';
+import type { Metadata } from 'next';
+
+export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
+  const page = await getLegalPage(params.slug);
+  if (!page) return { title: 'Not Found' };
+
+  const title = `${page.page_title} — Darija Dictionary`;
+  return {
+    title,
+    description: `${page.page_title} for Darija Dictionary (dharija.space), a Dancing with Lions publication.`,
+    robots: { index: false, follow: true },
+    alternates: { canonical: `https://dharija.space/legal/${params.slug}` },
+  };
+}
 
 export default async function LegalPage({ params }: { params: { slug: string } }) {
   const [page, site] = await Promise.all([

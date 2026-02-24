@@ -3,26 +3,52 @@
 
 User-agent: *
 Allow: /
+Disallow: /api/
+Allow: /api/knowledge/
+
+User-agent: Googlebot
+Allow: /
+Disallow: /api/
+Allow: /api/knowledge/
 
 User-agent: GPTBot
 Allow: /
+Allow: /api/knowledge/
 
 User-agent: ChatGPT-User
 Allow: /
+Allow: /api/knowledge/
+
+User-agent: OAI-SearchBot
+Allow: /
+Allow: /api/knowledge/
 
 User-agent: Google-Extended
 Allow: /
+Allow: /api/knowledge/
 
 User-agent: Anthropic-AI
 Allow: /
+Allow: /api/knowledge/
 
 User-agent: ClaudeBot
 Allow: /
+Allow: /api/knowledge/
+
+User-agent: Claude-Web
+Allow: /
+Allow: /api/knowledge/
 
 User-agent: CCBot
 Allow: /
+Allow: /api/knowledge/
 
 User-agent: PerplexityBot
 Allow: /
+Allow: /api/knowledge/
+
+User-agent: Bingbot
+Allow: /
+Allow: /api/knowledge/
 
 Sitemap: https://dharija.space/sitemap.xml

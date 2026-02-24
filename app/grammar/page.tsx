@@ -4,6 +4,7 @@ import Link from 'next/link';
 export const metadata: Metadata = {
   title: 'Darija Grammar Guide — Moroccan Arabic Made Simple',
   description: 'The complete guide to Darija grammar: pronouns, verb conjugation (ka-/past/ghadi), negation (ma...sh), adjective agreement, and the sound system.',
+  alternates: { canonical: 'https://dharija.space/grammar' },
   openGraph: {
     title: 'Darija Grammar — Moroccan Arabic Made Simple',
     description: 'Pronouns, verb tenses, negation, questions, and the sounds that don\'t exist in English. A Dancing with Lions reference.',

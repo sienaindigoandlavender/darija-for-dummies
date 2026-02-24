@@ -67,6 +67,7 @@ export async function generateMetadata({ params }: { params: { term: string } })
     title: t.title,
     description: t.description,
     openGraph: { title: t.title, description: t.description },
+    alternates: { canonical: `https://dharija.space/how-to-say/${params.term}` },
   };
 }
 

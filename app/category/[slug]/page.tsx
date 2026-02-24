@@ -50,6 +50,7 @@ export async function generateMetadata({ params }: { params: { slug: string } })
     title: name,
     description: meta?.description || `Browse Darija words in the ${params.slug} category.`,
     openGraph: { title: name, description: meta?.description },
+    alternates: { canonical: `https://dharija.space/category/${params.slug}` },
   };
 }
 
