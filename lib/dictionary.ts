@@ -136,6 +136,10 @@ export async function searchPhrases(query: string): Promise<DarijaPhrase[]> {
 
 export async function getAllPhrases(): Promise<DarijaPhrase[]> { return allPhrases; }
 
+export async function getPhraseById(id: string): Promise<DarijaPhrase | null> {
+  return allPhrases.find(p => p.id === id) || null;
+}
+
 export async function getPhrasesByCategory(category: string): Promise<DarijaPhrase[]> {
   return allPhrases.filter(p => p.category === category).sort((a, b) => a.order - b.order);
 }
