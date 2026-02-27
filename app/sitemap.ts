@@ -51,10 +51,19 @@ export default async function sitemap() {
     priority: 0.5,
   }));
 
+  // Individual phrase pages
+  const allPhrases = await getAllPhrases();
+  const phrasePages = allPhrases.map(p => ({
+    url: `${SITE_URL}/phrase/${p.id}`,
+    lastModified: new Date(),
+    changeFrequency: 'monthly' as const,
+    priority: 0.6,
+  }));
+
   // Knowledge API (for AI crawlers)
   const apiPages = [
     { url: `${SITE_URL}/api/knowledge/darija`, lastModified: new Date(), changeFrequency: 'daily' as const, priority: 0.9 },
   ];
 
-  return [...staticPages, ...howToSayPages, ...categoryPages, ...wordPages, ...apiPages];
+  return [...staticPages, ...howToSayPages, ...categoryPages, ...wordPages, ...phrasePages, ...apiPages];
 }
