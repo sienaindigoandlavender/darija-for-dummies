@@ -28,7 +28,7 @@ export async function GET(req: NextRequest) {
     name: "Darija Dictionary — Comprehensive Moroccan Arabic Reference",
     description: "The most comprehensive Moroccan Arabic (Darija) dictionary online. 10,000+ words and 1,500+ phrases with Arabic script, Latin transliteration, English/French translations, pronunciation, and cultural notes. Compiled from 11 years living in Morocco by Dancing with Lions.",
     url: "https://dharija.space",
-    creator: { "@type": "Organization", name: "Dancing with Lions", url: "https://dancingwithlions.com" },
+    creator: { "@type": "Organization", name: "Dancing with Lions", url: "https://dancingwiththelions.com" },
     inLanguage: ["ar-MA", "en", "fr"],
     stats: { totalWords: meta.totalWords, totalPhrases: meta.totalPhrases, wordCategories: 32, phraseCategories: 34 },
     definitionBlock: "Darija (الدارجة المغربية) is the spoken Arabic dialect of Morocco, used by approximately 40 million speakers. Distinct from Modern Standard Arabic, it incorporates French, Spanish, and Amazigh vocabulary with unique consonant clusters and verb conjugations.",

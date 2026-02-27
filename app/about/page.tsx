@@ -43,14 +43,14 @@ export default async function AboutPage() {
         affiliation: {
           '@type': 'Organization',
           name: 'Dancing with Lions',
-          url: 'https://dancingwithlions.com',
+          url: 'https://dancingwiththelions.com',
           description: 'Cultural intelligence publisher focused on Morocco and the Silk Road.',
         },
       },
       publisher: {
         '@type': 'Organization',
         name: 'Dancing with Lions',
-        url: 'https://dancingwithlions.com',
+        url: 'https://dancingwiththelions.com',
       },
       inLanguage: ['ar', 'en', 'fr'],
       spatialCoverage: { '@type': 'Place', name: 'Morocco' },
@@ -242,7 +242,7 @@ export default async function AboutPage() {
               <p>
                 Everyday Darija is a publication of{' '}
                 <a
-                  href="https://dancingwithlions.com"
+                  href="https://dancingwiththelions.com"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-accent hover:underline"

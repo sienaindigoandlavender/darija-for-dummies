@@ -20,7 +20,7 @@ export default async function FirstDayPage() {
     '@type': 'Course',
     name: 'First Day Darija — Morocco Survival Kit',
     description: 'Essential Moroccan Arabic words and phrases for your first day in Morocco.',
-    provider: { '@type': 'Organization', name: 'Dancing with Lions', url: 'https://dancingwithlions.com' },
+    provider: { '@type': 'Organization', name: 'Dancing with Lions', url: 'https://dancingwiththelions.com' },
     inLanguage: ['ar', 'en', 'fr'],
     teaches: 'Moroccan Arabic (Darija) survival vocabulary',
     numberOfCredits: 0,

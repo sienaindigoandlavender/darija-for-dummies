@@ -80,9 +80,9 @@ const jsonLd = [
     inLanguage: ["en", "fr", "ar"],
     publisher: {
       "@type": "Organization",
-      "@id": "https://dancingwithlions.com/#org",
+      "@id": "https://dancingwiththelions.com/#org",
       name: "Dancing with Lions",
-      url: "https://dancingwithlions.com",
+      url: "https://dancingwiththelions.com",
       description: "Data-driven research group focused on travel, culture, and sustainable tourism in Morocco and North Africa.",
     },
     potentialAction: {
@@ -187,7 +187,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <meta name="dc.language" content="en" />
         <meta name="dc.type" content="Dataset" />
         {/* Semantic web */}
-        <link rel="canonical" href="https://dharija.space" />
         {/* Google Analytics */}
         <Script async src="https://www.googletagmanager.com/gtag/js?id=G-XELC3PNP0N" strategy="afterInteractive" />
         <Script id="google-analytics" strategy="afterInteractive" dangerouslySetInnerHTML={{ __html: `window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-XELC3PNP0N');` }} />

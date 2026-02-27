@@ -17,7 +17,7 @@ export default function GrammarPage() {
     '@type': 'Course',
     name: 'Darija Grammar Guide',
     description: 'Complete Moroccan Arabic grammar reference covering pronunciation, pronouns, verb conjugation, negation, and cultural context.',
-    provider: { '@type': 'Organization', name: 'Dancing with Lions', url: 'https://dancingwithlions.com' },
+    provider: { '@type': 'Organization', name: 'Dancing with Lions', url: 'https://dancingwiththelions.com' },
     inLanguage: ['ar', 'en', 'fr'],
     teaches: 'Moroccan Arabic (Darija) grammar',
     isAccessibleForFree: true,
