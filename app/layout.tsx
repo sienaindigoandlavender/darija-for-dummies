@@ -1,4 +1,5 @@
 import type { Metadata, Viewport } from "next";
+import Script from "next/script";
 import "./globals.css";
 import Footer from "@/components/Footer";
 
@@ -188,8 +189,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         {/* Semantic web */}
         <link rel="canonical" href="https://dharija.space" />
         {/* Google Analytics */}
-        <script async src="https://www.googletagmanager.com/gtag/js?id=G-XELC3PNP0N" />
-        <script dangerouslySetInnerHTML={{ __html: `window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-XELC3PNP0N');` }} />
+        <Script async src="https://www.googletagmanager.com/gtag/js?id=G-XELC3PNP0N" strategy="afterInteractive" />
+        <Script id="google-analytics" strategy="afterInteractive" dangerouslySetInnerHTML={{ __html: `window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-XELC3PNP0N');` }} />
       </head>
       <body className="antialiased min-h-screen flex flex-col">
         <main className="flex-1">{children}</main>
