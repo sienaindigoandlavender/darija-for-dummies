@@ -7,11 +7,11 @@ const SITE_URL = 'https://dharija.space';
 export const metadata: Metadata = {
   title: 'About — Everyday Darija',
   description:
-    'Everyday Darija is the most comprehensive Moroccan Arabic dictionary online. 8,500+ words compiled from 11 years of field research in Morocco. A Dancing with Lions publication.',
+    'Everyday Darija is the most comprehensive Moroccan Arabic dictionary online. 10,000+ words compiled from 11 years of field research in Morocco. A Dancing with Lions publication.',
   openGraph: {
     title: 'About — Everyday Darija',
     description:
-      'The most comprehensive Moroccan Arabic dictionary online. 8,500+ words, cultural notes, pronunciation guides. Built from 11 years living in Morocco.',
+      'The most comprehensive Moroccan Arabic dictionary online. 10,000+ words, cultural notes, pronunciation guides. Built from 11 years living in Morocco.',
     url: `${SITE_URL}/about`,
   },
   alternates: { canonical: `${SITE_URL}/about` },

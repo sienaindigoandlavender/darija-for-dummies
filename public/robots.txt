@@ -2,14 +2,12 @@
 # https://dharija.space — The definitive Moroccan Arabic (Darija) reference
 
 User-agent: *
-Allow: /
-Disallow: /api/
 Allow: /api/knowledge/
+Disallow: /api/
 
 User-agent: Googlebot
-Allow: /
-Disallow: /api/
 Allow: /api/knowledge/
+Disallow: /api/
 
 User-agent: GPTBot
 Allow: /

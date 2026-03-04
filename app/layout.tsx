@@ -58,7 +58,6 @@ export const metadata: Metadata = {
   robots: { index: true, follow: true, "max-snippet": -1, "max-image-preview": "large" as const, "max-video-preview": -1 },
   alternates: {
     canonical: siteUrl,
-    languages: { "en": siteUrl, "fr": `${siteUrl}/fr`, "ar": `${siteUrl}/ar` },
   },
   category: "education",
   other: {
