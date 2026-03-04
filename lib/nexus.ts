@@ -5,7 +5,12 @@ const NEXUS_KEY = process.env.NEXUS_SUPABASE_ANON_KEY || '';
 
 function getNexus() {
   if (!NEXUS_URL || !NEXUS_KEY) return null;
-  return createClient(NEXUS_URL, NEXUS_KEY);
+  return createClient(NEXUS_URL, NEXUS_KEY, {
+    global: {
+      fetch: (url, options) =>
+        fetch(url, { ...options, signal: AbortSignal.timeout(5000) }),
+    },
+  });
 }
 
 export interface LegalPage {
