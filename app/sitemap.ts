@@ -17,7 +17,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${SITE_URL}/first-day`, lastModified: today, changeFrequency: 'monthly', priority: 0.8 },
     { url: `${SITE_URL}/practice`, lastModified: today, changeFrequency: 'monthly', priority: 0.7 },
     { url: `${SITE_URL}/how-to-say`, lastModified: today, changeFrequency: 'weekly', priority: 0.8 },
-    { url: `${SITE_URL}/api/knowledge/darija`, lastModified: today, changeFrequency: 'daily', priority: 0.9 },
   ];
 
   // How-to-say pages — highest search value, fully static
